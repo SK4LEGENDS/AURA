@@ -1,0 +1,16 @@
+{
+    "name": "AURA - Advanced User Research AI",
+    "short_name": "AURA AI",
+    "description": "Adaptive User Research Assistant with RAG and visualization capabilities.",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#000000",
+    "theme_color": "#3b82f6",
+    "icons": [
+        {
+            "src": "/favicon.ico",
+            "sizes": "64x64",
+            "type": "image/x-icon"
+        }
+    ]
+}

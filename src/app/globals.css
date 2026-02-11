@@ -1,0 +1,83 @@
+@config "../../tailwind.config.ts";
+@import "tailwindcss";
+
+:root {
+  /* --- AURA COLOR SPINE (Light Mode) --- */
+
+  /* Core Identity */
+  --brand-primary-hsl: 262 83% 58%;
+  --brand-primary: hsl(var(--brand-primary-hsl));
+
+  --brand-secondary-hsl: 190 95% 44%;
+  --brand-secondary: hsl(var(--brand-secondary-hsl));
+
+  /* Trust Signaling */
+  --status-high-hsl: 142 71% 45%;
+  --status-high: hsl(var(--status-high-hsl));
+
+  --status-medium-hsl: 38 92% 50%;
+  --status-medium: hsl(var(--status-medium-hsl));
+
+  --status-low-hsl: 350 89% 60%;
+  --status-low: hsl(var(--status-low-hsl));
+
+  /* UI Infrastructure */
+  --ui-background: 0 0% 100%;
+  --ui-surface: 264 43% 97%;
+  --ui-border: 220 13% 91%;
+
+  --text-primary: #171717;
+  --text-secondary: #6b7280;
+
+  --background: hsl(var(--ui-background));
+  --surface: hsl(var(--ui-surface));
+  --border: hsl(var(--ui-border));
+
+  --accent-color: var(--brand-primary);
+}
+
+.dark {
+  /* --- AURA COLOR SPINE (Dark Mode) --- */
+
+  --brand-primary-hsl: 262 70% 60%;
+  --brand-secondary-hsl: 190 95% 50%;
+
+  /* UI Infrastructure */
+  --ui-background: 222 47% 4%;
+  --ui-surface: 222 47% 7%;
+  --ui-border: 222 47% 12%;
+
+  --text-primary: #ececec;
+  --text-secondary: #b4b4b4;
+
+  --accent-color: var(--brand-primary);
+}
+
+.dark body {
+  @apply text-[var(--text-primary)];
+  background: var(--background);
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: hsla(var(--brand-primary-hsl) / 0.3);
+  border-radius: 999px;
+  transition: background-color 0.2s;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: hsla(var(--brand-primary-hsl) / 0.8);
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::selection {
+  background-color: var(--accent-color);
+  color: white;
+}
