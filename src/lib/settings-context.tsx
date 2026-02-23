@@ -21,20 +21,20 @@ type SettingsContextType = {
 const SettingsContext = createContext<SettingsContextType | undefined>(undefined);
 
 export function SettingsProvider({ children }: { children: React.ReactNode }) {
-    const [accentColor, setAccentColor] = useState("#a855f7");
+    const [accentColor, setAccentColor] = useState("#fb923c");
     const [responseStyle, setResponseStyle] = useState<ResponseStyle>("Neutral");
     const [summaryLevel, setSummaryLevel] = useState<SummaryLevel>("Short");
-    const [aiModel, setAiModel] = useState<string>("phi3:mini");
+    const [aiModel, setAiModel] = useState<string>("llama3.2");
     const [mounted, setMounted] = useState(false);
 
     useEffect(() => {
         setMounted(true);
         // Load from localStorage
-        const savedAccent = localStorage.getItem("accentColor");
-        const savedResponseStyle = localStorage.getItem("responseStyle");
-        const savedSummaryLevel = localStorage.getItem("summaryLevel");
+        const savedAccent = localStorage.getItem("auraAccentColor");
+        const savedResponseStyle = localStorage.getItem("auraResponseStyle");
+        const savedSummaryLevel = localStorage.getItem("auraSummaryLevel");
 
-        const savedAiModel = localStorage.getItem("aiModel");
+        const savedAiModel = localStorage.getItem("auraAiModel");
 
         if (savedAccent) setAccentColor(savedAccent);
         if (savedResponseStyle) setResponseStyle(savedResponseStyle as ResponseStyle);
@@ -45,11 +45,11 @@ export function SettingsProvider({ children }: { children: React.ReactNode }) {
 
     useEffect(() => {
         if (!mounted) return;
-        localStorage.setItem("accentColor", accentColor);
-        localStorage.setItem("responseStyle", responseStyle);
-        localStorage.setItem("summaryLevel", summaryLevel);
+        localStorage.setItem("auraAccentColor", accentColor);
+        localStorage.setItem("auraResponseStyle", responseStyle);
+        localStorage.setItem("auraSummaryLevel", summaryLevel);
 
-        localStorage.setItem("aiModel", aiModel);
+        localStorage.setItem("auraAiModel", aiModel);
 
         // Apply accent color to CSS variable
         document.documentElement.style.setProperty("--accent-color", accentColor);

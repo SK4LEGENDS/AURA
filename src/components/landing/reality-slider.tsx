@@ -4,8 +4,10 @@ import React, { useState, useRef, useEffect } from "react";
 import { motion } from "framer-motion";
 import { AlertCircle, CheckCircle2, FileText, BarChart3, Info, Copy, ThumbsUp, ThumbsDown, ShieldCheck } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { useI18n } from "@/lib/i18n-context";
 
 export function RealitySlider() {
+    const { t } = useI18n();
     const [sliderPos, setSliderPos] = useState(50);
     const containerRef = useRef<HTMLDivElement>(null);
     const isDragging = useRef(false);
@@ -42,10 +44,10 @@ export function RealitySlider() {
             <div className="container mx-auto px-6">
                 <div className="text-center mb-16">
                     <h2 className="text-3xl md:text-5xl font-bold text-white mb-6 tracking-tighter">
-                        Hallucination vs. <span className="text-emerald-400">Reality</span>
+                        {t("landing.reality.title").split(' vs. ')[0]} vs. <span className="text-emerald-400">{t("landing.reality.title").split(' vs. ')[1]}</span>
                     </h2>
                     <p className="text-zinc-400 max-w-2xl mx-auto">
-                        Drag the slider to see how Aura's source-grounded intelligence compares to standard black-box AI models.
+                        {t("landing.reality.subtitle")}
                     </p>
                 </div>
 
@@ -61,7 +63,7 @@ export function RealitySlider() {
                     <div className="absolute inset-0 bg-zinc-950 p-8 md:p-12 flex flex-col justify-center">
                         <div className="flex items-center gap-3 mb-6 text-red-500/50">
                             <AlertCircle className="w-6 h-6" />
-                            <span className="font-bold uppercase tracking-widest text-xs">Generic LLM (Offline)</span>
+                            <span className="font-bold uppercase tracking-widest text-xs">{t("landing.reality.genericLlm")}</span>
                         </div>
                         <div className="max-w-xl">
                             <h3 className="text-xl md:text-2xl font-bold text-zinc-500 mb-4 italic">
@@ -86,12 +88,12 @@ export function RealitySlider() {
                         style={{ clipPath: `inset(0 0 0 ${sliderPos}%)` }}
                     >
                         {/* Background glow for AURA side */}
-                        <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/10 via-transparent to-purple-500/10 opacity-30" />
+                        <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/10 via-transparent to-brand-primary/10 opacity-30" />
 
                         <div className="relative z-10 w-full h-full flex flex-col justify-center">
                             <div className="flex items-center gap-3 mb-6 text-emerald-400">
                                 <CheckCircle2 className="w-6 h-6" />
-                                <span className="font-bold uppercase tracking-widest text-xs">AURA Intelligence (Verified)</span>
+                                <span className="font-bold uppercase tracking-widest text-xs">{t("landing.reality.auraVerified")}</span>
                             </div>
 
                             <div className="max-w-3xl">
@@ -114,7 +116,7 @@ export function RealitySlider() {
                                 <div className="flex items-center justify-between">
                                     <div className="flex items-center gap-2 px-3 py-1 bg-emerald-500/10 border border-emerald-500/20 rounded-full">
                                         <ShieldCheck className="w-4 h-4 text-emerald-400" />
-                                        <span className="text-[10px] font-bold text-emerald-400 uppercase tracking-tight">High Confidence</span>
+                                        <span className="text-[10px] font-bold text-emerald-400 uppercase tracking-tight">{t("landing.reality.highConfidence")}</span>
                                         <Info className="w-3 h-3 text-emerald-500/50" />
                                     </div>
 
@@ -137,8 +139,8 @@ export function RealitySlider() {
                         </div>
 
                         {/* Floating Labels */}
-                        <div className="absolute top-8 -translate-x-full pr-4 text-[10px] font-black uppercase tracking-widest text-white/50 whitespace-nowrap">Hallucination</div>
-                        <div className="absolute top-8 pl-4 text-[10px] font-black uppercase tracking-widest text-emerald-400 whitespace-nowrap">Reality</div>
+                        <div className="absolute top-8 -translate-x-full pr-4 text-[10px] font-black uppercase tracking-widest text-white/50 whitespace-nowrap">{t("landing.reality.hallucination")}</div>
+                        <div className="absolute top-8 pl-4 text-[10px] font-black uppercase tracking-widest text-emerald-400 whitespace-nowrap">{t("landing.reality.reality")}</div>
                     </div>
                 </div>
             </div>

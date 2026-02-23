@@ -22,6 +22,7 @@ import {
 } from "lucide-react";
 import { AnalyticsSummary, QueryAnalytics } from "@/types/analytics";
 import { cn } from "@/lib/utils";
+import { useI18n } from "@/lib/i18n-context";
 
 interface UserInsightsProps {
     userId: string;
@@ -36,6 +37,7 @@ export function UserInsightsPanel({ userId, isOpen, onClose }: UserInsightsProps
     const [summary, setSummary] = useState<AnalyticsSummary | null>(null);
     const [recentQueries, setRecentQueries] = useState<QueryAnalytics[]>([]);
     const [loading, setLoading] = useState(true);
+    const { t } = useI18n();
 
     const fetchData = async () => {
         setLoading(true);
@@ -129,59 +131,59 @@ export function UserInsightsPanel({ userId, isOpen, onClose }: UserInsightsProps
                             <div className="p-4 space-y-4">
 
                                 {/* Row 1: Trust Score */}
-                                <TrustScoreCard score={trustScore} queryCount={summary.totalQueries} />
+                                <TrustScoreCard score={trustScore} queryCount={summary.totalQueries} t={t} />
 
                                 {/* Row 2: Confidence Distribution | Evidence Presence */}
                                 <div className="grid grid-cols-2 gap-4">
-                                    <ConfidenceDistributionCard summary={summary} />
-                                    <EvidencePresenceCard score={evidencePresence} avgSimilarity={summary.avgSimilarity} />
+                                    <ConfidenceDistributionCard summary={summary} t={t} />
+                                    <EvidencePresenceCard score={evidencePresence} avgSimilarity={summary.avgSimilarity} t={t} />
                                 </div>
 
                                 {/* Row 3: Avg Confidence Over Time */}
-                                <ConfidenceTimelineCard queries={recentQueries} />
+                                <ConfidenceTimelineCard queries={recentQueries} t={t} />
 
                                 {/* Row 4: Retrieval Score | Consistency */}
                                 <div className="grid grid-cols-2 gap-4">
                                     <MetricCard
                                         icon={Database}
-                                        title="Retrieval Score"
+                                        title={t("insights.retrieval")}
                                         value={`${Math.round((summary.avgSimilarity || 0.5) * 100)}%`}
-                                        subtitle={`Avg ${summary.avgChunksRetrieved.toFixed(1)} chunks/query`}
+                                        subtitle={`${t("insights.chunks").replace("{count}", summary.avgChunksRetrieved.toFixed(1))}`}
                                         color="blue"
                                     />
                                     <MetricCard
                                         icon={Activity}
-                                        title="Consistency"
+                                        title={t("insights.consistency")}
                                         value={`${Math.round(summary.confidenceCorrelation * 100)}%`}
-                                        subtitle="Confidence-correctness correlation"
-                                        color="purple"
+                                        subtitle={t("insights.correlation")}
+                                        color="orange"
                                     />
                                 </div>
 
                                 {/* Row 5: Coverage Histogram | Refusal Rate */}
                                 <div className="grid grid-cols-2 gap-4">
-                                    <CoverageHistogramCard queries={recentQueries} />
+                                    <CoverageHistogramCard queries={recentQueries} t={t} />
                                     <MetricCard
                                         icon={XCircle}
-                                        title="Refusal Rate"
+                                        title={t("insights.refusal")}
                                         value={`${refusalRate}%`}
-                                        subtitle={`${summary.unansweredQueries} unanswered queries`}
+                                        subtitle={t("insights.unanswered").replace("{count}", summary.unansweredQueries.toString())}
                                         color={refusalRate > 30 ? "red" : refusalRate > 15 ? "yellow" : "green"}
                                     />
                                 </div>
 
                                 {/* Row 6: Risky Questions Table */}
-                                <RiskyQuestionsTable questions={riskyQuestions} />
+                                <RiskyQuestionsTable questions={riskyQuestions} t={t} />
 
                                 {/* Row 7: Ingestion & System Health */}
-                                <SystemHealthCard summary={summary} />
+                                <SystemHealthCard summary={summary} t={t} />
 
                             </div>
                         ) : (
                             <div className="flex flex-col items-center justify-center p-12 text-center">
                                 <MessageSquare className="w-12 h-12 text-zinc-600 mb-4" />
-                                <p className="text-zinc-400 text-lg">No data yet</p>
-                                <p className="text-zinc-500 text-sm mt-1">Start asking questions to see analytics!</p>
+                                <p className="text-zinc-400 text-lg">{t("insights.noData")}</p>
+                                <p className="text-zinc-500 text-sm mt-1">{t("insights.startAsking")}</p>
                             </div>
                         )}
                     </motion.div>
@@ -192,12 +194,12 @@ export function UserInsightsPanel({ userId, isOpen, onClose }: UserInsightsProps
 }
 
 // Trust Score Card
-function TrustScoreCard({ score, queryCount }: { score: number; queryCount: number }) {
+function TrustScoreCard({ score, queryCount, t }: { score: number; queryCount: number; t: any }) {
     const getScoreColor = (s: number) => {
-        if (s >= 80) return { bg: "bg-emerald-500", text: "text-emerald-400", label: "Excellent" };
-        if (s >= 60) return { bg: "bg-blue-500", text: "text-blue-400", label: "Good" };
-        if (s >= 40) return { bg: "bg-amber-500", text: "text-amber-400", label: "Fair" };
-        return { bg: "bg-red-500", text: "text-red-400", label: "Needs Improvement" };
+        if (s >= 80) return { bg: "bg-emerald-500", text: "text-emerald-400", label: t("insights.excellent") };
+        if (s >= 60) return { bg: "bg-blue-500", text: "text-blue-400", label: t("insights.good") };
+        if (s >= 40) return { bg: "bg-amber-500", text: "text-amber-400", label: t("insights.fair") };
+        return { bg: "bg-red-500", text: "text-red-400", label: t("insights.needsImprovement") };
     };
 
     const color = getScoreColor(score);
@@ -206,19 +208,19 @@ function TrustScoreCard({ score, queryCount }: { score: number; queryCount: numb
         <motion.div
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            className="p-5 rounded-xl bg-gradient-to-br from-zinc-800/80 to-zinc-900 border border-zinc-700"
+            className="p-5 rounded-xl bg-linear-to-br from-zinc-800/80 to-zinc-900 border border-zinc-700"
         >
             <div className="flex items-center justify-between">
                 <div>
                     <div className="flex items-center gap-2 mb-1">
                         <Shield className={cn("w-5 h-5", color.text)} />
-                        <span className="text-sm font-medium text-zinc-400">Trust Score</span>
+                        <span className="text-sm font-medium text-zinc-400">{t("insights.trustScore")}</span>
                     </div>
                     <div className="flex items-baseline gap-2">
                         <span className={cn("text-4xl font-bold", color.text)}>{score}%</span>
                         <span className="text-sm text-zinc-500">{color.label}</span>
                     </div>
-                    <p className="text-xs text-zinc-500 mt-1">Based on {queryCount} queries</p>
+                    <p className="text-xs text-zinc-500 mt-1">{t("insights.basedOn").replace("{count}", queryCount.toString())}</p>
                 </div>
                 <div className="relative w-24 h-24">
                     <svg className="w-24 h-24 transform -rotate-90">
@@ -241,17 +243,17 @@ function TrustScoreCard({ score, queryCount }: { score: number; queryCount: numb
 }
 
 // Confidence Distribution Card
-function ConfidenceDistributionCard({ summary }: { summary: AnalyticsSummary }) {
+function ConfidenceDistributionCard({ summary, t }: { summary: AnalyticsSummary; t: any }) {
     const total = summary.totalQueries;
     const data = [
-        { label: "High", count: summary.highConfidenceCount, color: "bg-emerald-500" },
-        { label: "Medium", count: summary.mediumConfidenceCount, color: "bg-amber-500" },
-        { label: "Low", count: summary.lowConfidenceCount, color: "bg-red-500" },
+        { label: t("insights.high"), count: summary.highConfidenceCount, color: "bg-emerald-500" },
+        { label: t("insights.medium"), count: summary.mediumConfidenceCount, color: "bg-amber-500" },
+        { label: t("insights.low"), count: summary.lowConfidenceCount, color: "bg-red-500" },
     ];
 
     return (
         <div className="p-4 rounded-xl bg-zinc-800/50 border border-zinc-700">
-            <h3 className="text-sm font-medium text-white mb-3">Confidence Distribution</h3>
+            <h3 className="text-sm font-medium text-white mb-3">{t("insights.confidence")}</h3>
             <div className="space-y-2">
                 {data.map(({ label, count, color }) => (
                     <div key={label} className="flex items-center gap-2">
@@ -273,14 +275,14 @@ function ConfidenceDistributionCard({ summary }: { summary: AnalyticsSummary }) 
 }
 
 // Evidence Presence Card
-function EvidencePresenceCard({ score, avgSimilarity }: { score: number; avgSimilarity: number }) {
+function EvidencePresenceCard({ score, avgSimilarity, t }: { score: number; avgSimilarity: number; t: any }) {
     return (
         <div className="p-4 rounded-xl bg-zinc-800/50 border border-zinc-700">
-            <h3 className="text-sm font-medium text-white mb-3">Evidence Presence</h3>
+            <h3 className="text-sm font-medium text-white mb-3">{t("insights.evidence")}</h3>
             <div className="flex items-center justify-center h-20">
                 <div className="text-center">
                     <span className="text-3xl font-bold text-blue-400">{score}%</span>
-                    <p className="text-xs text-zinc-500 mt-1">Avg similarity: {(avgSimilarity * 100).toFixed(1)}%</p>
+                    <p className="text-xs text-zinc-500 mt-1">{t("insights.similarity").replace("{score}", (avgSimilarity * 100).toFixed(1))}</p>
                 </div>
             </div>
             <div className="h-2 bg-zinc-700 rounded-full mt-2 overflow-hidden">
@@ -295,13 +297,13 @@ function EvidencePresenceCard({ score, avgSimilarity }: { score: number; avgSimi
 }
 
 // Confidence Timeline Card
-function ConfidenceTimelineCard({ queries }: { queries: QueryAnalytics[] }) {
+function ConfidenceTimelineCard({ queries, t }: { queries: QueryAnalytics[]; t: any }) {
     const last10 = queries.slice(0, 10).reverse();
     const maxScore = 1;
 
     return (
         <div className="p-4 rounded-xl bg-zinc-800/50 border border-zinc-700">
-            <h3 className="text-sm font-medium text-white mb-3">Avg Confidence Over Time</h3>
+            <h3 className="text-sm font-medium text-white mb-3">{t("insights.timeline")}</h3>
             <div className="h-24 flex items-end gap-1">
                 {last10.length > 0 ? last10.map((q, idx) => {
                     const height = (q.confidenceScore / maxScore) * 100;
@@ -319,19 +321,19 @@ function ConfidenceTimelineCard({ queries }: { queries: QueryAnalytics[] }) {
                         />
                     );
                 }) : (
-                    <div className="w-full text-center text-zinc-500 text-xs">No data</div>
+                    <div className="w-full text-center text-zinc-500 text-xs">{t("insights.noData")}</div>
                 )}
             </div>
             <div className="flex justify-between text-xs text-zinc-500 mt-2">
-                <span>Older</span>
-                <span>Recent</span>
+                <span>{t("insights.older")}</span>
+                <span>{t("insights.recent")}</span>
             </div>
         </div>
     );
 }
 
 // Coverage Histogram Card
-function CoverageHistogramCard({ queries }: { queries: QueryAnalytics[] }) {
+function CoverageHistogramCard({ queries, t }: { queries: QueryAnalytics[]; t: any }) {
     const buckets = [0, 0, 0, 0, 0]; // 0-20, 20-40, 40-60, 60-80, 80-100
     queries.forEach(q => {
         const idx = Math.min(4, Math.floor(q.confidenceScore * 5));
@@ -341,14 +343,14 @@ function CoverageHistogramCard({ queries }: { queries: QueryAnalytics[] }) {
 
     return (
         <div className="p-4 rounded-xl bg-zinc-800/50 border border-zinc-700">
-            <h3 className="text-sm font-medium text-white mb-3">Coverage Histogram</h3>
+            <h3 className="text-sm font-medium text-white mb-3">{t("insights.coverage")}</h3>
             <div className="h-16 flex items-end gap-1">
                 {buckets.map((count, idx) => (
                     <motion.div
                         key={idx}
                         initial={{ height: 0 }}
                         animate={{ height: `${(count / max) * 100}%` }}
-                        className="flex-1 bg-purple-500 rounded-t min-h-[2px]"
+                        className="flex-1 bg-brand-primary rounded-t min-h-[2px]"
                     />
                 ))}
             </div>
@@ -379,7 +381,7 @@ function MetricCard({
         blue: "text-blue-400",
         green: "text-emerald-400",
         yellow: "text-amber-400",
-        purple: "text-purple-400",
+        orange: "text-brand-primary",
         red: "text-red-400",
     };
 
@@ -396,15 +398,15 @@ function MetricCard({
 }
 
 // Risky Questions Table
-function RiskyQuestionsTable({ questions }: { questions: QueryAnalytics[] }) {
+function RiskyQuestionsTable({ questions, t }: { questions: QueryAnalytics[]; t: any }) {
     if (questions.length === 0) {
         return (
             <div className="p-4 rounded-xl bg-zinc-800/50 border border-zinc-700">
                 <div className="flex items-center gap-2 mb-3">
                     <AlertTriangle className="w-4 h-4 text-amber-400" />
-                    <h3 className="text-sm font-medium text-white">⚠️ Risky Questions</h3>
+                    <h3 className="text-sm font-medium text-white">⚠️ {t("insights.risky")}</h3>
                 </div>
-                <p className="text-sm text-zinc-500 text-center py-4">No risky questions detected</p>
+                <p className="text-sm text-zinc-500 text-center py-4">{t("insights.noRisky")}</p>
             </div>
         );
     }
@@ -413,7 +415,7 @@ function RiskyQuestionsTable({ questions }: { questions: QueryAnalytics[] }) {
         <div className="p-4 rounded-xl bg-zinc-800/50 border border-zinc-700">
             <div className="flex items-center gap-2 mb-3">
                 <AlertTriangle className="w-4 h-4 text-amber-400" />
-                <h3 className="text-sm font-medium text-white">⚠️ Risky Questions ({questions.length})</h3>
+                <h3 className="text-sm font-medium text-white">⚠️ {t("insights.risky")} ({questions.length})</h3>
             </div>
             <div className="max-h-48 overflow-y-auto space-y-2">
                 {questions.slice(0, 5).map((q, idx) => (
@@ -426,7 +428,7 @@ function RiskyQuestionsTable({ questions }: { questions: QueryAnalytics[] }) {
                                     q.confidenceLevel === "low" ? "bg-amber-500/20 text-amber-400" :
                                         "bg-zinc-700 text-zinc-400"
                             )}>
-                                {q.guardrailTriggered ? "Guardrail" : q.confidenceLevel}
+                                {q.guardrailTriggered ? t("insights.guardrail") : t(`insights.${q.confidenceLevel}`)}
                             </span>
                             <span className="text-xs text-zinc-500">
                                 {(q.confidenceScore * 100).toFixed(0)}% confidence
@@ -440,25 +442,25 @@ function RiskyQuestionsTable({ questions }: { questions: QueryAnalytics[] }) {
 }
 
 // System Health Card
-function SystemHealthCard({ summary }: { summary: AnalyticsSummary }) {
+function SystemHealthCard({ summary, t }: { summary: AnalyticsSummary; t: any }) {
     return (
         <div className="p-4 rounded-xl bg-zinc-800/50 border border-zinc-700">
             <div className="flex items-center gap-2 mb-3">
                 <Zap className="w-4 h-4 text-green-400" />
-                <h3 className="text-sm font-medium text-white">Ingestion & System Health</h3>
+                <h3 className="text-sm font-medium text-white">{t("insights.systemHealth")}</h3>
             </div>
             <div className="grid grid-cols-3 gap-4">
                 <div className="text-center">
                     <div className="text-xl font-bold text-green-400">{summary.avgLatencyMs.toFixed(0)}ms</div>
-                    <p className="text-xs text-zinc-500">Avg Latency</p>
+                    <p className="text-xs text-zinc-500">{t("insights.latency")}</p>
                 </div>
                 <div className="text-center">
                     <div className="text-xl font-bold text-blue-400">{summary.p95LatencyMs.toFixed(0)}ms</div>
-                    <p className="text-xs text-zinc-500">P95 Latency</p>
+                    <p className="text-xs text-zinc-500">{t("insights.p95")}</p>
                 </div>
                 <div className="text-center">
-                    <div className="text-xl font-bold text-purple-400">{summary.avgChunksRetrieved.toFixed(1)}</div>
-                    <p className="text-xs text-zinc-500">Chunks/Query</p>
+                    <div className="text-xl font-bold text-brand-primary">{summary.avgChunksRetrieved.toFixed(1)}</div>
+                    <p className="text-xs text-zinc-500">{t("insights.chunks").split('/')[1]}</p>
                 </div>
             </div>
         </div>
@@ -469,6 +471,7 @@ function SystemHealthCard({ summary }: { summary: AnalyticsSummary }) {
  * Button to open insights panel
  */
 export function InsightsButton({ onClick }: { onClick: () => void }) {
+    const { t } = useI18n();
     return (
         <button
             onClick={onClick}
@@ -479,7 +482,7 @@ export function InsightsButton({ onClick }: { onClick: () => void }) {
             )}
         >
             <BarChart3 className="w-4 h-4" />
-            <span>Your Insights</span>
+            <span>{t("sidebar.yourInsights")}</span>
         </button>
     );
 }

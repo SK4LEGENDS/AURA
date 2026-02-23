@@ -1,0 +1,319 @@
+{
+    "common": {
+        "aura": "AURA",
+        "getStarted": "Aan de slag",
+        "signIn": "Inloggen",
+        "dashboard": "Dashboard",
+        "settings": "Instellingen",
+        "help": "Help",
+        "logout": "Uitloggen",
+        "privacy": "Privacy",
+        "terms": "Voorwaarden",
+        "contact": "Contact",
+        "allRightsReserved": "Alle rechten voorbehouden.",
+        "backToHome": "Terug naar Home",
+        "lastUpdated": "Laatst bijgewerkt",
+        "questions": "Vragen? Neem contact met ons op via"
+    },
+    "landing": {
+        "heroTitle": "Chat met je Intelligentie.",
+        "heroSubtitle": "Aura transformeert uw documenten in een veilige, doorzoekbare kennisbank. Nul hallucinaties, 100% op bronnen gebaseerde antwoorden.",
+        "startFree": "Gratis beginnen",
+        "viewAnalytics": "Bekijk Analytics",
+        "capabilities": "Mogelijkheden",
+        "engineeredTitle1": "Ontworpen voor High-Stakes",
+        "engineeredTitle2": "Intelligentie.",
+        "bento": {
+            "visualTitle": "Niveau 4 Visuele Veerkracht",
+            "visualDesc": "Ultra-robuuste grafiekweergave die misvormde AI JSON overleeft. Ondersteunt 9+ interactieve grafiektypen.",
+            "privacyTitle": "Nul-Cloud Privacy",
+            "privacyDesc": "Embeddings en inferentie blijven lokaal. Uw privédocumenten verlaten nooit uw infrastructuur.",
+            "privacyBadge": "LOKALE OLLAMA GESYNCHRONISEERD",
+            "semanticTitle": "Semantische Traceerbaarheid",
+            "semanticDesc": "Nul hallucinaties. Elk antwoord is gekoppeld aan een bronfragment met oneindig schuiven-naar-weergave.",
+            "structuredTitle": "Beherersing van Gestructureerde Gegevens",
+            "structuredDesc": "Gespecialiseerde Excel- en CSV-verwerking die headercontext behoudt over duizenden rijen.",
+            "exportTitle": "Professionele Exports",
+            "exportDesc": "Met één klik exporteren naar hoge resolutie PNG, SVG of vector PDF."
+        },
+        "reality": {
+            "title": "Hallucinatie vs. Realiteit",
+            "subtitle": "Sleep de schuifregelaar om te zien hoe de op bronnen gebaseerde intelligentie van Aura zich verhoudt tot standaard black-box AI-modellen.",
+            "hallucination": "Hallucinatie",
+            "reality": "Reality",
+            "genericLlm": "Generieke LLM (Offline)",
+            "auraVerified": "AURA Intelligentie (Geverifieerd)",
+            "highConfidence": "Hoog Vertrouwen"
+        },
+        "audience": {
+            "title": "Voor wie Aura is gebouwd",
+            "subtitle": "Afgestemd op professionals die precisie, veiligheid en schaalbaarheid eisen.",
+            "devTitle": "Ontwikkelaars",
+            "devDesc": "Integreer RAG-mogelijkheden met een paar regels code. Type-safe SDK's en uitgebreide documentatie.",
+            "researchTitle": "Onderzoeksteams",
+            "researchDesc": "Verwerk duizenden papers direct. Extraheer citaten, samenvattingen en kruisverwijzingen automatisch.",
+            "legalTitle": "Juridisch & Compliance",
+            "legalDesc": "Audit-ready logs en strikte data-isolatie. Zorg ervoor dat gevoelige documenten nooit uw veilige omgeving verlaten.",
+            "enterpriseTitle": "Ondernemingen",
+            "enterpriseDesc": "Rolgebaseerd toegangsbeheer (RBAC), SSO-integratie en on-premise implementatieopties."
+        },
+        "cta": {
+            "title": "Klaar om uw Collective Intelligence te ontsluiten?",
+            "subtitle": "Sluit u aan bij vooruitstrevende teams die Aura gebruiken om sneller betere beslissingen te nemen.",
+            "getStarted": "Begin Nu",
+            "contactSales": "Neem contact op met Sales"
+        },
+        "comparison": {
+            "title": "Waarom Aura?",
+            "subtitle": "Zie hoe Aura zich verhoudt tot generieke AI-chattools.",
+            "feature": "Functie",
+            "aura": "Aura",
+            "generic": "Generieke AI",
+            "privacy": "Gegevensprivacy",
+            "privacyAura": "Geïsoleerd & Versleuteld",
+            "privacyGeneric": "Gegevens gebruikt voor training",
+            "grounding": "Brononderbouwing",
+            "groundingAura": "100% Verifieerbare Citaten",
+            "groundingGeneric": "Black-box Hallucinaties",
+            "deployment": "Implementatie",
+            "deploymentAura": "Lokaal / On-Prem / Cloud",
+            "deploymentGeneric": "Alleen Cloud",
+            "support": "Bestandsondersteuning",
+            "supportAura": "PDF, Docx, Excel, URL's",
+            "supportGeneric": "Beperkte tekstinvoer"
+        },
+        "engine": {
+            "title": "Binnenin de Engine",
+            "subtitle": "Hoogwaardige RAG-pijplijn ontworpen voor nauwkeurigheid.",
+            "step1": "Uploaden",
+            "desc1": "PDF's, Documenten, Versleuteling",
+            "step2": "Vectorisatie",
+            "desc2": "Chunking & Embeddings",
+            "step3": "Ophalen",
+            "desc3": "Semantisch zoeken",
+            "step4": "Visualiseren",
+            "desc4": "Interactieve grafieken"
+        },
+        "trust": {
+            "engineering": "Gedreven door techniek",
+            "research": "Onderzoeksgestuurd",
+            "production": "Productieklaar",
+            "soc2": "SOC 2 Compliant"
+        },
+        "security": {
+            "badge": "Beveiliging op ondernemingsniveau",
+            "title": "Beveiliging is geen bijzaak.",
+            "subtitle": "Het zit in ons DNA.",
+            "feature1": "End-to-End Encryptie",
+            "desc1": "Uw documenten zijn in rust versleuteld met AES-256 en in transit via TLS 1.3.",
+            "feature2": "Lokale Implementatie",
+            "desc2": "Voer Aura volledig on-premise uit. Uw gegevens hoeven nooit de openbare cloud te raken.",
+            "feature3": "Drievoudige Gegevensintegriteit",
+            "desc3": "Geavanceerde herstelengine voorkomt misvormde AI-reacties en garandeert 100% gegevensnauwkeurigheid.",
+            "feature4": "Sessie-isolatie",
+            "desc4": "Strikte logische scheiding tussen gebruikerssessies voorkomt kruisbesmetting van context."
+        },
+        "useCases": {
+            "title": "Toepassingen in de praktijk",
+            "case1Title": "R&D Teams",
+            "case1Desc": "Versnel literatuuronderzoek. Doorzoek duizenden technische papers om nieuwe verbanden te vinden.",
+            "case2Title": "Juridisch Advies",
+            "case2Desc": "Beoordeel contracten en compliance-documenten. Lokaliseer direct aansprakelijkheidsclausules en risicovolle voorwaarden.",
+            "case3Title": "Productbeheer",
+            "case3Desc": "Synthetiseer gebruikersfeedback en PRD's. Genereer functiespecificaties op basis van historische gegevens.",
+            "case4Title": "Interne Kennis",
+            "case4Desc": "Een centrale zoekfunctie voor uw bedrijfswiki, HR-beleid en inwerkingsmateriaal."
+        },
+        "faq": {
+            "title": "Veelgestelde Vragen",
+            "q1": "Worden mijn gegevens gebruikt om uw modellen te trainen?",
+            "a1": "Absoluut niet. Aura draait op een geïsoleerde architectuur. Uw gegevens worden alleen geïndexeerd voor uw privé-retrievalsessies en worden nooit gebruikt voor modeltraining of gedeeld met derden.",
+            "q2": "Kan ik dit offline / air-gapped implementeren?",
+            "a2": "Ja. Aura ondersteunt volledige on-premise implementatie via Docker-containers, waardoor het in volledig offline of air-gapped omgevingen kan draaien voor maximale beveiliging.",
+            "q3": "Welke bestandstypen worden ondersteund?",
+            "a3": "We ondersteunen momenteel PDF, Microsoft Word (.docx), Excel (.xlsx), Markdown en platte tekst. We voegen voortdurend nieuwe parsers toe.",
+            "q4": "Hoe nauwkeurig zijn de antwoorden?",
+            "a4": "Aura gebruikt geldige citaten voor elke claim. Als de informatie niet in uw documenten staat, zal het systeem expliciet zeggen: 'Ik heb het antwoord niet', in plaats van te hallucineren."
+        },
+        "viz": {
+            "badge": "Live Transformatie Demo",
+            "title": "Eén antwoord.",
+            "subtitle": "Oneindige perspectieven.",
+            "desc": "Aura genereert niet alleen tekst. Het begrijpt de onderliggende gegevens en biedt direct professionele visualisaties. Klik hieronder om de engine te ervaren.",
+            "randomize": "Data Engine Randomiseren",
+            "mode": "{chartType} Visualisatiemodus",
+            "legendLaptops": "Laptops",
+            "legendPhones": "Telefoons",
+            "legendRevenue": "Omzetdichtheid",
+            "legendProcess": "Procestijd"
+        }
+    },
+    "devTeam": {
+        "title": "AURA Architecten",
+        "subtitle": "De breinen achter de intelligentie. Actief op de grens van neurale techniek.",
+        "viewProfile": "Bekijk Intelligentieprofiel",
+        "dossier": {
+            "status": "Operationele Status",
+            "clearance": "Autorisatieniveau",
+            "metrics": "Kernstatistieken",
+            "directives": "Richtlijnen",
+            "focus": "Kernfocus",
+            "vision": "Systeemvisie",
+            "technical": "Technische Beheersing",
+            "close": "Sessie Beëindigen",
+            "back": "Terug naar Team"
+        },
+        "kailash": {
+            "name": "Kailash",
+            "role": "Chief Tactical Officer",
+            "bio": "Het orkestreren van high-fidelity neurale frameworks with chirurgische precisie. Actief op het snijvlak van quantumprestaties and algoritmisch structuralisme om de grenzen van mens-machine-synergie te herdefiniëren. MISSIE: Totale systemische optimalisatie door onvermoeibare procedurele innovatie.",
+            "dossier": {
+                "status": "ACTIEF / CHIRURGISCH",
+                "clearance": "NIVEAU 9 NEURALE AUTORISATIE",
+                "metrics": [
+                    "99,98% Efficiëntie",
+                    "Latentievrij Structuralisme",
+                    "Kwantum-recursieve Stabiliteit"
+                ],
+                "directives": [
+                    "Implementeer algoritmische suprematie via high-fidelity frameworks.",
+                    "Voer procedurele innovatie uit met niet-aflatende nauwkeurigheid.",
+                    "Herdefinieer de architecturale grenzen van de AURA-kern."
+                ]
+            }
+        },
+        "kaliVignesh": {
+            "name": "Kali Vignesh",
+            "role": "Lead Visionary Developer",
+            "bio": "Gefocust op het creëren van intuïtieve gebruikerservaringen en robuuste frontend-architecturen. Gepassioneerd door clean code, moderne design-systemen en het bouwen van AI-tools die een echt verschil maken in dagelijkse workflows.",
+            "dossier": {
+                "focus": "Gebruikerscentrische AI-architectuur",
+                "vision": "Het overbruggen van de kloof tussen complexe neurale systemen en menselijke intuïtie door middel van design van wereldklasse.",
+                "technical": [
+                    "Next.js & React Beheersing",
+                    "Design System Architectuur",
+                    "Fluid Interaction Engineering"
+                ]
+            }
+        }
+    },
+    "dashboard": {
+        "newChat": "Nieuwe Chat",
+        "whatWorkingOn": "Waar werk je aan?",
+        "uploadSource": "Upload een document of URL",
+        "send": "Verzenden",
+        "stop": "Stop",
+        "clearHistory": "Geschiedenis Wissen",
+        "archives": "Archieven",
+        "insights": "Inzichten"
+    },
+    "settings": {
+        "title": "Instellingen",
+        "uiLanguage": "Schermtaal",
+        "inputLanguage": "Mijn Invoertaal",
+        "outputLanguage": "KI Reactietaal",
+        "appearance": "Uiterlijk",
+        "accentColor": "Accentkleur",
+        "aiModel": "KI Model",
+        "responseStyle": "Reactiestijl",
+        "summaryLevel": "Samenvattingsniveau",
+        "tabs": {
+            "general": "Algemeen",
+            "notifications": "Meldingen",
+            "data": "Gegevensbeheer",
+            "security": "Beveiliging",
+            "account": "Account"
+        },
+        "actions": {
+            "clear": "Wissen",
+            "view": "Bekijken",
+            "update": "Bijwerken",
+            "delete": "Verwijderen",
+            "logout": "Uitloggen",
+            "cancel": "Annuleren",
+            "proceed": "Doorgaan",
+            "viewArchives": "Archieven bekijken",
+            "changePassword": "Wachtwoord wijzigen",
+            "updateName": "Naam bijwerken"
+        },
+        "placeholders": {
+            "comingSoon": "Instellingen voor {tab} komen binnenkort",
+            "resetToEnglish": "Talen teruggezet naar Engels",
+            "setName": "Naam instellen",
+            "noEmail": "Geen e-mail",
+            "readOnly": "Alleen-lezen",
+            "switchToEnglish": "Overschakelen naar Engels?",
+            "modelWarning": "Dit model werkt het beste in het Engels. Als u doorgaat, worden de AI-antwoortaal, de invoertaal en de weergavetaal omgezet naar het Engels."
+        }
+    },
+    "sourcePanel": {
+        "title": "Bronbewijs",
+        "noSources": "Geen geciteerde bronnen voor deze reactie.",
+        "match": "Match",
+        "openOriginal": "Open Origineel",
+        "citationNote": "Citaties worden automatisch gegenereerd op basis van opgehaalde semantische fragmenten uit de kennisbank."
+    },
+    "help": {
+        "title": "Hulp & Ondersteuning",
+        "shortcuts": {
+            "title": "Sneltoetsen",
+            "newChat": "Nieuwe chat",
+            "quickSearch": "Snel zoeken",
+            "closeDialogs": "Vensters sluiten"
+        },
+        "resources": {
+            "title": "Hulpmiddelen",
+            "docsLabel": "Documentatie",
+            "docsDesc": "Lees de uitgebreide documentatie",
+            "supportLabel": "Contact opnemen met support",
+            "supportDesc": "Krijg hulp van ons team",
+            "privacyLabel": "Privacybeleid",
+            "privacyDesc": "Lees ons privacybeleid"
+        }
+    },
+    "insights": {
+        "title": "Analyse-dashboard",
+        "noData": "Nog geen gegevens",
+        "startAsking": "Stel vragen om analyses te zien!",
+        "trustScore": "Vertrouwensscore",
+        "excellent": "Uitstekend",
+        "good": "Goed",
+        "fair": "Redelijk",
+        "needsImprovement": "Moet verbeterd worden",
+        "basedOn": "Gebaseerd op {count} zoekopdrachten",
+        "confidence": "Vertrouwensverdeling",
+        "evidence": "Aanwezigheid van bewijs",
+        "similarity": "Gemiddelde gelijkenis: {score}%",
+        "timeline": "Gemiddeld vertrouwen in de loop van de tijd",
+        "retrieval": "Ophaalscore",
+        "consistency": "Consistentie",
+        "correlation": "Correlatie vertrouwen-correctheid",
+        "coverage": "Dekkingshistogram",
+        "refusal": "Weigeringspercentage",
+        "unanswered": "{count} onbeantwoorde zoekopdrachten",
+        "risky": "Riskante vragen",
+        "noRisky": "Geen riskanten vragen gedetecteerd",
+        "systemHealth": "Systeemgezondheid & Ingestie",
+        "latency": "Gemiddelde vertraging",
+        "p95": "P95 vertraging",
+        "chunks": "Subsets/Vraag",
+        "older": "Ouder",
+        "recent": "Recent",
+        "high": "Hoog",
+        "medium": "Gemiddeld",
+        "low": "Laag",
+        "guardrail": "Veiligheidshek"
+    },
+    "sidebar": {
+        "newChat": "Nieuwe Chat",
+        "yourInsights": "Uw Inzichten",
+        "recent": "Recent",
+        "noConversations": "Nog geen gesprekken",
+        "share": "Delen",
+        "rename": "Hernoemen",
+        "archive": "Archiveren",
+        "delete": "Verwijderen",
+        "help": "Help",
+        "logout": "Uitloggen"
+    }
+}

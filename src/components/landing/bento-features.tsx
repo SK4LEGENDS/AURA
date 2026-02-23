@@ -11,9 +11,11 @@ import {
     Table,
     Zap,
     Search,
-    Lock
+    Lock,
+    Globe
 } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { useI18n } from "@/lib/i18n-context";
 
 const BentoCard = ({
     className,
@@ -41,11 +43,11 @@ const BentoCard = ({
         )}
     >
         <div className="relative z-10 flex h-full flex-col">
-            <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-white/5 ring-1 ring-white/10 transition-all group-hover:bg-purple-500/10 group-hover:ring-purple-500/20">
+            <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-white/5 ring-1 ring-white/10 transition-all group-hover:bg-brand-primary/10 group-hover:ring-brand-primary/20">
                 {icon}
             </div>
             <div>
-                <h3 className="mb-2 text-xl font-bold text-white group-hover:text-purple-400 transition-colors uppercase tracking-tight">
+                <h3 className="mb-2 text-xl font-bold text-white group-hover:text-brand-primary transition-colors uppercase tracking-tight">
                     {title}
                 </h3>
                 <p className="max-w-[280px] text-sm leading-relaxed text-zinc-400">
@@ -59,22 +61,23 @@ const BentoCard = ({
         </div>
 
         {/* Background Gradients */}
-        <div className="absolute -right-20 -top-20 h-64 w-64 rounded-full bg-purple-500/5 blur-[100px] transition-opacity group-hover:opacity-100" />
+        <div className="absolute -right-20 -top-20 h-64 w-64 rounded-full bg-brand-primary/5 blur-[100px] transition-opacity group-hover:opacity-100" />
         <div className="absolute -bottom-20 -left-20 h-64 w-64 rounded-full bg-blue-500/5 blur-[100px] transition-opacity group-hover:opacity-100" />
     </motion.div>
 );
 
 export function BentoFeatures() {
+    const { t } = useI18n();
     return (
-        <section className="py-24 bg-black">
+        <section id="capabilities" className="py-24 bg-black">
             <div className="container mx-auto px-6">
                 <div className="mb-16 max-w-2xl">
-                    <h2 className="text-sm font-bold tracking-widest text-purple-500 uppercase mb-4">
-                        Capabilities
+                    <h2 className="text-sm font-bold tracking-widest text-brand-primary uppercase mb-4">
+                        {t("landing.capabilities")}
                     </h2>
                     <h3 className="text-4xl md:text-5xl font-bold text-white tracking-tighter">
-                        Engineered for High-Stakes <br />
-                        <span className="bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-blue-400">Intelligence.</span>
+                        {t("landing.engineeredTitle1")} <br />
+                        <span className="bg-clip-text text-transparent bg-gradient-to-r from-orange-400 to-amber-500">{t("landing.engineeredTitle2")}</span>
                     </h3>
                 </div>
 
@@ -83,9 +86,9 @@ export function BentoFeatures() {
                     <BentoCard
                         index={0}
                         className="md:col-span-2 md:row-span-1"
-                        icon={<PieChart className="w-6 h-6 text-purple-400" />}
-                        title="Level 4 Visual Resillience"
-                        description="Ultra-robust chart rendering that survives malformed AI JSON. Supports 9+ interactive chart types."
+                        icon={<PieChart className="w-6 h-6 text-brand-primary" />}
+                        title={t("landing.bento.visualTitle")}
+                        description={t("landing.bento.visualDesc")}
                     >
                         <div className="absolute right-0 bottom-0 w-1/2 h-full hidden lg:flex items-center justify-center p-6 translate-y-4">
                             {/* Mini Mockup of charts */}
@@ -93,14 +96,14 @@ export function BentoFeatures() {
                                 <div className="space-y-3">
                                     <div className="h-2 w-1/2 bg-white/20 rounded-full" />
                                     <div className="flex items-end gap-1 h-24">
-                                        <div className="w-1/4 h-[40%] bg-purple-500/40 rounded-t" />
-                                        <div className="w-1/4 h-[70%] bg-blue-500/40 rounded-t" />
-                                        <div className="w-1/4 h-[100%] bg-purple-500/60 rounded-t" />
-                                        <div className="w-1/4 h-[60%] bg-blue-500/60 rounded-t" />
+                                        <div className="w-1/4 h-[40%] bg-brand-primary/40 rounded-t" />
+                                        <div className="w-1/4 h-[70%] bg-orange-500/40 rounded-t" />
+                                        <div className="w-1/4 h-[100%] bg-brand-primary/60 rounded-t" />
+                                        <div className="w-1/4 h-[60%] bg-orange-500/60 rounded-t" />
                                     </div>
                                     <div className="flex gap-2">
-                                        <div className="w-2 h-2 rounded-full bg-purple-400" />
-                                        <div className="w-2 h-2 rounded-full bg-blue-400" />
+                                        <div className="w-2 h-2 rounded-full bg-brand-primary" />
+                                        <div className="w-2 h-2 rounded-full bg-orange-400" />
                                     </div>
                                 </div>
                             </div>
@@ -112,12 +115,12 @@ export function BentoFeatures() {
                         index={1}
                         className="md:col-span-1 md:row-span-1"
                         icon={<Lock className="w-6 h-6 text-emerald-400" />}
-                        title="Zero-Cloud Privacy"
-                        description="Embeddings and inference stay local. Your private documents never leave your infrastructure."
+                        title={t("landing.bento.privacyTitle")}
+                        description={t("landing.bento.privacyDesc")}
                     >
                         <div className="mt-4 flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 self-start">
                             <ShieldCheck className="w-3 h-3 text-emerald-400" />
-                            <span className="text-[10px] font-bold text-emerald-400 uppercase">LOCAL OLLAMA SYNCED</span>
+                            <span className="text-[10px] font-bold text-emerald-400 uppercase">{t("landing.bento.privacyBadge")}</span>
                         </div>
                     </BentoCard>
 
@@ -126,8 +129,8 @@ export function BentoFeatures() {
                         index={2}
                         className="md:col-span-1 md:row-span-1"
                         icon={<Search className="w-6 h-6 text-blue-400" />}
-                        title="Semantic Traceability"
-                        description="Zero hallucinations. Every answer is linked back to a high-fidelity source chunk with infinite scroll-to-view."
+                        title={t("landing.bento.semanticTitle")}
+                        description={t("landing.bento.semanticDesc")}
                     >
                         <div className="mt-4 relative h-32 overflow-hidden rounded-xl bg-black/20 border border-white/5 p-3">
                             <div className="space-y-2">
@@ -157,8 +160,8 @@ export function BentoFeatures() {
                         index={3}
                         className="md:col-span-2 md:row-span-2 bg-gradient-to-br from-zinc-900 to-indigo-900/20"
                         icon={<Table className="w-6 h-6 text-cyan-400" />}
-                        title="Structured Data Mastery"
-                        description="Specialized Excel & CSV processing that maintains header context across thousands of rows. Advanced row-level semantic preservation ensures no data loss during chunking."
+                        title={t("landing.bento.structuredTitle")}
+                        description={t("landing.bento.structuredDesc")}
                     >
                         <div className="mt-8 space-y-6">
                             {/* Step 1: Raw Data Layer */}
@@ -228,32 +231,34 @@ export function BentoFeatures() {
                         </div>
                     </BentoCard>
 
-                    {/* 5. Mini Export */}
+                    {/* 5. Global Readiness */}
                     <BentoCard
                         index={4}
                         className="md:col-span-1 md:row-span-1"
-                        icon={<Download className="w-6 h-6 text-pink-400" />}
-                        title="Professional Exports"
-                        description="One-click export to high-res PNG, SVG, or vector PDF."
+                        icon={<Globe className="w-6 h-6 text-brand-primary" />}
+                        title={t("landing.bento.i18nTitle")}
+                        description={t("landing.bento.i18nDesc")}
                     >
-                        <div className="mt-4 grid grid-cols-2 gap-2 pb-2">
-                            {['PNG', 'SVG', 'PDF', 'XLSX'].map((fmt, i) => (
-                                <div key={fmt} className="bg-black/40 border border-white/5 rounded-lg p-2 flex items-center gap-2 group/fmt">
+                        <div className="mt-4 flex flex-wrap gap-2">
+                            {['ARABIC (RTL)', 'HINDI', 'SPANISH', 'FRENCH'].map((lang, i) => (
+                                <div key={lang} className="bg-white/5 border border-white/10 rounded-lg px-2 py-1 flex items-center gap-2 group/lang transition-colors hover:bg-white/10">
                                     <div className={cn(
                                         "w-1.5 h-1.5 rounded-full",
-                                        i === 2 ? "bg-pink-500 animate-pulse" : "bg-zinc-700"
+                                        i === 0 ? "bg-brand-primary animate-pulse" : "bg-zinc-700"
                                     )} />
-                                    <span className="text-[9px] font-mono text-zinc-500 group-hover/fmt:text-white transition-colors">{fmt}</span>
+                                    <span className="text-[8px] font-mono text-zinc-500 group-hover/lang:text-white transition-colors">{lang}</span>
                                 </div>
                             ))}
                         </div>
-                        <div className="mt-2 h-1.5 w-full bg-white/5 rounded-full overflow-hidden">
-                            <motion.div
-                                className="h-full bg-pink-500 shadow-[0_0_10px_rgba(236,72,153,0.5)]"
-                                initial={{ width: "30%" }}
-                                animate={{ width: "100%" }}
-                                transition={{ duration: 3, repeat: Infinity }}
-                            />
+                        <div className="mt-4 p-2 bg-black/40 rounded-xl border border-white/5 flex items-center justify-between">
+                            <span className="text-[10px] font-bold text-brand-primary uppercase tracking-tighter">10+ Languages</span>
+                            <div className="flex -space-x-2">
+                                {[1, 2, 3].map(i => (
+                                    <div key={i} className="w-6 h-6 rounded-full border border-black bg-zinc-800 flex items-center justify-center text-[10px] font-bold text-zinc-500">
+                                        {i === 1 ? "ع" : i === 2 ? "A" : "あ"}
+                                    </div>
+                                ))}
+                            </div>
                         </div>
                     </BentoCard>
                 </div>

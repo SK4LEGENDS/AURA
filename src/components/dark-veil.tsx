@@ -138,7 +138,7 @@ function hexToRgb(hex: string): [number, number, number] {
             parseInt(result[2], 16) / 255,
             parseInt(result[3], 16) / 255,
         ]
-        : [0.55, 0.3, 0.8]; // Default purple
+        : [0.98, 0.57, 0.23]; // Default papaya orange
 }
 
 export default function DarkVeil({
@@ -149,7 +149,7 @@ export default function DarkVeil({
     scanlineFrequency = 0,
     warpAmount = 0,
     resolutionScale = 1,
-    accentColor = "#a855f7",
+    accentColor = "#fb923c",
 }: DarkVeilProps) {
     const ref = useRef<HTMLCanvasElement>(null);
     const { theme, resolvedTheme } = useTheme();

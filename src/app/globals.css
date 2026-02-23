@@ -1,11 +1,15 @@
 @config "../../tailwind.config.ts";
 @import "tailwindcss";
 
+html {
+  scroll-behavior: smooth;
+}
+
 :root {
   /* --- AURA COLOR SPINE (Light Mode) --- */
 
   /* Core Identity */
-  --brand-primary-hsl: 262 83% 58%;
+  --brand-primary-hsl: 25 95% 55%;
   --brand-primary: hsl(var(--brand-primary-hsl));
 
   --brand-secondary-hsl: 190 95% 44%;
@@ -39,7 +43,7 @@
 .dark {
   /* --- AURA COLOR SPINE (Dark Mode) --- */
 
-  --brand-primary-hsl: 262 70% 60%;
+  --brand-primary-hsl: 25 90% 60%;
   --brand-secondary-hsl: 190 95% 50%;
 
   /* UI Infrastructure */

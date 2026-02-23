@@ -2,31 +2,34 @@
 
 import { motion } from "framer-motion";
 import { Code, Scale, Database, Building2 } from "lucide-react";
-
-const personas = [
-    {
-        icon: <Code className="w-8 h-8 text-blue-400" />,
-        title: "Developers",
-        description: "Integrate RAG capabilities with a few lines of code. Type-safe SDKs and comprehensive documentation.",
-    },
-    {
-        icon: <Database className="w-8 h-8 text-purple-400" />,
-        title: "Research Teams",
-        description: "Process thousands of papers instantly. Extract citations, summaries, and cross-references automatically.",
-    },
-    {
-        icon: <Scale className="w-8 h-8 text-yellow-400" />,
-        title: "Legal & Compliance",
-        description: "Audit-ready logs and strict data isolation. Ensure sensitive documents never leave your secure environment.",
-    },
-    {
-        icon: <Building2 className="w-8 h-8 text-green-400" />,
-        title: "Enterprises",
-        description: "Role-based access control (RBAC), SSO integration, and on-premise deployment options.",
-    },
-];
+import { useI18n } from "@/lib/i18n-context";
 
 export function TargetAudience() {
+    const { t } = useI18n();
+
+    const personas = [
+        {
+            icon: <Code className="w-8 h-8 text-blue-400" />,
+            title: t("landing.audience.devTitle"),
+            description: t("landing.audience.devDesc"),
+        },
+        {
+            icon: <Database className="w-8 h-8 text-brand-primary" />,
+            title: t("landing.audience.researchTitle"),
+            description: t("landing.audience.researchDesc"),
+        },
+        {
+            icon: <Scale className="w-8 h-8 text-yellow-400" />,
+            title: t("landing.audience.legalTitle"),
+            description: t("landing.audience.legalDesc"),
+        },
+        {
+            icon: <Building2 className="w-8 h-8 text-green-400" />,
+            title: t("landing.audience.enterpriseTitle"),
+            description: t("landing.audience.enterpriseDesc"),
+        },
+    ];
+
     return (
         <section className="py-24 bg-zinc-950">
             <div className="container mx-auto px-6">
@@ -35,9 +38,9 @@ export function TargetAudience() {
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
-                        className="text-3xl md:text-5xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-white to-zinc-500"
+                        className="text-3xl md:text-5xl font-bold mb-6 bg-clip-text text-transparent bg-linear-to-r from-white to-zinc-500"
                     >
-                        Who Aura Is Built For
+                        {t("landing.audience.title")}
                     </motion.h2>
                     <motion.p
                         initial={{ opacity: 0, y: 20 }}
@@ -46,7 +49,7 @@ export function TargetAudience() {
                         transition={{ delay: 0.1 }}
                         className="text-zinc-400 max-w-2xl mx-auto text-lg"
                     >
-                        Tailored for professionals who demand precision, security, and scalability.
+                        {t("landing.audience.subtitle")}
                     </motion.p>
                 </div>
 

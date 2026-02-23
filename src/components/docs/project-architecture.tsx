@@ -32,13 +32,13 @@ export function ProjectArchitecture() {
         },
         {
             name: "Orchestration API",
-            color: "border-purple-500/30",
-            glow: "bg-purple-500/10",
+            color: "border-brand-primary/30",
+            glow: "bg-brand-primary/10",
             icon: Terminal,
             items: [
-                { title: "Node.js Routes", icon: Box, color: "text-purple-400" },
+                { title: "Node.js Routes", icon: Box, color: "text-brand-primary" },
                 { title: "Auth SDK", icon: Shield, color: "text-indigo-400" },
-                { title: "Event Stream", icon: MessageSquare, color: "text-violet-400" }
+                { title: "Event Stream", icon: MessageSquare, color: "text-amber-400" }
             ]
         },
         {
@@ -69,7 +69,7 @@ export function ProjectArchitecture() {
         <div className="space-y-12 py-8">
             <div className="grid grid-cols-1 gap-8 relative">
                 {/* Vertical connecting line */}
-                <div className="absolute left-[31px] top-0 bottom-0 w-px bg-gradient-to-b from-blue-500/20 via-purple-500/20 via-emerald-500/20 to-orange-500/20 hidden md:block" />
+                <div className="absolute left-[31px] top-0 bottom-0 w-px bg-gradient-to-b from-blue-500/20 via-brand-primary/20 via-emerald-500/20 to-orange-500/20 hidden md:block" />
 
                 {layers.map((layer, idx) => (
                     <motion.div
@@ -120,7 +120,7 @@ export function ProjectArchitecture() {
                                     transition={{ duration: 2, repeat: Infinity }}
                                     className="text-zinc-700"
                                 >
-                                    <Zap className="w-4 h-4 text-violet-500/40" />
+                                    <Zap className="w-4 h-4 text-brand-primary/40" />
                                 </motion.div>
                             </div>
                         )}

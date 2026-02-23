@@ -2,33 +2,36 @@
 
 import { motion } from "framer-motion";
 import { ShieldCheck, Lock, Server, FileKey } from "lucide-react";
-
-const features = [
-    {
-        icon: <Lock className="w-6 h-6 text-emerald-400" />,
-        title: "End-to-End Encryption",
-        desc: "Your documents are encrypted at rest with AES-256 and in transit via TLS 1.3.",
-    },
-    {
-        icon: <Server className="w-6 h-6 text-blue-400" />,
-        title: "Local Deployment",
-        desc: "Run Aura entirely on-premise. Your data never needs to touch the public cloud.",
-    },
-    {
-        icon: <ShieldCheck className="w-6 h-6 text-emerald-400" />,
-        title: "Triple-Lock Data Integrity",
-        desc: "Advanced recovery engine prevents malformed AI responses and ensures 100% data accuracy.",
-    },
-    {
-        icon: <FileKey className="w-6 h-6 text-rose-400" />,
-        title: "Session Isolation",
-        desc: "Strict logical separation between user sessions prevents cross-contamination of context.",
-    },
-];
+import { useI18n } from "@/lib/i18n-context";
 
 export function SecuritySection() {
+    const { t } = useI18n();
+
+    const features = [
+        {
+            icon: <Lock className="w-6 h-6 text-emerald-400" />,
+            title: t("landing.security.feature1"),
+            desc: t("landing.security.desc1"),
+        },
+        {
+            icon: <Server className="w-6 h-6 text-blue-400" />,
+            title: t("landing.security.feature2"),
+            desc: t("landing.security.desc2"),
+        },
+        {
+            icon: <ShieldCheck className="w-6 h-6 text-emerald-400" />,
+            title: t("landing.security.feature3"),
+            desc: t("landing.security.desc3"),
+        },
+        {
+            icon: <FileKey className="w-6 h-6 text-rose-400" />,
+            title: t("landing.security.feature4"),
+            desc: t("landing.security.desc4"),
+        },
+    ];
+
     return (
-        <section className="py-24 bg-zinc-950 relative">
+        <section id="security" className="py-24 bg-zinc-950 relative">
             <div className="container mx-auto px-6">
                 <div className="mb-16 md:text-center max-w-3xl mx-auto">
                     <motion.div
@@ -38,7 +41,7 @@ export function SecuritySection() {
                         className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 mb-6"
                     >
                         <ShieldCheck className="w-4 h-4 text-emerald-400" />
-                        <span className="text-xs font-bold text-emerald-400 uppercase tracking-wide">Enterprise Grade Security</span>
+                        <span className="text-xs font-bold text-emerald-400 uppercase tracking-wide">{t("landing.security.badge")}</span>
                     </motion.div>
                     <motion.h2
                         initial={{ opacity: 0, y: 20 }}
@@ -46,8 +49,8 @@ export function SecuritySection() {
                         viewport={{ once: true }}
                         className="text-3xl md:text-5xl font-bold mb-6 text-white"
                     >
-                        Security is not an afterlife. <br />
-                        It's our DNA.
+                        {t("landing.security.title")} <br />
+                        {t("landing.security.subtitle")}
                     </motion.h2>
                 </div>
 

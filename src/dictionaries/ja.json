@@ -1,0 +1,319 @@
+{
+    "common": {
+        "aura": "AURA",
+        "getStarted": "始める",
+        "signIn": "サインイン",
+        "dashboard": "ダッシュボード",
+        "settings": "設定",
+        "help": "ヘルプ",
+        "logout": "ログアウト",
+        "privacy": "プライバシー",
+        "terms": "利用規約",
+        "contact": "お問い合わせ",
+        "allRightsReserved": "All rights reserved.",
+        "backToHome": "ホームに戻る",
+        "lastUpdated": "最終更新日",
+        "questions": "ご質問はこちらまで"
+    },
+    "landing": {
+        "heroTitle": "あなたの知能と対話する。",
+        "heroSubtitle": "Auraはあなたのドキュメントを安全で検索可能な知識ベースに変えます。幻覚ゼロ、100%のソースに基づいた回答。",
+        "startFree": "無料で始める",
+        "viewAnalytics": "分析を表示",
+        "capabilities": "機能",
+        "engineeredTitle1": "過酷な環境のために",
+        "engineeredTitle2": "設計された知能。",
+        "bento": {
+            "visualTitle": "レベル4の視覚的復元力",
+            "visualDesc": "不完全なAI JSONでも生き残る超強力なチャートレンダリング。9種類以上のインタラクティブなチャートをサポート。",
+            "privacyTitle": "ゼロクラウド・プライバシー",
+            "privacyDesc": "埋め込みと推論はローカルにとどまります。あなたの機密文書がインフラ外に出ることはありません。",
+            "privacyBadge": "ローカルOLLAMA同期済み",
+            "semanticTitle": "セマンティックな追跡可能性",
+            "semanticDesc": "幻覚ゼロ。すべての回答は高精度なソースチャンクにリンクされ、無限にスクロールして確認可能。",
+            "structuredTitle": "構造化データの習得",
+            "structuredDesc": "数千行にわたるヘッダーコンテキストを維持する、ExcelとCSV専用の処理機能。",
+            "exportTitle": "プロフェッショナルな書き出し",
+            "exportDesc": "高解像度PNG、SVG、またはベクターPDFへのワンクリック書き出し。"
+        },
+        "reality": {
+            "title": "幻覚 vs 現実",
+            "subtitle": "スライダーを動かして、Auraのソースに基づいた知能が標準的なブラックボックスAIモデルとどう違うかを確認してください。",
+            "hallucination": "幻覚",
+            "reality": "現実",
+            "genericLlm": "一般的なLLM（オフライン）",
+            "auraVerified": "AURAインテリジェンス（検証済み）",
+            "highConfidence": "高い信頼性"
+        },
+        "audience": {
+            "title": "Auraの対象者",
+            "subtitle": "精度、セキュリティ、拡張性を求めるプロフェッショナル向けに設計されています。",
+            "devTitle": "開発者",
+            "devDesc": "数行のコードでRAG機能を統合。タイプセーフなSDKと充実したドキュメントを提供。",
+            "researchTitle": "研究チーム",
+            "researchDesc": "数千の論文を瞬時に処理。引用、要約、相互参照を自動的に抽出。",
+            "legalTitle": "法務・コンプライアンス",
+            "legalDesc": "監査対応のログとデータ分離。機密文書が安全な環境を離れることはありません。",
+            "enterpriseTitle": "企業",
+            "enterpriseDesc": "役割ベースのアクセス制御 (RBAC)、SSO統合、オンプレミス展開オプション。"
+        },
+        "cta": {
+            "title": "集合知を解き放つ準備はできていますか？",
+            "subtitle": "Auraを使用して、より良い意思決定をより速く行う先進的なチームに参加しましょう。",
+            "getStarted": "今すぐ始める",
+            "contactSales": "営業に問い合わせる"
+        },
+        "comparison": {
+            "title": "なぜAuraなのか？",
+            "subtitle": "Auraが一般的なAIチャットツールとどう違うかをご覧ください。",
+            "feature": "機能",
+            "aura": "Aura",
+            "generic": "一般的なAI",
+            "privacy": "データプライバシー",
+            "privacyAura": "分離・暗号化済み",
+            "privacyGeneric": "学習にデータを利用",
+            "grounding": "ソースの根拠",
+            "groundingAura": "100%検証可能な引用",
+            "groundingGeneric": "ブラックボックスの幻覚",
+            "deployment": "展開",
+            "deploymentAura": "ローカル / オンプレ / クラウド",
+            "deploymentGeneric": "クラウドのみ",
+            "support": "ファイル対応",
+            "supportAura": "PDF, Docx, Excel, URL",
+            "supportGeneric": "制限されたテキスト入力"
+        },
+        "engine": {
+            "title": "エンジンの内部",
+            "subtitle": "精度のために設計された高性能RAGパイプライン。",
+            "step1": "アップロード",
+            "desc1": "PDF、文書、暗号化",
+            "step2": "ベクトル化",
+            "desc2": "チャンキングと埋め込み",
+            "step3": "検索",
+            "desc3": "セマンティック検索",
+            "step4": "可視化",
+            "desc4": "インタラクティブなチャート"
+        },
+        "trust": {
+            "engineering": "エンジニアリング主導",
+            "research": "研究重視",
+            "production": "本番対応",
+            "soc2": "SOC 2準拠"
+        },
+        "security": {
+            "badge": "エンタープライズ級の安全性",
+            "title": "セキュリティは後付けではありません。",
+            "subtitle": "それは私たちのDNAに組み込まれています。",
+            "feature1": "エンドツーエンド暗号化",
+            "desc1": "ドキュメントはAES-256で保存時に暗号化され、TLS 1.3で転送されます。",
+            "feature2": "ローカル展開",
+            "desc2": "Auraを完全にオンプレミスで実行。データがパブリッククラウドに触れる必要はありません。",
+            "feature3": "トリプルロック・データ整合性",
+            "desc3": "高度なリカバリエンジンが不適切なAI応答を防ぎ、100%のデータ精度を保証します。",
+            "feature4": "セッションの分離",
+            "desc4": "ユーザーセッション間の厳格な論理分離により、コンテキストの相互汚染を防ぎます。"
+        },
+        "useCases": {
+            "title": "活用事例",
+            "case1Title": "研究開発チーム",
+            "case1Desc": "文献レビューを加速。数千の技術論文から新しいつながりを見つけ出します。",
+            "case2Title": "顧問弁護士",
+            "case2Desc": "契約書のレビュー。責任条項やリスクのある条件を即座に特定。",
+            "case3Title": "製品管理",
+            "case3Desc": "ユーザーフィードバックの集約。過去のデータに基づいた機能仕様の生成。",
+            "case4Title": "社内ナレッジ",
+            "case4Desc": "社内Wiki、人事規定、オンボーディング資料の統合検索。"
+        },
+        "faq": {
+            "title": "よくある質問",
+            "q1": "私のデータはモデルの学習に使われますか？",
+            "a1": "いいえ。Auraは分離されたアーキテクチャで動作します。データが学習に使われることはありません。",
+            "q2": "オフラインで展開できますか？",
+            "a2": "はい。AuraはDockerを介した完全なオンプレミス展開をサポートしています。",
+            "q3": "対応しているファイル形式は？",
+            "a3": "現在、PDF、Word、Excel、Markdown、テキストをサポートしています。",
+            "q4": "回答の精度は？",
+            "a4": "Auraはすべての主張に有効な引用を使用します。情報がない場合は、明確にその旨を伝えます。"
+        },
+        "viz": {
+            "badge": "ライブデモ",
+            "title": "一つの回答。",
+            "subtitle": "無限の視点。",
+            "desc": "Auraはテキストを出力するだけではありません。データを理解し、即座にプロ級の可視化を提供します。",
+            "randomize": "データをランダム化",
+            "mode": "{chartType} 可視化モード",
+            "legendLaptops": "ノートPC",
+            "legendPhones": "スマホ",
+            "legendRevenue": "収益密度",
+            "legendProcess": "処理時間"
+        }
+    },
+    "devTeam": {
+        "title": "AURA アーキテクト",
+        "subtitle": "インテリジェンスを支える頭脳。ニューラルエンジニアリングの最前線で活動しています。",
+        "viewProfile": "インテリジェンスプロファイルを表示",
+        "dossier": {
+            "status": "運用ステータス",
+            "clearance": "アクセスレベル",
+            "metrics": "主要メトリクス",
+            "directives": "指令",
+            "focus": "コアフォーカス",
+            "vision": "システムビジョン",
+            "technical": "技術習熟度",
+            "close": "セッションを終了",
+            "back": "チームに戻る"
+        },
+        "kailash": {
+            "name": "Kailash",
+            "role": "チーフ・タクティカル・オフィサー",
+            "bio": "外科的精度で高忠実度ニュートラル・フレームワークを構築。量子性能とアルゴリズム構造主義の交差点で活動し、人間と機械の相乗効果の限界を再定義する。任務：絶え間ない手続き的イノベーションによるトータルなシステム最適化。",
+            "dossier": {
+                "status": "アクティブ / 外科的",
+                "clearance": "レベル9 ニューラルアクセス権限",
+                "metrics": [
+                    "99.98% の効率性",
+                    "ゼロレイテンシ構造主義",
+                    "量子再帰的安定性"
+                ],
+                "directives": [
+                    "高忠実度フレームワークを介してアルゴリズムの覇権を実装する。",
+                    "絶え間ない正確さで手続き的革新を実行する。",
+                    "AURAコアの建築的境界を再定義する。"
+                ]
+            }
+        },
+        "kaliVignesh": {
+            "name": "Kali Vignesh",
+            "role": "リード・ビジョナリー・デベロッパー",
+            "bio": "直感的なユーザー体験と堅牢なフロントエンド・アーキテクチャの構築に重点を置く。クリーンなコード、最新のデザインシステム、そして日常のワークフローに真の変化をもたらすAIツールの構築に情熱を注いでいる。",
+            "dossier": {
+                "focus": "ユーザー中心のAIアーキテクチャ",
+                "vision": "世界クラスのデザインを通じて、複雑なニューラルシステムと人間の直感の間のギャップを埋める。",
+                "technical": [
+                    "Next.js & React の習熟",
+                    "デザインシステムアーキテクチャ",
+                    "流体インタラクションエンジニアリング"
+                ]
+            }
+        }
+    },
+    "dashboard": {
+        "newChat": "新しいチャット",
+        "whatWorkingOn": "何について調べますか？",
+        "uploadSource": "ドキュメントまたはURLをアップロード",
+        "send": "送信",
+        "stop": "停止",
+        "clearHistory": "履歴を消去",
+        "archives": "アーカイブ",
+        "insights": "インサイト"
+    },
+    "settings": {
+        "title": "設定",
+        "uiLanguage": "表示言語",
+        "inputLanguage": "入力言語",
+        "outputLanguage": "AI応答言語",
+        "appearance": "外観",
+        "accentColor": "アクセントカラー",
+        "aiModel": "AIモデル",
+        "responseStyle": "応答スタイル",
+        "summaryLevel": "要約レベル",
+        "tabs": {
+            "general": "一般",
+            "notifications": "通知",
+            "data": "データ管理",
+            "security": "セキュリティ",
+            "account": "アカウント"
+        },
+        "actions": {
+            "clear": "消去",
+            "view": "表示",
+            "update": "更新",
+            "delete": "削除",
+            "logout": "ログアウト",
+            "cancel": "キャンセル",
+            "proceed": "続行",
+            "viewArchives": "アーカイブを表示",
+            "changePassword": "パスワードを変更",
+            "updateName": "名前を更新"
+        },
+        "placeholders": {
+            "comingSoon": "{tab} 設定はまもなく利用可能になります",
+            "resetToEnglish": "言語が英語にリセットされました",
+            "setName": "名前を設定",
+            "noEmail": "メールなし",
+            "readOnly": "読み取り専用",
+            "switchToEnglish": "英語に切り替えますか？",
+            "modelWarning": "このモデルは英語で最もよく機能します。続行すると、AIの応答言語、入力言語、および表示言語が英語に切り替わります。"
+        }
+    },
+    "sourcePanel": {
+        "title": "ソースの証拠",
+        "noSources": "この回答に対する引用ソースはありません。",
+        "match": "一致",
+        "openOriginal": "オリジナルを開く",
+        "citationNote": "引用は、知識ベースから取得されたセマンティックチャンクに基づいて自動的に生成されます。"
+    },
+    "help": {
+        "title": "ヘルプとサポート",
+        "shortcuts": {
+            "title": "キーボードショートカット",
+            "newChat": "新しいチャット",
+            "quickSearch": "クイック検索",
+            "closeDialogs": "ダイアログを閉じる"
+        },
+        "resources": {
+            "title": "リソース",
+            "docsLabel": "ドキュメント",
+            "docsDesc": "包括的なドキュメントを読む",
+            "supportLabel": "サポートに連絡",
+            "supportDesc": "サポートチームからヘルプを得る",
+            "privacyLabel": "プライバシーポリシー",
+            "privacyDesc": "プライバシーポリシーを読む"
+        }
+    },
+    "insights": {
+        "title": "分析ダッシュボード",
+        "noData": "データはまだありません",
+        "startAsking": "分析を表示するために質問を始めてください！",
+        "trustScore": "信頼スコア",
+        "excellent": "優秀",
+        "good": "良好",
+        "fair": "普通",
+        "needsImprovement": "改善が必要",
+        "basedOn": "{count} 件のクエリに基づく",
+        "confidence": "信頼度の分布",
+        "evidence": "エビデンスの有無",
+        "similarity": "平均類似度: {score}%",
+        "timeline": "時間経過による平均信頼度",
+        "retrieval": "リトリーバルスコア",
+        "consistency": "一貫性",
+        "correlation": "信頼度と正確性の相関",
+        "coverage": "カバレッジヒストグラム",
+        "refusal": "拒絶率",
+        "unanswered": "{count} 件の未回答クエリ",
+        "risky": "リスクのある質問",
+        "noRisky": "リスクのある質問は検出されませんでした",
+        "systemHealth": "システムの健全性とインジェクション",
+        "latency": "平均レイテンシ",
+        "p95": "P95 レイテンシ",
+        "chunks": "チャンク/クエリ",
+        "older": "過去",
+        "recent": "最近",
+        "high": "高い",
+        "medium": "中間",
+        "low": "低い",
+        "guardrail": "ガードレール"
+    },
+    "sidebar": {
+        "newChat": "新しいチャット",
+        "yourInsights": "インサイト",
+        "recent": "履歴",
+        "noConversations": "会話がありません",
+        "share": "共有",
+        "rename": "名前変更",
+        "archive": "アーカイブ",
+        "delete": "削除",
+        "help": "ヘルプ",
+        "logout": "ログアウト"
+    }
+}

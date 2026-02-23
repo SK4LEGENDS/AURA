@@ -24,8 +24,8 @@ export function DetailToggle({
                 className="w-full px-6 py-4 flex items-center justify-between text-left group"
             >
                 <div className="flex items-center gap-3">
-                    <div className="p-2 bg-purple-500/10 rounded-lg group-hover:bg-purple-500/20 transition-colors">
-                        <Code2 className="w-4 h-4 text-purple-400" />
+                    <div className="p-2 bg-brand-primary/10 rounded-lg group-hover:bg-brand-primary/20 transition-colors">
+                        <Code2 className="w-4 h-4 text-brand-primary" />
                     </div>
                     <span className="font-bold text-sm text-zinc-300 group-hover:text-white transition-colors uppercase tracking-widest">
                         {title}

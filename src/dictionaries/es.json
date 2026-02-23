@@ -1,0 +1,405 @@
+{
+    "common": {
+        "aura": "AURA",
+        "getStarted": "Empezar",
+        "signIn": "Iniciar sesión",
+        "dashboard": "Panel de control",
+        "settings": "Ajustes",
+        "help": "Ayuda",
+        "logout": "Cerrar sesión",
+        "privacy": "Privacidad",
+        "terms": "Términos",
+        "contact": "Contacto",
+        "allRightsReserved": "Todos los derechos reservados.",
+        "backToHome": "Volver al inicio",
+        "lastUpdated": "Última actualización",
+        "questions": "¿Preguntas? Contáctenos en"
+    },
+    "landing": {
+        "heroTitle": "Chatea con tu Inteligencia.",
+        "heroSubtitle": "Aura transforma tus documentos en una base de conocimientos segura y consultable. Cero alucinaciones, respuestas 100% basadas en fuentes.",
+        "startFree": "Empieza gratis",
+        "viewAnalytics": "Ver análisis",
+        "capabilities": "Capacidades",
+        "engineeredTitle1": "Inteligencia diseñada para",
+        "engineeredTitle2": "entornos críticos.",
+        "bento": {
+            "visualTitle": "Resiliencia visual de nivel 4",
+            "visualDesc": "Visualización de gráficos ultra robusta que sobrevive a JSON de IA mal formados. Admite más de 9 tipos de gráficos.",
+            "privacyTitle": "Privacidad Zero-Cloud",
+            "privacyDesc": "Los embeddings y la inferencia permanecen locales. Tus documentos privados nunca salen de tu infraestructura.",
+            "privacyBadge": "OLLAMA LOCAL SINCRONIZADO",
+            "semanticTitle": "Trazabilidad semántica",
+            "semanticDesc": "Cero alucinaciones. Cada respuesta está vinculada a un fragmento de la fuente original.",
+            "structuredTitle": "Maestría en datos estructurados",
+            "structuredDesc": "Procesamiento especializado de Excel y CSV que mantiene el contexto de los encabezados en miles de filas.",
+            "exportTitle": "Exportaciones profesionales",
+            "exportDesc": "Exportación con un solo clic a PNG, SVG o PDF vectorial de alta resolución."
+        },
+        "reality": {
+            "title": "Alucinación frente a Realidad",
+            "subtitle": "Arrastra el control deslizante para ver cómo se compara la inteligencia de Aura basada en fuentes con los modelos de IA estándar.",
+            "hallucination": "Alucinación",
+            "reality": "Realidad",
+            "genericLlm": "LLM genérico (sin conexión)",
+            "auraVerified": "Inteligencia AURA (Verificada)",
+            "highConfidence": "Alta confianza"
+        },
+        "audience": {
+            "title": "Para quién se ha creado Aura",
+            "subtitle": "Diseñado para profesionales que exigen precisión, seguridad y escalabilidad.",
+            "devTitle": "Desarrolladores",
+            "devDesc": "Integra capacidades RAG con unas pocas líneas de código. SDK seguros y documentación completa.",
+            "researchTitle": "Equipos de investigación",
+            "researchDesc": "Procesa miles de artículos al instante. Extrae citas, resúmenes y referencias automáticamente.",
+            "legalTitle": "Legal y cumplimiento",
+            "legalDesc": "Registros listos para auditoría y aislamiento de datos. Garantiza que los documentos sensibles no salgan de tu entorno seguro.",
+            "enterpriseTitle": "Empresas",
+            "enterpriseDesc": "Control de acceso basado en roles (RBAC), integración de SSO y opciones de despliegue local."
+        },
+        "cta": {
+            "title": "¿Estás listo para desbloquear tu inteligencia colectiva?",
+            "subtitle": "Únete a los equipos innovadores que ya usan Aura para tomar mejores decisiones, más rápido.",
+            "getStarted": "Empezar ahora",
+            "contactSales": "Contactar con ventas"
+        },
+        "comparison": {
+            "title": "¿Por qué Aura?",
+            "subtitle": "Mira cómo se compara Aura con las herramientas de chat de IA genéricas.",
+            "feature": "Función",
+            "aura": "Aura",
+            "generic": "IA Genérica",
+            "privacy": "Privacidad de datos",
+            "privacyAura": "Aislado y encriptado",
+            "privacyGeneric": "Datos usados para entrenamiento",
+            "grounding": "Base en las fuentes",
+            "groundingAura": "Citas 100% verificables",
+            "groundingGeneric": "Alucinaciones de caja negra",
+            "deployment": "Despliegue",
+            "deploymentAura": "Local / On-Prem / Cloud",
+            "deploymentGeneric": "Solo en la nube",
+            "support": "Soporte de archivos",
+            "supportAura": "PDF, Docx, Excel, URLs",
+            "supportGeneric": "Entrada de texto limitada"
+        },
+        "engine": {
+            "title": "Dentro del motor",
+            "subtitle": "Pipeline de RAG de alto rendimiento diseñado para la precisión.",
+            "step1": "Subida",
+            "desc1": "PDF, documentos, encriptación",
+            "step2": "Vectorización",
+            "desc2": "Fragmentación y embeddings",
+            "step3": "Recuperación",
+            "desc3": "Búsqueda semántica",
+            "step4": "Visualización",
+            "desc4": "Gráficos interactivos"
+        },
+        "trust": {
+            "engineering": "Dirigido por ingeniería",
+            "research": "Basado en investigación",
+            "production": "Listo para producción",
+            "soc2": "Cumple con SOC 2"
+        },
+        "security": {
+            "badge": "Seguridad de nivel empresarial",
+            "title": "La seguridad no es algo secundario.",
+            "subtitle": "Está en nuestro ADN.",
+            "feature1": "Encriptación de extremo a extremo",
+            "desc1": "Tus documentos están encriptados con AES-256 en reposo y mediante TLS 1.3 en tránsito.",
+            "feature2": "Despliegue local",
+            "desc2": "Ejecuta Aura totalmente de forma local. Tus datos nunca tocan la nube pública.",
+            "feature3": "Integridad de datos de triple cierre",
+            "desc3": "El avanzado motor de recuperación evita respuestas de IA erróneas y garantiza la precisión total de los datos.",
+            "feature4": "Aislamiento de sesiones",
+            "desc4": "Separación lógica estricta entre sesiones de usuario para evitar la contaminación cruzada de contextos."
+        },
+        "useCases": {
+            "title": "Aplicaciones en el mundo real",
+            "case1Title": "Equipos de I+D",
+            "case1Desc": "Acelera la revisión de literatura científica. Busca en miles de artículos técnicos para encontrar nuevas conexiones.",
+            "case2Title": "Asesoría legal",
+            "case2Desc": "Revisa contratos y documentos de cumplimiento. Localiza al instante cláusulas de responsabilidad.",
+            "case3Title": "Gestión de productos",
+            "case3Desc": "Sintetiza los comentarios de los usuarios. Genera especificaciones de funciones basadas en datos históricos.",
+            "case4Title": "Conocimiento interno",
+            "case4Desc": "Una búsqueda unificada para la wiki de tu empresa, políticas de RR. HH. y materiales de incorporación."
+        },
+        "faq": {
+            "title": "Preguntas frecuentes",
+            "q1": "¿Se usan mis datos para entrenar vuestros modelos?",
+            "a1": "Absolutamente no. Aura funciona en una arquitectura aislada. Tus datos nunca se usan para entrenamiento.",
+            "q2": "¿Puedo desplegar esto sin conexión?",
+            "a2": "Sí. Aura admite el despliegue local completo mediante contenedores Docker.",
+            "q3": "¿Qué tipos de archivos son compatibles?",
+            "a3": "Actualmente admitimos PDF, Microsoft Word, Excel, Markdown y texto plano.",
+            "q4": "¿Qué tan precisas son las respuestas?",
+            "a4": "Aura usa citas válidas para cada afirmación. Si la información no está en tus documentos, el sistema lo indicará."
+        },
+        "viz": {
+            "badge": "Demo de transformación",
+            "title": "Una respuesta.",
+            "subtitle": "Infinitas perspectivas.",
+            "desc": "Aura no solo emite texto. Entiende los datos y ofrece visualizaciones profesionales al instante.",
+            "randomize": "Aleatorizar motor de datos",
+            "mode": "Modo de visualización {chartType}",
+            "legendLaptops": "Portátiles",
+            "legendPhones": "Teléfonos",
+            "legendRevenue": "Densidad de ingresos",
+            "legendProcess": "Tiempo de proceso"
+        }
+    },
+    "devTeam": {
+        "title": "Arquitectos de AURA",
+        "subtitle": "Las mentes detrás de la inteligencia. Operando en la frontera de la ingeniería neuronal.",
+        "viewProfile": "Ver Perfil de Inteligencia",
+        "dossier": {
+            "status": "Estado Operativo",
+            "clearance": "Nivel de Acceso",
+            "metrics": "Métricas Clave",
+            "directives": "Directivas",
+            "focus": "Enfoque Principal",
+            "vision": "Visión del Sistema",
+            "technical": "Maestría Técnica",
+            "close": "Terminar Sesión",
+            "back": "Volver al Equipo"
+        },
+        "kailash": {
+            "name": "Kailash",
+            "role": "Jefe de Operaciones Tácticas",
+            "bio": "Orquestación de marcos neuronales de alta fidelidad con precisión quirúrgica. Operando en la intersección del rendimiento cuántico y el estructuralismo algorítmico para redefinir los límites de la sinergia hombre-máquina. MISIÓN: Optimización sistémica total mediante la innovación procedimental implacable.",
+            "dossier": {
+                "status": "ACTIVO / QUIRÚRGICO",
+                "clearance": "NIVEL 9 ACCESO NEURAL",
+                "metrics": [
+                    "99.98% Eficiencia",
+                    "Estructuralismo sin latencia",
+                    "Estabilidad recursiva cuántica"
+                ],
+                "directives": [
+                    "Implementar supremacía algorítmica mediante marcos de alta fidelidad.",
+                    "Ejecutar innovación procedimental con precisión implacable.",
+                    "Redefinir los límites arquitectónicos del núcleo de AURA."
+                ]
+            }
+        },
+        "kaliVignesh": {
+            "name": "Kali Vignesh",
+            "role": "Desarrollador Líder Visionario",
+            "bio": "Centrado en la creación de experiencias de usuario intuitivas y arquitecturas frontend robustas. Apasionado por el código limpio, los sistemas de diseño modernos y la creación de herramientas de IA que marquen una diferencia real en los flujos de trabajo diarios.",
+            "dossier": {
+                "focus": "Arquitectura de IA centrada en el usuario",
+                "vision": "Cerrar la brecha entre los sistemas neurales complejos y la intuición humana mediante un diseño de clase mundial.",
+                "technical": [
+                    "Maestría en Next.js y React",
+                    "Arquitectura de Sistemas de Diseño",
+                    "Ingeniería de Interacción Fluida"
+                ]
+            }
+        }
+    },
+    "dashboard": {
+        "newChat": "Nuevo chat",
+        "whatWorkingOn": "¿En qué estás trabajando?",
+        "uploadSource": "Subir documento o URL",
+        "send": "Enviar",
+        "stop": "Parar",
+        "clearHistory": "Borrar historial",
+        "archives": "Archivos",
+        "insights": "Análisis"
+    },
+    "settings": {
+        "title": "Ajustes",
+        "uiLanguage": "Idioma de pantalla",
+        "inputLanguage": "Mi idioma de entrada",
+        "outputLanguage": "Idioma de respuesta IA",
+        "appearance": "Apariencia",
+        "accentColor": "Color principal",
+        "aiModel": "Modelo IA",
+        "responseStyle": "Estilo de respuesta",
+        "summaryLevel": "Nivel de resumen",
+        "tabs": {
+            "general": "General",
+            "notifications": "Notificaciones",
+            "data": "Control de datos",
+            "security": "Seguridad",
+            "account": "Cuenta"
+        },
+        "actions": {
+            "clear": "Borrar",
+            "view": "Ver",
+            "update": "Actualizar",
+            "delete": "Eliminar",
+            "logout": "Cerrar sesión",
+            "cancel": "Cancelar",
+            "proceed": "Proceder",
+            "viewArchives": "Ver archivos",
+            "changePassword": "Cambiar contraseña",
+            "updateName": "Actualizar nombre"
+        },
+        "placeholders": {
+            "comingSoon": "Ajustes de {tab} pronto",
+            "resetToEnglish": "Idiomas restablecidos a inglés",
+            "setName": "Establecer nombre",
+            "noEmail": "Sin correo",
+            "readOnly": "Solo lectura",
+            "switchToEnglish": "¿Cambiar a inglés?",
+            "modelWarning": "Este modelo funciona mejor en inglés. Si procedes, el idioma de respuesta, entrada y pantalla cambiará a inglés."
+        }
+    },
+    "sourcePanel": {
+        "title": "Evidencia de fuentes",
+        "noSources": "No hay fuentes citadas para esta respuesta.",
+        "match": "Coincidencia",
+        "openOriginal": "Abrir original",
+        "citationNote": "Las citas se generan automáticamente basadas en fragmentos semánticos de la base de conocimientos."
+    },
+    "legal": {
+        "privacy": {
+            "title": "Política de privacidad",
+            "introHeader": "1. Introducción",
+            "introText": "En Aura Intelligence, priorizamos la privacidad y seguridad de tus datos.",
+            "securityHeader": "2. Aislamiento de datos y seguridad",
+            "securityText": "Aura está diseñada como una plataforma RAG que prioriza la privacidad.",
+            "securityLi1": "Sin retención: No usamos tus datos para entrenar modelos.",
+            "securityLi2": "Inquilinato aislado: Tus documentos se guardan en espacios aislados.",
+            "securityLi3": "Encriptación: Todos los datos están protegidos.",
+            "collectHeader": "3. Información que recopilamos",
+            "collectText": "Solo recopilamos la información mínima para operar el servicio.",
+            "rightsHeader": "4. Tus derechos",
+            "rightsText": "Mantienes la propiedad total de tus datos. Puedes borrarlos cuando quieras."
+        },
+        "terms": {
+            "title": "Términos de servicio",
+            "acceptHeader": "1. Aceptación de los términos",
+            "acceptText": "Al acceder a Aura, aceptas estar sujeto a estos términos.",
+            "usageHeader": "2. Licencia de uso",
+            "usageText": "Aura te otorga una licencia limitada para usar la plataforma con fines profesionales o personales.",
+            "ownerHeader": "3. Propiedad de datos y responsabilidad",
+            "ownerText": "Retienes todos los derechos sobre los datos que subes.",
+            "terminateHeader": "4. Terminación",
+            "terminateText": "Nos reservamos el derecho de suspender tu acceso si violas estos términos."
+        },
+        "contact": {
+            "title": "Contactar soporte",
+            "subtitle": "Estamos aquí para ayudar.",
+            "generalTitle": "Consultas generales",
+            "generalDesc": "Para preguntas sobre la plataforma o precios.",
+            "techTitle": "Soporte técnico",
+            "techDesc": "Para problemas con la API o informes de errores.",
+            "enterpriseTitle": "Soporte para empresas",
+            "enterpriseDesc": "SLA personalizados y despliegues dedicados.",
+            "contactSales": "Contactar con ventas"
+        }
+    },
+    "auth": {
+        "initWorkspace": "Inicializar espacio",
+        "configEnv": "Configurar entorno",
+        "welcomeBack": "Bienvenido de nuevo",
+        "initSub": "Despliega tu entorno de conocimientos privado y aislado.",
+        "configSub": "Configura los identificadores de tu espacio.",
+        "authSub": "Autentícate para acceder a tu boveda segura.",
+        "emailLabel": "Identidad de correo",
+        "passLabel": "Frase de paso segura",
+        "workspaceNameLabel": "Nombre del espacio",
+        "useCaseLabel": "Caso de uso (opcional)",
+        "processing": "Procesando...",
+        "completeSetup": "Completar configuración",
+        "authenticate": "Autenticar",
+        "alreadyHaveEnv": "¿Ya tienes un entorno? Inicia sesión",
+        "newToAura": "¿Eres nuevo? Inicializar espacio",
+        "e2e": "Encriptado E2E",
+        "isolated": "Inquilinato aislado"
+    },
+    "docs": {
+        "title": "Arquitectura de Aura",
+        "subtitle": "Documentación técnica",
+        "heroDesc": "Referencia técnica completa para la plataforma Aura AI.",
+        "systemOverview": "Resumen del sistema",
+        "systemDesc": "Arquitectura de alto nivel de la plataforma Aura.",
+        "createNextApp": "Crear aplicación Next",
+        "createNextDesc": "Inmersión profunda en la implementación de Next.js.",
+        "reactEcosystem": "Ecosistema React",
+        "reactDesc": "Patrones de componentes y hooks.",
+        "devSetup": "Configuración de desarrollo",
+        "devSetupDesc": "Configuración del entorno y dependencias.",
+        "aiIntelligence": "Inteligencia AI",
+        "aiDesc": "Desglose técnico del pipeline RAG.",
+        "dataEngine": "Motor de datos",
+        "dataDesc": "Sistemas de ingesta de archivos y embeddings.",
+        "realTime": "Eventos en tiempo real",
+        "realTimeDesc": "Conexiones WebSocket y actualizaciones.",
+        "visualizations": "Visualizaciones",
+        "vizDesc": "Renderizado dinámico de gráficos.",
+        "workflows": "Workflows",
+        "workflowsDesc": "Ejecución de tareas automatizadas.",
+        "apiRef": "Referencia API",
+        "apiDesc": "Endpoints internos de la API.",
+        "security": "Seguridad",
+        "securityDesc": "Flujos de autenticación y encriptación.",
+        "compliance": "Cumplimiento",
+        "complianceDesc": "Políticas de manejo de datos."
+    },
+    "help": {
+        "title": "Ayuda y soporte",
+        "shortcuts": {
+            "title": "Atajos de teclado",
+            "newChat": "Nuevo chat",
+            "quickSearch": "Búsqueda rápida",
+            "closeDialogs": "Cerrar diálogos"
+        },
+        "resources": {
+            "title": "Recursos",
+            "docsLabel": "Documentación",
+            "docsDesc": "Leer la documentación completa",
+            "supportLabel": "Contactar soporte",
+            "supportDesc": "Obtén ayuda de nuestro equipo",
+            "privacyLabel": "Política de privacidad",
+            "privacyDesc": "Lee nuestra política"
+        }
+    },
+    "insights": {
+        "title": "Panel de análisis",
+        "noData": "Sin datos aún",
+        "startAsking": "¡Empieza a preguntar para ver análisis!",
+        "trustScore": "Puntuación de confianza",
+        "excellent": "Excelente",
+        "good": "Bueno",
+        "fair": "Regular",
+        "needsImprovement": "Necesita mejorar",
+        "basedOn": "Basado en {count} consultas",
+        "confidence": "Distribución de confianza",
+        "evidence": "Presencia de evidencia",
+        "similarity": "Similitud promedio: {score}%",
+        "timeline": "Promedio de confianza en el tiempo",
+        "retrieval": "Puntuación de recuperación",
+        "consistency": "Consistencia",
+        "correlation": "Correlación confianza-exactitud",
+        "coverage": "Histograma de cobertura",
+        "refusal": "Tasa de rechazo",
+        "unanswered": "{count} consultas sin respuesta",
+        "risky": "Preguntas de riesgo",
+        "noRisky": "No se detectaron preguntas de riesgo",
+        "systemHealth": "Salud del sistema e ingesta",
+        "latency": "Latencia promedio",
+        "p95": "Latencia P95",
+        "chunks": "Fragmentos/Consulta",
+        "older": "Anteriores",
+        "recent": "Recientes",
+        "high": "Alta",
+        "medium": "Media",
+        "low": "Baja",
+        "guardrail": "Guardrail"
+    },
+    "sidebar": {
+        "newChat": "Nuevo chat",
+        "yourInsights": "Tus análisis",
+        "recent": "Reciente",
+        "noConversations": "Sin conversaciones",
+        "share": "Compartir",
+        "rename": "Renombrar",
+        "archive": "Archivar",
+        "delete": "Eliminar",
+        "help": "Ayuda",
+        "logout": "Cerrar sesión"
+    }
+}

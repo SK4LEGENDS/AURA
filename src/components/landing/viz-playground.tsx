@@ -27,8 +27,10 @@ import {
     MousePointer2
 } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { useI18n } from "@/lib/i18n-context";
 
 // High-Fidelity Semantic Colors
+// ... colors ...
 const COLORS = {
     brand: "var(--brand-primary)",
     action: "var(--brand-secondary)",
@@ -65,6 +67,7 @@ const initialTreemapData = [
 type ChartType = 'Bar' | 'Line' | 'Pie' | 'Area' | 'Scatter' | 'Radar' | 'Treemap' | 'Funnel' | 'Gantt';
 
 export function VizPlayground() {
+    const { t } = useI18n();
     const [chartType, setChartType] = useState<ChartType>('Bar');
     const [data, setData] = useState(initialMultiData);
     const [pieData, setPieData] = useState(initialPieData);
@@ -104,8 +107,8 @@ export function VizPlayground() {
                         <YAxis stroke={COLORS.text} fontSize={10} axisLine={false} tickLine={false} />
                         <Tooltip contentStyle={{ background: '#09090b', border: '1px solid #27272a', borderRadius: '8px', fontSize: '10px' }} />
                         <Legend iconType="circle" />
-                        <Bar dataKey="Laptops" fill={COLORS.brand} radius={[4, 4, 0, 0]} barSize={40} />
-                        <Bar dataKey="Phones" fill={COLORS.verified} radius={[4, 4, 0, 0]} barSize={40} />
+                        <Bar dataKey="Laptops" name={t("landing.viz.legendLaptops")} fill={COLORS.brand} radius={[4, 4, 0, 0]} barSize={40} />
+                        <Bar dataKey="Phones" name={t("landing.viz.legendPhones")} fill={COLORS.verified} radius={[4, 4, 0, 0]} barSize={40} />
                     </BarChart>
                 );
             case 'Line':
@@ -115,8 +118,8 @@ export function VizPlayground() {
                         <XAxis dataKey="name" stroke={COLORS.text} fontSize={10} axisLine={false} tickLine={false} />
                         <YAxis stroke={COLORS.text} fontSize={10} axisLine={false} tickLine={false} />
                         <Tooltip contentStyle={{ background: '#09090b', border: '1px solid #27272a', borderRadius: '8px', fontSize: '10px' }} />
-                        <Line type="monotone" dataKey="Laptops" stroke={COLORS.brand} strokeWidth={3} dot={{ fill: COLORS.brand, r: 4 }} activeDot={{ r: 6 }} />
-                        <Line type="monotone" dataKey="Phones" stroke={COLORS.verified} strokeWidth={3} dot={{ fill: COLORS.verified, r: 4 }} activeDot={{ r: 6 }} />
+                        <Line type="monotone" dataKey="Laptops" name={t("landing.viz.legendLaptops")} stroke={COLORS.brand} strokeWidth={3} dot={{ fill: COLORS.brand, r: 4 }} activeDot={{ r: 6 }} />
+                        <Line type="monotone" dataKey="Phones" name={t("landing.viz.legendPhones")} stroke={COLORS.verified} strokeWidth={3} dot={{ fill: COLORS.verified, r: 4 }} activeDot={{ r: 6 }} />
                     </LineChart>
                 );
             case 'Pie':
@@ -146,18 +149,18 @@ export function VizPlayground() {
                         <XAxis dataKey="name" stroke={COLORS.text} fontSize={10} axisLine={false} tickLine={false} />
                         <YAxis stroke={COLORS.text} fontSize={10} axisLine={false} tickLine={false} />
                         <Tooltip contentStyle={{ background: '#09090b', border: '1px solid #27272a', borderRadius: '8px', fontSize: '10px' }} />
-                        <Area type="monotone" dataKey="Laptops" stroke={COLORS.brand} fill={COLORS.brand} fillOpacity={0.1} />
-                        <Area type="monotone" dataKey="Phones" stroke={COLORS.verified} fill={COLORS.verified} fillOpacity={0.1} />
+                        <Area type="monotone" dataKey="Laptops" name={t("landing.viz.legendLaptops")} stroke={COLORS.brand} fill={COLORS.brand} fillOpacity={0.1} />
+                        <Area type="monotone" dataKey="Phones" name={t("landing.viz.legendPhones")} stroke={COLORS.verified} fill={COLORS.verified} fillOpacity={0.1} />
                     </AreaChart>
                 );
             case 'Scatter':
                 return (
                     <ScatterChart {...commonProps}>
                         <CustomGrid />
-                        <XAxis type="number" dataKey="Laptops" name="Laptops" unit="k" stroke={COLORS.text} fontSize={10} axisLine={false} tickLine={false} />
-                        <YAxis type="number" dataKey="Phones" name="Phones" unit="k" stroke={COLORS.text} fontSize={10} axisLine={false} tickLine={false} />
+                        <XAxis type="number" dataKey="Laptops" name={t("landing.viz.legendLaptops")} unit="k" stroke={COLORS.text} fontSize={10} axisLine={false} tickLine={false} />
+                        <YAxis type="number" dataKey="Phones" name={t("landing.viz.legendPhones")} unit="k" stroke={COLORS.text} fontSize={10} axisLine={false} tickLine={false} />
                         <Tooltip cursor={{ strokeDasharray: '3 3' }} contentStyle={{ background: '#09090b', border: '1px solid #27272a', borderRadius: '8px', fontSize: '10px' }} />
-                        <Scatter name="Revenue Density" data={data} fill={COLORS.brand} />
+                        <Scatter name={t("landing.viz.legendRevenue")} data={data} fill={COLORS.brand} />
                     </ScatterChart>
                 );
             case 'Radar':
@@ -165,8 +168,8 @@ export function VizPlayground() {
                     <RadarChart cx="50%" cy="50%" outerRadius="80%" data={data}>
                         <PolarGrid stroke={COLORS.grid} />
                         <PolarAngleAxis dataKey="name" stroke={COLORS.text} fontSize={10} />
-                        <Radar name="Laptops" dataKey="Laptops" stroke={COLORS.brand} fill={COLORS.brand} fillOpacity={0.5} />
-                        <Radar name="Phones" dataKey="Phones" stroke={COLORS.verified} fill={COLORS.verified} fillOpacity={0.3} />
+                        <Radar name={t("landing.viz.legendLaptops")} dataKey="Laptops" stroke={COLORS.brand} fill={COLORS.brand} fillOpacity={0.5} />
+                        <Radar name={t("landing.viz.legendPhones")} dataKey="Phones" stroke={COLORS.verified} fill={COLORS.verified} fillOpacity={0.3} />
                         <Legend />
                     </RadarChart>
                 );
@@ -199,7 +202,7 @@ export function VizPlayground() {
                         <YAxis type="category" dataKey="name" stroke={COLORS.text} fontSize={10} axisLine={false} tickLine={false} />
                         <Tooltip contentStyle={{ background: '#09090b', border: '1px solid #27272a', borderRadius: '8px', fontSize: '10px' }} />
                         <Bar dataKey="start" fill="transparent" stackId="a" />
-                        <Bar dataKey="Laptops" name="Process Time" fill={COLORS.verified} stackId="a" radius={[0, 4, 4, 0]} />
+                        <Bar dataKey="Laptops" name={t("landing.viz.legendProcess")} fill={COLORS.verified} stackId="a" radius={[0, 4, 4, 0]} />
                     </BarChart>
                 );
         }
@@ -224,14 +227,14 @@ export function VizPlayground() {
                     <div className="flex-1 w-full max-w-xl">
                         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-primary/10 border border-brand-primary/20 mb-6">
                             <Zap className="w-4 h-4 text-brand-primary" />
-                            <span className="text-xs font-bold text-brand-primary uppercase tracking-wide">Live Transformation Demo</span>
+                            <span className="text-xs font-bold text-brand-primary uppercase tracking-wide">{t("landing.viz.badge")}</span>
                         </div>
                         <h2 className="text-3xl md:text-5xl font-bold text-white mb-6 tracking-tight">
-                            One Answer. <br />
-                            <span className="text-zinc-500">Infinite Perspectives.</span>
+                            {t("landing.viz.title")} <br />
+                            <span className="text-zinc-500">{t("landing.viz.subtitle")}</span>
                         </h2>
                         <p className="text-zinc-400 text-lg mb-8 leading-relaxed">
-                            Aura doesn't just output text. It understands the underlying data and offers professional-grade visualizations instantly. Click below to experience the engine.
+                            {t("landing.viz.desc")}
                         </p>
 
                         <div className="flex flex-wrap gap-2 mb-8">
@@ -257,13 +260,15 @@ export function VizPlayground() {
                             className="flex items-center gap-2 px-5 py-2.5 rounded-full bg-zinc-900 text-zinc-400 border border-white/5 hover:text-white hover:bg-zinc-800 transition-all font-bold text-sm shadow-xl"
                         >
                             <RotateCcw className="w-4 h-4" />
-                            Randomize Data Engine
+                            {t("landing.viz.randomize")}
                         </button>
                     </div>
 
                     <div className="flex-1 w-full max-w-3xl bg-zinc-900 shadow-2xl rounded-[32px] border border-white/10 p-6 md:p-8">
                         <div className="flex items-center justify-between mb-8 opacity-50">
-                            <h3 className="text-xs font-bold text-white uppercase tracking-widest">{chartType} Visualization Mode</h3>
+                            <h3 className="text-xs font-bold text-white uppercase tracking-widest">
+                                {t("landing.viz.mode").replace("{chartType}", chartType)}
+                            </h3>
                             <div className="flex gap-2">
                                 <div className="w-2 h-2 rounded-full bg-brand-primary" />
                                 <div className="w-2 h-2 rounded-full bg-status-high" />

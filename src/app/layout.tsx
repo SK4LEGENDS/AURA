@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { SettingsProvider } from "@/lib/settings-context";
+import { WarmupManager } from "@/components/warmup-manager";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -18,6 +19,9 @@ export const metadata: Metadata = {
   title: "AURA",
   description: "Chat with your documents or URLs.",
 };
+
+import { I18nProvider } from "@/lib/i18n-context";
+import { ToastProvider } from "@/lib/toast-context";
 
 export default function RootLayout({
   children,
@@ -48,7 +52,14 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <ThemeProvider>
-          <SettingsProvider>{children}</SettingsProvider>
+          <I18nProvider>
+            <SettingsProvider>
+              <ToastProvider>
+                <WarmupManager />
+                {children}
+              </ToastProvider>
+            </SettingsProvider>
+          </I18nProvider>
         </ThemeProvider>
       </body>
     </html>

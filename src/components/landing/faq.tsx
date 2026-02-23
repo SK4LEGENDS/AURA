@@ -3,31 +3,34 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronDown } from "lucide-react";
-
-const faqs = [
-    {
-        q: "Is my data used to train your models?",
-        a: "Absolutely not. Aura runs on an isolated architecture. Your data is indexed only for your private retrieval sessions and is never used for model training or shared with third parties.",
-    },
-    {
-        q: "Can I deploy this offline / air-gapped?",
-        a: "Yes. Aura supports full on-premise deployment via Docker containers, allowing it to run in completely offline or air-gapped environments for maximum security.",
-    },
-    {
-        q: "What file types are supported?",
-        a: "We currently support PDF, Microsoft Word (.docx), Excel (.xlsx), Markdown, and plain text. We are constantly adding new parsers.",
-    },
-    {
-        q: "How accurate are the answers?",
-        a: "Aura uses valid citations for every claim. If the information isn't in your documents, the system will explicitly state 'I do not have the answer' rather than hallucinating.",
-    },
-];
+import { useI18n } from "@/lib/i18n-context";
 
 export function FAQ() {
+    const { t } = useI18n();
+
+    const faqs = [
+        {
+            q: t("landing.faq.q1"),
+            a: t("landing.faq.a1"),
+        },
+        {
+            q: t("landing.faq.q2"),
+            a: t("landing.faq.a2"),
+        },
+        {
+            q: t("landing.faq.q3"),
+            a: t("landing.faq.a3"),
+        },
+        {
+            q: t("landing.faq.q4"),
+            a: t("landing.faq.a4"),
+        },
+    ];
+
     return (
-        <section className="py-24 bg-zinc-950">
+        <section id="faq" className="py-24 bg-zinc-950">
             <div className="container mx-auto px-6 max-w-3xl">
-                <h2 className="text-3xl font-bold mb-12 text-center">Frequently Asked Questions</h2>
+                <h2 className="text-3xl font-bold mb-12 text-center">{t("landing.faq.title")}</h2>
 
                 <div className="space-y-4">
                     {faqs.map((item, idx) => (

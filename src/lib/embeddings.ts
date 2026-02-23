@@ -7,7 +7,7 @@ const ollama = new Ollama({
     host: OLLAMA_HOST,
 });
 
-const CHAT_MODEL = process.env.OLLAMA_CHAT_MODEL || "phi3:mini";
+const CHAT_MODEL = process.env.OLLAMA_CHAT_MODEL || "llama3.2";
 const EMBEDDING_MODEL = process.env.OLLAMA_EMBEDDING_MODEL || "nomic-embed-text";
 
 console.log("[Embeddings] Default CHAT_MODEL:", CHAT_MODEL);
@@ -29,6 +29,7 @@ export async function generateEmbedding(text: string): Promise<number[]> {
         const response = await ollama.embed({
             model: EMBEDDING_MODEL,
             input: text,
+            keep_alive: "60m",
         });
 
         return response.embeddings[0];
@@ -132,10 +133,12 @@ export async function generateChatCompletion(
                 },
             ],
             stream: false,
+            keep_alive: "60m",
             options: {
                 temperature: 0.3,
                 repeat_penalty: 1.2,
-                stop: ["Question:", "User:", "System:"],
+                num_ctx: parseInt(process.env.OLLAMA_CONTEXT_WINDOW || "2048"),
+                stop: ["Question:", "User:", "System:", "<|end|>", "<|eot_id|>", "<|end_of_text|>", "<|assistant|>", "Response:"],
             },
         });
 
@@ -154,8 +157,9 @@ export async function* generateChatCompletionStream(
     userMessage: string,
     model?: string
 ): AsyncGenerator<string, void, unknown> {
-    const selectedModel = (model && model.trim()) || CHAT_MODEL || "phi3:mini";
-    console.log(`[ChatStream] Using model: "${selectedModel}" (input model: "${model}")`);
+    const selectedModel = (model && model.trim()) || CHAT_MODEL || "llama3.2";
+    const contextWindow = parseInt(process.env.OLLAMA_CONTEXT_WINDOW || "2048");
+    console.log(`[ChatStream] Using model: "${selectedModel}" (ctx: ${contextWindow})`);
 
     try {
         const response = await ollama.chat({
@@ -171,12 +175,12 @@ export async function* generateChatCompletionStream(
                 },
             ],
             stream: true,
-            keep_alive: "5m", // Keep model loaded for 5 minutes
+            keep_alive: "60m", // Keep model loaded for 60 minutes
             options: {
                 temperature: 0.3,
                 repeat_penalty: 1.2,
-                num_ctx: 8192, // Increase context window to handle RAG data
-                stop: ["Question:", "User:", "System:"],
+                num_ctx: parseInt(process.env.OLLAMA_CONTEXT_WINDOW || "2048"),
+                stop: ["Question:", "User:", "System:", "<|end|>", "<|eot_id|>", "<|end_of_text|>", "<|assistant|>", "Response:"],
             },
         });
 

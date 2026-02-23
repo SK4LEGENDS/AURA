@@ -17,7 +17,7 @@ export function HeroBackground() {
                     repeat: Infinity,
                     ease: "easeInOut",
                 }}
-                className="absolute top-[-20%] left-[20%] w-[800px] h-[800px] bg-purple-600/20 rounded-full blur-[120px] opacity-40 mix-blend-screen"
+                className="absolute top-[-20%] left-[20%] w-[800px] h-[800px] bg-brand-primary/20 rounded-full blur-[120px] opacity-40 mix-blend-screen"
             />
 
             {/* Orb 2: Blue - Moving */}
@@ -63,7 +63,7 @@ export function HeroBackground() {
                     repeat: Infinity,
                     ease: "linear",
                 }}
-                className="absolute left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-purple-500/50 to-transparent z-10 shadow-[0_0_20px_rgba(168,85,247,0.5)]"
+                className="absolute left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-brand-primary/50 to-transparent z-10 shadow-[0_0_20px_rgba(255,109,43,0.5)]"
             />
 
             {/* Data Particles */}

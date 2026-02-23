@@ -2,19 +2,38 @@
 
 import { motion } from "framer-motion";
 import { Check, X } from "lucide-react";
-
-const comparisonData = [
-    { feature: "Data Privacy", aura: "Isolated & Encrypted", generic: "Data used for training" },
-    { feature: "Source Grounding", aura: "100% Verifiable Citations", generic: "Black-box Hallucinations" },
-    { feature: "Deployment", aura: "Local / On-Prem / Cloud", generic: "Cloud Only" },
-    { feature: "File Support", aura: "PDF, Docx, Excel, URLs", generic: "Limited Text Input" },
-];
+import { useI18n } from "@/lib/i18n-context";
 
 export function ComparisonSection() {
+    const { t } = useI18n();
+
+    const comparisonData = [
+        {
+            feature: t("landing.comparison.privacy"),
+            aura: t("landing.comparison.privacyAura"),
+            generic: t("landing.comparison.privacyGeneric"),
+        },
+        {
+            feature: t("landing.comparison.grounding"),
+            aura: t("landing.comparison.groundingAura"),
+            generic: t("landing.comparison.groundingGeneric"),
+        },
+        {
+            feature: t("landing.comparison.deployment"),
+            aura: t("landing.comparison.deploymentAura"),
+            generic: t("landing.comparison.deploymentGeneric"),
+        },
+        {
+            feature: t("landing.comparison.support"),
+            aura: t("landing.comparison.supportAura"),
+            generic: t("landing.comparison.supportGeneric"),
+        },
+    ];
+
     return (
         <section className="py-24 bg-black relative overflow-hidden">
             {/* Background Gradients */}
-            <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-purple-900/10 rounded-full blur-[120px]" />
+            <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-brand-primary/10 rounded-full blur-[120px]" />
             <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-blue-900/10 rounded-full blur-[120px]" />
 
             <div className="container mx-auto px-6 relative z-10">
@@ -25,18 +44,24 @@ export function ComparisonSection() {
                         viewport={{ once: true }}
                         className="text-3xl md:text-5xl font-bold mb-6"
                     >
-                        Why Aura?
+                        {t("landing.comparison.title")}
                     </motion.h2>
                     <p className="text-zinc-400 max-w-2xl mx-auto">
-                        See how Aura stacks up against generic AI chat tools.
+                        {t("landing.comparison.subtitle")}
                     </p>
                 </div>
 
                 <div className="max-w-4xl mx-auto rounded-3xl overflow-hidden border border-white/10 bg-zinc-900/50 backdrop-blur-sm">
                     <div className="grid grid-cols-3 p-6 border-b border-white/10 bg-white/5">
-                        <div className="text-sm font-medium text-zinc-500 uppercase tracking-wider">Feature</div>
-                        <div className="text-lg font-bold text-white text-center">Aura</div>
-                        <div className="text-lg font-bold text-zinc-500 text-center">Generic AI</div>
+                        <div className="text-sm font-medium text-zinc-500 uppercase tracking-wider">
+                            {t("landing.comparison.feature")}
+                        </div>
+                        <div className="text-lg font-bold text-white text-center">
+                            {t("landing.comparison.aura")}
+                        </div>
+                        <div className="text-lg font-bold text-zinc-500 text-center">
+                            {t("landing.comparison.generic")}
+                        </div>
                     </div>
 
                     {comparisonData.map((row, index) => (
@@ -49,12 +74,18 @@ export function ComparisonSection() {
                             className="grid grid-cols-3 p-6 border-b border-white/5 hover:bg-white/5 transition-colors items-center"
                         >
                             <div className="font-semibold text-zinc-300">{row.feature}</div>
-                            <div className="text-center flex items-center justify-center gap-2 text-purple-400 font-medium bg-purple-500/10 py-1 px-3 rounded-full mx-auto w-fit">
+                            <div className="text-center flex items-center justify-center gap-2 text-brand-primary font-medium bg-brand-primary/10 py-1 px-3 rounded-full mx-auto w-fit">
                                 <Check className="w-4 h-4" />
                                 {row.aura}
                             </div>
                             <div className="text-center flex items-center justify-center gap-2 text-zinc-500">
-                                {row.generic.includes("Cloud") || row.generic.includes("Training") || row.generic.includes("Hallucinations") ? <X className="w-4 h-4 text-red-900" /> : null}
+                                {row.generic.includes("Cloud") ||
+                                    row.generic.includes("Training") ||
+                                    row.generic.includes("Hallucinations") ||
+                                    row.generic.includes("training") ||
+                                    row.generic.includes("Hallucinaties") ? (
+                                    <X className="w-4 h-4 text-red-900" />
+                                ) : null}
                                 {row.generic}
                             </div>
                         </motion.div>

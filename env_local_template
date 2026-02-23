@@ -24,3 +24,5 @@ NEXT_PUBLIC_FIREBASE_APP_ID=1:123456789:web:abcdef
 OLLAMA_BASE_URL=http://localhost:11434
 OLLAMA_CHAT_MODEL=llama3.2
 OLLAMA_EMBEDDING_MODEL=nomic-embed-text
+OLLAMA_CONTEXT_WINDOW="2048" # Optimized for speed (default: 4096)
+RAG_TOP_K="3" # Optimized for speed (default: 5)

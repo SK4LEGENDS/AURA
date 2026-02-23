@@ -27,16 +27,16 @@ import {
 /**
  * Animated SVG Data Path with Sequential Pulse Support
  */
-const DataPath = ({ className, d, color = "violet", duration = 3, active = true, reverse = false }: {
+const DataPath = ({ className, d, color = "brandPrimary", duration = 3, active = true, reverse = false }: {
     className?: string;
     d: string;
-    color?: "violet" | "blue" | "emerald" | "orange";
+    color?: "brandPrimary" | "blue" | "emerald" | "orange";
     duration?: number;
     active?: boolean;
     reverse?: boolean;
 }) => {
     const glowColors = {
-        violet: "#a78bfa",
+        brandPrimary: "#fb923c",
         blue: "#60a5fa",
         emerald: "#34d399",
         orange: "#fb923c"
@@ -79,13 +79,13 @@ const DataPath = ({ className, d, color = "violet", duration = 3, active = true,
 /**
  * High-Intensity Cinematic Tracer for Simulation
  */
-const SimulationTracer = ({ d, color = "violet", reverse = false }: {
+const SimulationTracer = ({ d, color = "brandPrimary", reverse = false }: {
     d: string;
-    color?: "violet" | "blue" | "emerald" | "orange";
+    color?: "brandPrimary" | "blue" | "emerald" | "orange";
     reverse?: boolean;
 }) => {
     const glowColors = {
-        violet: "#a78bfa",
+        brandPrimary: "#fb923c",
         blue: "#60a5fa",
         emerald: "#34d399",
         orange: "#fb923c"
@@ -163,7 +163,7 @@ export function HighFidelityArchitecture() {
         };
 
         const colorClasses: Record<string, string> = {
-            violet: "bg-violet-500/10 border-violet-500/20 text-violet-300",
+            brandPrimary: "bg-brand-primary/10 border-brand-primary/20 text-brand-primary",
             blue: "bg-blue-500/10 border-blue-500/20 text-blue-300",
             emerald: "bg-emerald-500/10 border-emerald-500/20 text-emerald-300",
             orange: "bg-orange-500/10 border-orange-500/20 text-orange-300"
@@ -210,7 +210,7 @@ export function HighFidelityArchitecture() {
             title: isTechnical ? "Next.js 14 Client" : "Frontend Interface",
             tech: "App Router • RSC • Lucide",
             path: "src/app/page.tsx",
-            color: "violet"
+            color: "brandPrimary"
         },
         core: {
             title: isTechnical ? "Node.js Runtime" : "System Core",
@@ -249,7 +249,7 @@ export function HighFidelityArchitecture() {
                 <button
                     onClick={runSimulation}
                     disabled={simulating}
-                    className={`flex items-center gap-2 px-4 py-2 rounded-full border transition-all text-[10px] font-bold uppercase tracking-widest ${simulating ? 'bg-violet-500/20 border-violet-500/40 text-violet-400 shadow-[0_0_15px_rgba(139,92,246,0.3)]' : 'bg-white/5 border-white/10 text-white hover:bg-white/10'}`}
+                    className={`flex items-center gap-2 px-4 py-2 rounded-full border transition-all text-[10px] font-bold uppercase tracking-widest ${simulating ? 'bg-brand-primary/20 border-brand-primary/40 text-brand-primary shadow-[0_0_15px_rgba(251,146,60,0.3)]' : 'bg-white/5 border-white/10 text-white hover:bg-white/10'}`}
                 >
                     <Play className={`w-3 h-3 ${simulating ? 'animate-pulse' : ''}`} />
                     {simulating ? `TRACE ACTIVE: STEP ${simStep}` : "Trace Request"}
@@ -265,7 +265,7 @@ export function HighFidelityArchitecture() {
             </div>
 
             {/* Background ambient glows */}
-            <div className="absolute top-0 left-1/4 w-64 h-64 bg-violet-600/5 blur-[100px] rounded-full pointer-events-none" />
+            <div className="absolute top-0 left-1/4 w-64 h-64 bg-brand-primary/5 blur-[100px] rounded-full pointer-events-none" />
             <div className="absolute bottom-0 right-1/4 w-64 h-64 bg-blue-600/5 blur-[100px] rounded-full pointer-events-none" />
 
             {/* Simulation Overlay - Vignette and Dimming */}
@@ -284,7 +284,7 @@ export function HighFidelityArchitecture() {
 
                 {/* 1. User Section */}
                 <div className={`flex flex-col items-center mb-6 relative transition-opacity duration-500 ${simulating && simStep !== 1 ? 'opacity-30' : 'opacity-100'}`}>
-                    <TraceLog step={1} color="violet" position="right" />
+                    <TraceLog step={1} color="brandPrimary" position="right" />
                     <motion.div
                         animate={simStep === 1 ? { scale: [1, 1.3, 1], filter: "brightness(1.8)" } : {}}
                         className="w-12 h-12 rounded-xl bg-zinc-900 border border-white/10 flex items-center justify-center text-white shadow-xl relative overflow-hidden group"
@@ -294,7 +294,7 @@ export function HighFidelityArchitecture() {
                             <motion.div
                                 initial={{ opacity: 0 }}
                                 animate={{ opacity: 1 }}
-                                className="absolute inset-0 bg-violet-500/40"
+                                className="absolute inset-0 bg-brand-primary/40"
                             />
                         )}
                     </motion.div>
@@ -302,15 +302,15 @@ export function HighFidelityArchitecture() {
 
                     {/* Path from User to Client Surface */}
                     <div className="absolute top-full left-1/2 w-px h-6 pointer-events-none">
-                        <DataPath d="M 0 0 v 24" active={!simulating} color="violet" duration={1.5} />
-                        {simStep === 1 && simulating && <SimulationTracer d="M 0 0 v 24" color="violet" />}
+                        <DataPath d="M 0 0 v 24" active={!simulating} color="brandPrimary" duration={1.5} />
+                        {simStep === 1 && simulating && <SimulationTracer d="M 0 0 v 24" color="brandPrimary" />}
                     </div>
                 </div>
 
                 {/* 2. Frontend Layer */}
                 <div className={`w-full max-w-lg mb-12 relative transition-opacity duration-500 ${isDimmed('frontend') ? 'opacity-20' : 'opacity-100'}`}>
-                    <TraceLog step={2} color="violet" position="right" />
-                    <TraceLog step={7} color="violet" position="right" />
+                    <TraceLog step={2} color="brandPrimary" position="right" />
+                    <TraceLog step={7} color="brandPrimary" position="right" />
                     <motion.div
                         onMouseEnter={() => setHoveredBlock('frontend')}
                         onMouseLeave={() => setHoveredBlock(null)}
@@ -318,7 +318,7 @@ export function HighFidelityArchitecture() {
                             scale: [1, 1.02, 1],
                             boxShadow: "0 0 30px rgba(139, 92, 246, 0.4)"
                         } : {}}
-                        className={`bg-white/[0.03] border rounded-xl p-5 shadow-xl backdrop-blur-md relative overflow-hidden transition-all duration-300 ${hoveredBlock === 'frontend' ? 'border-violet-500/40 bg-violet-500/[0.05]' : 'border-white/10'}`}
+                        className={`bg-white/[0.03] border rounded-xl p-5 shadow-xl backdrop-blur-md relative overflow-hidden transition-all duration-300 ${hoveredBlock === 'frontend' ? 'border-brand-primary/40 bg-brand-primary/[0.05]' : 'border-white/10'}`}
                     >
                         {/* Status Pulse for Simulation */}
                         <AnimatePresence>
@@ -327,7 +327,7 @@ export function HighFidelityArchitecture() {
                                     initial={{ opacity: 0 }}
                                     animate={{ opacity: 1 }}
                                     exit={{ opacity: 0 }}
-                                    className="absolute inset-0 bg-violet-500/[0.05] pointer-events-none"
+                                    className="absolute inset-0 bg-brand-primary/[0.05] pointer-events-none"
                                 />
                             )}
                         </AnimatePresence>
@@ -336,12 +336,12 @@ export function HighFidelityArchitecture() {
                         <motion.div
                             animate={{ left: ["-100%", "200%"] }}
                             transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
-                            className="absolute top-0 w-1/3 h-[1px] bg-gradient-to-r from-transparent via-violet-400/50 to-transparent z-0"
+                            className="absolute top-0 w-1/3 h-[1px] bg-gradient-to-r from-transparent via-brand-primary/50 to-transparent z-0"
                         />
 
                         <div className="flex items-center justify-between mb-4 border-b border-white/5 pb-2 relative z-10">
                             <div className="flex items-center gap-2">
-                                <Globe className="w-4 h-4 text-violet-400" />
+                                <Globe className="w-4 h-4 text-brand-primary" />
                                 <h3 className="text-[11px] font-bold text-white uppercase tracking-wider">{blocks.frontend.title}</h3>
                             </div>
                             <span className="text-[9px] text-zinc-500 font-mono">CLIENT SURFACE</span>
@@ -369,7 +369,7 @@ export function HighFidelityArchitecture() {
                                     exit={{ opacity: 0, y: 10 }}
                                     className="absolute inset-0 bg-zinc-950/90 flex flex-col items-center justify-center p-4 text-center z-20"
                                 >
-                                    <Activity className="w-5 h-5 text-violet-400 mb-2" />
+                                    <Activity className="w-5 h-5 text-brand-primary mb-2" />
                                     <div className="text-[10px] font-bold text-white uppercase">{blocks.frontend.tech}</div>
                                     <div className="text-[8px] text-zinc-500 font-mono mt-1 opacity-60 underline">{blocks.frontend.path}</div>
                                 </motion.div>
@@ -379,20 +379,20 @@ export function HighFidelityArchitecture() {
 
                     {/* Animated Paths to Core */}
                     <div className="absolute -bottom-16 left-1/2 -translate-x-1/2 w-[326px] h-16 pointer-events-none">
-                        <DataPath d="M 0 0 v 64" active={!simulating} color="violet" duration={2} />
+                        <DataPath d="M 0 0 v 64" active={!simulating} color="brandPrimary" duration={2} />
                         <DataPath d="M 326 0 v 64" active={!simulating} color="blue" duration={2.5} />
 
                         {((simStep === 2 || simStep === 7) && simulating) && (
                             <>
                                 {simStep === 2 && (
                                     <>
-                                        <SimulationTracer d="M 0 0 v 64" color="violet" />
+                                        <SimulationTracer d="M 0 0 v 64" color="brandPrimary" />
                                         <SimulationTracer d="M 326 0 v 64" color="blue" />
                                     </>
                                 )}
                                 {simStep === 7 && (
                                     <>
-                                        <SimulationTracer d="M 0 0 v 64" color="violet" reverse />
+                                        <SimulationTracer d="M 0 0 v 64" color="brandPrimary" reverse />
                                         <SimulationTracer d="M 326 0 v 64" color="blue" reverse />
                                     </>
                                 )}

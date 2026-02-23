@@ -2,14 +2,14 @@
 import { useState, useEffect, useCallback, useMemo } from 'react';
 import { ChatSession, ChatMessage } from '@/types/chat';
 
-const storageKey = 'lavender-rag-sessions';
-const archivesKey = 'lavender-rag-archives';
+const storageKey = 'papaya-rag-sessions';
+const archivesKey = 'papaya-rag-archives';
 
 const createSession = (label?: string): ChatSession => {
     const now = new Date().toISOString();
     return {
         id: crypto.randomUUID(),
-        title: label ?? 'Lavender chat',
+        title: label ?? 'Papaya chat',
         createdAt: now,
         updatedAt: now,
         sourceType: null,
@@ -24,50 +24,106 @@ export function useChatSession(userId?: string) {
     const [archives, setArchives] = useState<ChatSession[]>([]);
     const [hydrated, setHydrated] = useState(false);
 
-    const storageKey = useMemo(() => userId ? `lavender-rag-sessions-${userId}` : 'lavender-rag-sessions', [userId]);
-    const archivesKey = useMemo(() => userId ? `lavender-rag-archives-${userId}` : 'lavender-rag-archives', [userId]);
+    const storageKey = useMemo(() => userId ? `papaya-rag-sessions-${userId}` : 'papaya-rag-sessions', [userId]);
+    const archivesKey = useMemo(() => userId ? `papaya-rag-archives-${userId}` : 'papaya-rag-archives', [userId]);
 
-    // Initial Load
+    // Migration & Initial Load
     useEffect(() => {
         if (typeof window === 'undefined') return;
-        // If userId is undefined (loading), don't load yet or load default? 
-        // Better to wait.
         if (!userId) return;
 
+        // 1. Check for legacy data to migrate
+        const legacyKeys = [
+            userId ? `lavender-rag-sessions-${userId}` : 'lavender-rag-sessions',
+            userId ? `aura-rag-sessions-${userId}` : 'aura-rag-sessions',
+            'rag-sessions' // very old fallback
+        ];
+
+        const legacyArchivesKeys = [
+            userId ? `lavender-rag-archives-${userId}` : 'lavender-rag-archives',
+            userId ? `aura-rag-archives-${userId}` : 'aura-rag-archives'
+        ];
+
+        let migratedSessions: ChatSession[] = [];
+        let migratedArchives: ChatSession[] = [];
+
+        legacyKeys.forEach(key => {
+            const legacyData = localStorage.getItem(key);
+            if (legacyData) {
+                try {
+                    const parsed = JSON.parse(legacyData) as ChatSession[];
+                    migratedSessions = [...migratedSessions, ...parsed];
+                    localStorage.removeItem(key); // Clean up
+                } catch (e) {
+                    console.error(`Failed to migrate legacy key ${key}:`, e);
+                }
+            }
+        });
+
+        legacyArchivesKeys.forEach(key => {
+            const legacyData = localStorage.getItem(key);
+            if (legacyData) {
+                try {
+                    const parsed = JSON.parse(legacyData) as ChatSession[];
+                    migratedArchives = [...migratedArchives, ...parsed];
+                    localStorage.removeItem(key); // Clean up
+                } catch (e) {
+                    console.error(`Failed to migrate legacy archives key ${key}:`, e);
+                }
+            }
+        });
+
+        // 2. Load from current storage
         const saved = localStorage.getItem(storageKey);
         const savedArchives = localStorage.getItem(archivesKey);
 
+        let finalSessions: ChatSession[] = [];
+        let finalArchives: ChatSession[] = migratedArchives;
+
         if (saved) {
             try {
-                const parsed = JSON.parse(saved) as ChatSession[];
-                if (parsed.length) {
-                    setSessions(parsed);
-                    setActiveSessionId(parsed[0].id);
-                } else {
-                    const initial = createSession('New Chat');
-                    setSessions([initial]);
-                    setActiveSessionId(initial.id);
-                }
+                finalSessions = JSON.parse(saved) as ChatSession[];
             } catch (error) {
                 console.error('Failed to parse saved sessions:', error);
-                const initial = createSession('New Chat');
-                setSessions([initial]);
-                setActiveSessionId(initial.id);
             }
+        }
+
+        // Merge migrated data if current is empty or just has a default empty chat
+        if (migratedSessions.length > 0) {
+            // Filter out default empty chats from current sessions if we have real history to restore
+            const currentHasRealContent = finalSessions.some(s => s.messages.length > 0);
+            if (!currentHasRealContent) {
+                finalSessions = migratedSessions;
+            } else {
+                // If the user already started new chats, merge them (avoiding duplicates)
+                const existingIds = new Set(finalSessions.map(s => s.id));
+                const newMigrated = migratedSessions.filter(s => !existingIds.has(s.id));
+                finalSessions = [...finalSessions, ...newMigrated];
+            }
+        }
+
+        if (savedArchives) {
+            try {
+                const parsedArchives = JSON.parse(savedArchives) as ChatSession[];
+                const existingArchiveIds = new Set(finalArchives.map(s => s.id));
+                const newArchives = parsedArchives.filter(s => !existingArchiveIds.has(s.id));
+                finalArchives = [...finalArchives, ...newArchives];
+            } catch (e) {
+                console.error('Failed to parse archives:', e);
+            }
+        }
+
+        // 3. Final state update
+        if (finalSessions.length) {
+            setSessions(finalSessions);
+            setActiveSessionId(finalSessions[0].id);
         } else {
             const initial = createSession('New Chat');
             setSessions([initial]);
             setActiveSessionId(initial.id);
         }
 
-        if (savedArchives) {
-            try {
-                setArchives(JSON.parse(savedArchives));
-            } catch (e) {
-                console.error('Failed to parse archives:', e);
-            }
-        }
-
+        setArchives(finalArchives);
         setHydrated(true);
     }, [storageKey, archivesKey, userId]);
 

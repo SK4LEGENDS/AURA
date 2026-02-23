@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef, useEffect, useState, forwardRef, useImperativeHandle } from "react";
-import { ArrowUp, Mic } from "lucide-react";
+import { ArrowUp, Mic, Square } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
 import { useSettings } from "@/lib/settings-context";
@@ -10,6 +10,7 @@ interface ChatComposerProps {
   prompt: string;
   onPromptChange: (value: string) => void;
   onSubmit: () => void;
+  onStop?: () => void;
   disabled: boolean;
 }
 
@@ -17,6 +18,7 @@ export const ChatComposer = forwardRef<HTMLTextAreaElement, ChatComposerProps>((
   prompt,
   onPromptChange,
   onSubmit,
+  onStop,
   disabled,
 }, ref) => {
   const { accentColor } = useSettings();
@@ -71,7 +73,21 @@ export const ChatComposer = forwardRef<HTMLTextAreaElement, ChatComposerProps>((
 
         <div className="flex items-center gap-1 pb-1">
           <AnimatePresence mode="wait">
-            {prompt.trim() ? (
+            {disabled ? (
+              <motion.button
+                key="stop"
+                initial={{ scale: 0, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                exit={{ scale: 0, opacity: 0 }}
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
+                onClick={onStop}
+                className="rounded-full p-2.5 text-white shadow-lg bg-red-500 hover:bg-red-600"
+                title="Stop generation"
+              >
+                <Square size={20} fill="currentColor" strokeWidth={0} />
+              </motion.button>
+            ) : prompt.trim() ? (
               <motion.button
                 key="send"
                 initial={{ scale: 0, opacity: 0 }}
@@ -80,7 +96,6 @@ export const ChatComposer = forwardRef<HTMLTextAreaElement, ChatComposerProps>((
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
                 onClick={onSubmit}
-                disabled={disabled}
                 className="rounded-full p-2.5 text-white shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
                 style={{
                   background: `linear-gradient(to top right, ${accentColor}, ${accentColor}dd)`,

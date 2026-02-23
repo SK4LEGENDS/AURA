@@ -5,6 +5,7 @@ import { MessageReference } from "@/types/chat";
 import { X, FileText, ExternalLink, Info } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useEffect, useRef } from "react";
+import { useI18n } from "@/lib/i18n-context";
 
 interface SourcePanelProps {
     isOpen: boolean;
@@ -19,6 +20,7 @@ interface SourcePanelProps {
  */
 export function SourcePanel({ isOpen, onClose, references, activeIndex, onSourceClick }: SourcePanelProps) {
     const scrollRefs = useRef<(HTMLDivElement | null)[]>([]);
+    const { t, isRTL } = useI18n();
 
     useEffect(() => {
         if (activeIndex !== null && scrollRefs.current[activeIndex]) {
@@ -30,16 +32,19 @@ export function SourcePanel({ isOpen, onClose, references, activeIndex, onSource
 
     return (
         <motion.div
-            initial={{ x: "100%" }}
+            initial={{ x: isRTL ? "-100%" : "100%" }}
             animate={{ x: 0 }}
-            exit={{ x: "100%" }}
+            exit={{ x: isRTL ? "-100%" : "100%" }}
             transition={{ type: "spring", damping: 25, stiffness: 200 }}
-            className="w-96 border-l border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 flex flex-col h-full shadow-2xl z-20"
+            className={cn(
+                "w-96 bg-white dark:bg-zinc-900 flex flex-col h-full shadow-2xl z-20",
+                isRTL ? "border-r border-zinc-200 dark:border-zinc-800 left-0" : "border-l border-zinc-200 dark:border-zinc-800 right-0"
+            )}
         >
             <div className="p-4 border-b border-zinc-200 dark:border-zinc-800 flex items-center justify-between">
                 <div className="flex items-center gap-2">
                     <FileText className="w-5 h-5 text-blue-500" />
-                    <h2 className="font-semibold text-lg dark:text-white">Source Evidence</h2>
+                    <h2 className="font-semibold text-lg dark:text-white">{t("sourcePanel.title")}</h2>
                 </div>
                 <button
                     onClick={onClose}
@@ -53,7 +58,7 @@ export function SourcePanel({ isOpen, onClose, references, activeIndex, onSource
                 {references.length === 0 ? (
                     <div className="flex flex-col items-center justify-center h-full text-center text-zinc-500 p-8">
                         <Info className="w-12 h-12 mb-4 opacity-20" />
-                        <p>No cited sources for this response.</p>
+                        <p>{t("sourcePanel.noSources")}</p>
                     </div>
                 ) : (
                     references.map((ref, idx) => {
@@ -83,17 +88,23 @@ export function SourcePanel({ isOpen, onClose, references, activeIndex, onSource
                                         {ref.source}
                                     </span>
                                     {ref.similarity && (
-                                        <span className="ml-auto text-[10px] bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 px-1.5 py-0.5 rounded">
-                                            {(ref.similarity * 100).toFixed(0)}% Match
+                                        <span className={cn(
+                                            "text-[10px] bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 px-1.5 py-0.5 rounded",
+                                            isRTL ? "mr-auto" : "ml-auto"
+                                        )}>
+                                            {(ref.similarity * 100).toFixed(0)}% {t("sourcePanel.match")}
                                         </span>
                                     )}
                                 </div>
                                 <p className="text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed italic">
                                     "{ref.snippet}"
                                 </p>
-                                <div className="mt-3 pt-3 border-t border-zinc-200 dark:border-zinc-700 flex justify-end">
+                                <div className={cn(
+                                    "mt-3 pt-3 border-t border-zinc-200 dark:border-zinc-700 flex",
+                                    isRTL ? "justify-start" : "justify-end"
+                                )}>
                                     <button className="text-xs text-blue-500 hover:text-blue-600 font-medium flex items-center gap-1">
-                                        Open Original <ExternalLink className="w-3 h-3" />
+                                        {t("sourcePanel.openOriginal")} <ExternalLink className="w-3 h-3" />
                                     </button>
                                 </div>
                             </div>
@@ -104,7 +115,7 @@ export function SourcePanel({ isOpen, onClose, references, activeIndex, onSource
 
             <div className="p-4 border-t border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900">
                 <p className="text-[10px] text-zinc-500 text-center">
-                    Citations are automatically generated based on retrieved semantic chunks from the knowledge base.
+                    {t("sourcePanel.citationNote")}
                 </p>
             </div>
         </motion.div>

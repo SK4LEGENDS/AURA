@@ -13,6 +13,8 @@ import {
     Command
 } from "lucide-react";
 
+import { useI18n } from "@/lib/i18n-context";
+
 type HelpDialogProps = {
     isOpen: boolean;
     onClose: () => void;
@@ -20,6 +22,7 @@ type HelpDialogProps = {
 
 export function HelpDialog({ isOpen, onClose }: HelpDialogProps) {
     const [mounted, setMounted] = useState(false);
+    const { t } = useI18n();
 
     useEffect(() => {
         setMounted(true);
@@ -50,7 +53,7 @@ export function HelpDialog({ isOpen, onClose }: HelpDialogProps) {
 
                 {/* Header */}
                 <div className="flex items-center justify-between border-b border-black/5 px-6 py-4 dark:border-white/5">
-                    <h2 className="text-xl font-bold text-(--text-primary)">Help & Support</h2>
+                    <h2 className="text-xl font-bold text-(--text-primary)">{t("help.title")}</h2>
                     <button
                         onClick={onClose}
                         className="rounded-lg p-2 text-(--text-secondary) transition hover:bg-black/5 hover:text-(--text-primary) dark:hover:bg-white/10"
@@ -69,12 +72,12 @@ export function HelpDialog({ isOpen, onClose }: HelpDialogProps) {
                                 <div className="rounded-lg bg-slate-50 p-2 dark:bg-zinc-800">
                                     <Keyboard className="h-5 w-5" />
                                 </div>
-                                <h3 className="font-semibold">Keyboard Shortcuts</h3>
+                                <h3 className="font-semibold">{t("help.shortcuts.title")}</h3>
                             </div>
                             <div className="grid gap-3">
-                                <ShortcutRow keys={["Ctrl", "K"]} label="New Chat" />
-                                <ShortcutRow keys={["Ctrl", "/"]} label="Quick Search" />
-                                <ShortcutRow keys={["Esc"]} label="Close Dialogs" />
+                                <ShortcutRow keys={["Ctrl", "K"]} label={t("help.shortcuts.newChat")} />
+                                <ShortcutRow keys={["Ctrl", "/"]} label={t("help.shortcuts.quickSearch")} />
+                                <ShortcutRow keys={["Esc"]} label={t("help.shortcuts.closeDialogs")} />
                             </div>
                         </section>
 
@@ -86,25 +89,25 @@ export function HelpDialog({ isOpen, onClose }: HelpDialogProps) {
                                 <div className="rounded-lg bg-slate-50 p-2 dark:bg-zinc-800">
                                     <Book className="h-5 w-5" />
                                 </div>
-                                <h3 className="font-semibold">Resources</h3>
+                                <h3 className="font-semibold">{t("help.resources.title")}</h3>
                             </div>
                             <div className="grid gap-3">
                                 <ResourceLink
                                     icon={<FileText className="h-4 w-4" />}
-                                    label="Documentation"
-                                    description="Read the comprehensive documentation"
+                                    label={t("help.resources.docsLabel")}
+                                    description={t("help.resources.docsDesc")}
                                     href="/docs"
                                 />
                                 <ResourceLink
                                     icon={<MessageCircle className="h-4 w-4" />}
-                                    label="Contact Support"
-                                    description="Get help from our support team"
+                                    label={t("help.resources.supportLabel")}
+                                    description={t("help.resources.supportDesc")}
                                     href="#"
                                 />
                                 <ResourceLink
                                     icon={<ExternalLink className="h-4 w-4" />}
-                                    label="Privacy Policy"
-                                    description="Read our privacy policy"
+                                    label={t("help.resources.privacyLabel")}
+                                    description={t("help.resources.privacyDesc")}
                                     href="/privacy"
                                 />
                             </div>
@@ -126,7 +129,7 @@ function ShortcutRow({ keys, label }: { keys: string[]; label: string }) {
                 {keys.map((key) => (
                     <kbd
                         key={key}
-                        className="min-w-[1.5rem] rounded bg-white px-1.5 py-0.5 text-center text-xs font-bold text-black border border-black/10 shadow-sm"
+                        className="min-w-6 rounded bg-white px-1.5 py-0.5 text-center text-xs font-bold text-black border border-black/10 shadow-sm"
                     >
                         {key}
                     </kbd>

@@ -18,8 +18,23 @@ import {
     Bot,
     Sparkles,
     Zap,
+    Globe,
 } from "lucide-react";
 import { User, updateProfile } from "firebase/auth";
+import { useI18n, LanguageCode } from "@/lib/i18n-context";
+import { useToast } from "@/lib/toast-context";
+
+const languages: { code: LanguageCode; name: string; nativeName: string }[] = [
+    { code: "en", name: "English", nativeName: "English" },
+    { code: "hi", name: "Hindi", nativeName: "हिन्दी" },
+    { code: "ta", name: "Tamil", nativeName: "தமிழ்" },
+    { code: "ar", name: "Arabic", nativeName: "العربية" },
+    { code: "ru", name: "Russian", nativeName: "Русский" },
+    { code: "de", name: "German", nativeName: "Deutsch" },
+    { code: "ja", name: "Japanese", nativeName: "日本語" },
+    { code: "fr", name: "French", nativeName: "Français" },
+    { code: "es", name: "Spanish", nativeName: "Español" },
+];
 
 type SettingsDialogProps = {
     isOpen: boolean;
@@ -35,6 +50,7 @@ type SettingsDialogProps = {
 type SettingsTab = "general" | "notifications" | "data" | "security" | "account";
 
 export function SettingsDialog({ isOpen, onClose, onClearChatHistory, onClearSavedData, onClearArchives, onViewArchives, onLogOut, user }: SettingsDialogProps) {
+    const { t, isRTL } = useI18n();
     const [activeTab, setActiveTab] = useState<SettingsTab>("general");
     const [mounted, setMounted] = useState(false);
 
@@ -76,39 +92,38 @@ export function SettingsDialog({ isOpen, onClose, onClearChatHistory, onClearSav
                     <nav className="space-y-1">
                         <SidebarItem
                             icon={<Settings className="h-4 w-4" />}
-                            label="General"
+                            label={t("settings.tabs.general")}
                             isActive={activeTab === "general"}
                             onClick={() => setActiveTab("general")}
                         />
                         <SidebarItem
                             icon={<Bell className="h-4 w-4" />}
-                            label="Notifications"
+                            label={t("settings.tabs.notifications")}
                             isActive={activeTab === "notifications"}
                             onClick={() => setActiveTab("notifications")}
                         />
                         <SidebarItem
                             icon={<Database className="h-4 w-4" />}
-                            label="Data controls"
+                            label={t("settings.tabs.data")}
                             isActive={activeTab === "data"}
                             onClick={() => setActiveTab("data")}
                         />
                         <SidebarItem
                             icon={<Shield className="h-4 w-4" />}
-                            label="Security"
+                            label={t("settings.tabs.security")}
                             isActive={activeTab === "security"}
                             onClick={() => setActiveTab("security")}
                         />
                         <SidebarItem
                             icon={<UserIcon className="h-4 w-4" />}
-                            label="Account"
+                            label={t("settings.tabs.account")}
                             isActive={activeTab === "account"}
                             onClick={() => setActiveTab("account")}
                         />
                     </nav>
                 </div>
 
-                {/* Content */}
-                <div className="flex-1 overflow-y-auto bg-white p-8 dark:bg-zinc-900">
+                <div className={cn("flex-1 overflow-y-auto bg-white p-8 dark:bg-zinc-900", isRTL && "font-arabic")}>
                     {activeTab === "general" && <GeneralSettings />}
                     {activeTab === "data" && (
                         <DataSettings
@@ -123,7 +138,7 @@ export function SettingsDialog({ isOpen, onClose, onClearChatHistory, onClearSav
                     {/* Placeholders for other tabs */}
                     {activeTab !== "general" && activeTab !== "data" && activeTab !== "security" && activeTab !== "account" && (
                         <div className="flex h-full items-center justify-center text-(--text-secondary)">
-                            {activeTab.charAt(0).toUpperCase() + activeTab.slice(1)} settings coming soon
+                            {t("settings.placeholders.comingSoon").replace("{tab}", activeTab.charAt(0).toUpperCase() + activeTab.slice(1))}
                         </div>
                     )}
                 </div>
@@ -131,7 +146,6 @@ export function SettingsDialog({ isOpen, onClose, onClearChatHistory, onClearSav
         </div>,
         document.body
     );
-
 }
 
 function SidebarItem({
@@ -174,9 +188,23 @@ function GeneralSettings() {
         setAiModel
     } = useSettings();
 
+    const {
+        uiLanguage, setUiLanguage,
+        inputLanguage, setInputLanguage,
+        outputLanguage, setOutputLanguage,
+        t
+    } = useI18n();
+
+    const { showToast } = useToast();
+
     const [showColorPalette, setShowColorPalette] = useState(false);
     const [showAppearance, setShowAppearance] = useState(false);
     const [showAiModel, setShowAiModel] = useState(false);
+    const [showUiLang, setShowUiLang] = useState(false);
+    const [showInputLang, setShowInputLang] = useState(false);
+    const [showOutputLang, setShowOutputLang] = useState(false);
+    const [showModelConfirm, setShowModelConfirm] = useState(false);
+    const [pendingModel, setPendingModel] = useState<string | null>(null);
 
     const colors = [
         "#ef4444", // red
@@ -193,14 +221,21 @@ function GeneralSettings() {
         "#f43f5e", // rose
     ];
 
+    // Enforce llama3.2 for non-English languages
+    useEffect(() => {
+        if (outputLanguage !== "en" && aiModel !== "llama3.2") {
+            setAiModel("llama3.2");
+        }
+    }, [outputLanguage, aiModel, setAiModel]);
+
     return (
         <div className="space-y-8">
-            <h2 className="text-xl font-semibold text-(--text-primary)">General</h2>
+            <h2 className="text-xl font-semibold text-(--text-primary)">{t("settings.tabs.general")}</h2>
 
             <div className="space-y-6">
                 <div className="space-y-1 border-b border-black/5 pb-6 dark:border-white/5">
                     <div className="flex items-center justify-between">
-                        <span className="text-sm font-medium text-(--text-primary)">Appearance</span>
+                        <span className="text-sm font-medium text-(--text-primary)">{t("settings.appearance")}</span>
                         <button
                             onClick={() => setShowAppearance(!showAppearance)}
                             className="flex items-center gap-2 text-sm text-(--text-secondary) hover:text-(--text-primary)"
@@ -231,10 +266,10 @@ function GeneralSettings() {
 
                 <div className="space-y-3 border-b border-black/5 pb-6 dark:border-white/5">
                     <div className="flex items-center justify-between">
-                        <span className="text-sm font-medium text-[var(--text-primary)]">Accent color</span>
+                        <span className="text-sm font-medium text-(--text-primary)">{t("settings.accentColor")}</span>
                         <button
                             onClick={() => setShowColorPalette(!showColorPalette)}
-                            className="flex items-center gap-2 text-sm text-[var(--text-secondary)] hover:text-[var(--text-primary)]"
+                            className="flex items-center gap-2 text-sm text-(--text-secondary) hover:text-(--text-primary)"
                         >
                             <div className="h-3 w-3 rounded-full" style={{ backgroundColor: accentColor }} />
                             Custom
@@ -249,7 +284,7 @@ function GeneralSettings() {
                                     onClick={() => setAccentColor(color)}
                                     className={cn(
                                         "h-8 w-full rounded-md border border-black/10 transition hover:scale-105 dark:border-white/10",
-                                        accentColor === color && "ring-2 ring-[var(--text-primary)] ring-offset-2 ring-offset-[var(--background)]"
+                                        accentColor === color && "ring-2 ring-(--text-primary) ring-offset-2 ring-offset-(--background)"
                                     )}
                                     style={{ backgroundColor: color }}
                                 />
@@ -258,7 +293,90 @@ function GeneralSettings() {
                     )}
                 </div>
 
+                <div className="space-y-3 border-b border-black/5 pb-6 dark:border-white/5">
+                    <div className="flex items-center justify-between">
+                        <span className="text-sm font-medium text-[var(--text-primary)]">{t("settings.uiLanguage")}</span>
+                        <div className="relative">
+                            <button
+                                onClick={() => setShowUiLang(!showUiLang)}
+                                className="flex items-center gap-2 text-sm text-[var(--text-secondary)] hover:text-[var(--text-primary)]"
+                            >
+                                <Globe className="h-4 w-4" />
+                                {languages.find(l => l.code === uiLanguage)?.nativeName}
+                                <ChevronDown className={cn("h-4 w-4 transition-transform", showUiLang && "rotate-180")} />
+                            </button>
+                            {showUiLang && (
+                                <Dropdown
+                                    items={languages}
+                                    selectedId={uiLanguage}
+                                    onSelect={(id) => {
+                                        setUiLanguage(id as LanguageCode);
+                                        setShowUiLang(false);
+                                    }}
+                                    onClose={() => setShowUiLang(false)}
+                                />
+                            )}
+                        </div>
+                    </div>
+                </div>
 
+                <div className="space-y-3 border-b border-black/5 pb-6 dark:border-white/5">
+                    <div className="flex items-center justify-between">
+                        <span className="text-sm font-medium text-[var(--text-primary)]">{t("settings.inputLanguage")}</span>
+                        <div className="relative">
+                            <button
+                                onClick={() => setShowInputLang(!showInputLang)}
+                                className="flex items-center gap-2 text-sm text-[var(--text-secondary)] hover:text-[var(--text-primary)]"
+                            >
+                                <Edit3 className="h-4 w-4" />
+                                {languages.find(l => l.code === inputLanguage)?.nativeName}
+                                <ChevronDown className={cn("h-4 w-4 transition-transform", showInputLang && "rotate-180")} />
+                            </button>
+                            {showInputLang && (
+                                <Dropdown
+                                    items={languages}
+                                    selectedId={inputLanguage}
+                                    onSelect={(id) => {
+                                        setInputLanguage(id as LanguageCode);
+                                        setShowInputLang(false);
+                                    }}
+                                    onClose={() => setShowInputLang(false)}
+                                />
+                            )}
+                        </div>
+                    </div>
+                </div>
+
+                <div className="space-y-3 border-b border-black/5 pb-6 dark:border-white/5">
+                    <div className="flex items-center justify-between">
+                        <span className="text-sm font-medium text-[var(--text-primary)]">{t("settings.outputLanguage")}</span>
+                        <div className="relative">
+                            <button
+                                onClick={() => setShowOutputLang(!showOutputLang)}
+                                className="flex items-center gap-2 text-sm text-[var(--text-secondary)] hover:text-[var(--text-primary)]"
+                            >
+                                <Bot className="h-4 w-4" />
+                                {languages.find(l => l.code === outputLanguage)?.nativeName}
+                                <ChevronDown className={cn("h-4 w-4 transition-transform", showOutputLang && "rotate-180")} />
+                            </button>
+                            {showOutputLang && (
+                                <Dropdown
+                                    items={languages}
+                                    selectedId={outputLanguage}
+                                    onSelect={(id) => {
+                                        setOutputLanguage(id as LanguageCode);
+                                        // Auto-switch to llama3.2 for non-English languages
+                                        if (id !== "en") {
+                                            setAiModel("llama3.2");
+                                        }
+                                        setShowOutputLang(false);
+                                    }}
+                                    onClose={() => setShowOutputLang(false)}
+                                />
+                            )}
+                        </div>
+                    </div>
+                </div>
 
                 <div className="space-y-1 border-b border-black/5 pb-6 dark:border-white/5">
                     <div className="flex items-center justify-between">
@@ -270,10 +388,12 @@ function GeneralSettings() {
                             >
                                 {aiModel === "phi3:mini" && <Bot className="h-4 w-4 text-green-500" />}
                                 {aiModel === "llama3.2-vision" && <Sparkles className="h-4 w-4 text-blue-500" />}
-                                {aiModel === "qwen2-math" && <Bot className="h-4 w-4 text-purple-500" />}
-                                {aiModel === "Llama 3" && <Bot className="h-4 w-4 text-purple-400" />}
-                                {aiModel === "Mistral Large" && <Zap className="h-4 w-4 text-yellow-400" />}
-                                {!["phi3:mini", "llama3.2-vision", "qwen2-math", "Llama 3", "Mistral Large"].includes(aiModel) && <Bot className="h-4 w-4 text-[var(--text-secondary)]" />}
+                                {aiModel === "qwen2.5-math" && <Bot className="h-4 w-4 text-brand-primary" />}
+                                {aiModel === "llama3.1" && <Zap className="h-4 w-4 text-indigo-500" />}
+                                {aiModel === "deepseek-r1:7b" && <Bot className="h-4 w-4 text-red-500" />}
+                                {aiModel === "qwen2.5-coder:7b" && <Bot className="h-4 w-4 text-cyan-500" />}
+                                {aiModel === "qwen2.5:7b" && <Bot className="h-4 w-4 text-brand-primary" />}
+                                {!["phi3:mini", "llama3.2-vision", "qwen2.5:7b", "llama3.1", "deepseek-r1:7b", "qwen2.5-coder:7b"].includes(aiModel) && <Bot className="h-4 w-4 text-[var(--text-secondary)]" />}
                                 {aiModel}
                                 <ChevronDown className={cn("h-4 w-4 transition-transform", showAiModel && "rotate-180")} />
                             </button>
@@ -289,18 +409,19 @@ function GeneralSettings() {
                                             {[
                                                 { id: "phi3:mini", icon: Bot, color: "text-green-500" },
                                                 { id: "llama3.2-vision", icon: Sparkles, color: "text-blue-500" },
-                                                { id: "qwen2-math", icon: Bot, color: "text-purple-500" },
-                                                { id: "Llama 3", icon: Bot, color: "text-purple-400" },
-                                                { id: "Mistral Large", icon: Zap, color: "text-yellow-400" },
-                                                { id: "Mixtral 8x7B", icon: Zap, color: "text-indigo-400" },
-                                                { id: "Falcon 180B", icon: Bot, color: "text-red-400" },
-                                                { id: "Stable Beluga", icon: Bot, color: "text-cyan-400" },
-                                                { id: "Vicuna 33B", icon: Sparkles, color: "text-pink-400" },
-                                                { id: "WizardLM", icon: Bot, color: "text-emerald-400" },
+                                                { id: "qwen2.5:7b", icon: Bot, color: "text-brand-primary" },
+                                                { id: "llama3.1", icon: Zap, color: "text-indigo-500" },
+                                                { id: "deepseek-r1:7b", icon: Bot, color: "text-red-500" },
+                                                { id: "qwen2.5-coder:7b", icon: Bot, color: "text-cyan-500" },
                                             ].map((model) => (
                                                 <button
                                                     key={model.id}
                                                     onClick={() => {
+                                                        if (outputLanguage !== "en") {
+                                                            setPendingModel(model.id);
+                                                            setShowModelConfirm(true);
+                                                            return;
+                                                        }
                                                         setAiModel(model.id);
                                                         setShowAiModel(false);
                                                     }}
@@ -369,39 +490,83 @@ function GeneralSettings() {
                     </div>
                 </div>
             </div>
+
+            {showModelConfirm && createPortal(
+                <div className="fixed inset-0 z-10000 flex items-center justify-center bg-black/60 backdrop-blur-sm p-4">
+                    <div className="w-full max-w-md overflow-hidden rounded-2xl border border-white/10 bg-[#1c1c1f] shadow-2xl animate-in fade-in zoom-in-95 duration-200">
+                        <div className="p-6 text-center">
+                            <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-blue-500/10 text-blue-500">
+                                <Bot className="h-6 w-6" />
+                            </div>
+                            <h3 className="text-lg font-semibold text-white mb-2">{t("settings.placeholders.switchToEnglish")}</h3>
+                            <p className="text-sm text-white/70 leading-relaxed">
+                                {t("settings.placeholders.modelWarning")}
+                            </p>
+                        </div>
+                        <div className="flex items-center justify-center gap-3 bg-white/5 px-6 py-4">
+                            <button
+                                onClick={() => {
+                                    setShowModelConfirm(false);
+                                    setPendingModel(null);
+                                }}
+                                className="flex-1 rounded-lg px-4 py-2 text-sm font-medium text-white/70 hover:bg-white/10 hover:text-white transition-colors border border-white/10"
+                            >
+                                {t("settings.actions.cancel")}
+                            </button>
+                            <button
+                                onClick={() => {
+                                    if (pendingModel) {
+                                        setUiLanguage("en");
+                                        setInputLanguage("en");
+                                        setOutputLanguage("en");
+                                        setAiModel(pendingModel);
+                                        setShowAiModel(false);
+                                    }
+                                    setShowModelConfirm(false);
+                                    setPendingModel(null);
+                                    showToast(t("settings.placeholders.resetToEnglish"), "info");
+                                }}
+                                className="flex-1 rounded-lg bg-blue-500/90 px-4 py-2 text-sm font-medium text-white hover:bg-blue-500 transition-colors shadow-lg shadow-blue-500/20"
+                            >
+                                {t("settings.actions.proceed")}
+                            </button>
+                        </div>
+                    </div>
+                </div>,
+                document.body
+            )}
         </div>
     );
 }
 
-type DataSettingsProps = {
+function DataSettings({ onClearChatHistory, onClearSavedData, onClearArchives, onViewArchives }: {
     onClearChatHistory: () => void;
     onClearSavedData: () => void;
     onClearArchives: () => void;
     onViewArchives: () => void;
-};
-
-function DataSettings({ onClearChatHistory, onClearSavedData, onClearArchives, onViewArchives }: DataSettingsProps) {
+}) {
+    const { t } = useI18n();
     return (
         <div className="space-y-8">
-            <h2 className="text-xl font-semibold text-[var(--text-primary)]">Data controls</h2>
+            <h2 className="text-xl font-semibold text-(--text-primary)">{t("settings.tabs.data")}</h2>
 
             <div className="space-y-6">
                 <div className="space-y-4">
-                    <h3 className="text-sm font-medium text-[var(--text-secondary)] uppercase tracking-wider">Chat & Data</h3>
-                    <SettingRow label="Delete Chat history" value="Clear" action onClick={onClearChatHistory} />
-                    <SettingRow label="Delete the data of saved data" value="Clear" action onClick={onClearSavedData} />
+                    <h3 className="text-sm font-medium text-(--text-secondary) uppercase tracking-wider">Chat & Data</h3>
+                    <SettingRow label="Delete Chat history" value={t("settings.actions.clear")} action onClick={onClearChatHistory} />
+                    <SettingRow label="Delete the data of saved data" value={t("settings.actions.clear")} action onClick={onClearSavedData} />
                 </div>
 
                 <div className="space-y-4 pt-2">
-                    <h3 className="text-sm font-medium text-[var(--text-secondary)] uppercase tracking-wider">Archives</h3>
-                    <SettingRow label="Archived Files" value="View" action onClick={onViewArchives} />
-                    <SettingRow label="Delete Archive files" value="Clear" action onClick={onClearArchives} />
+                    <h3 className="text-sm font-medium text-(--text-secondary) uppercase tracking-wider">Archives</h3>
+                    <SettingRow label="Archived Files" value={t("settings.actions.view")} action onClick={onViewArchives} />
+                    <SettingRow label="Delete Archive files" value={t("settings.actions.clear")} action onClick={onClearArchives} />
                 </div>
 
                 <div className="space-y-4 pt-2">
-                    <h3 className="text-sm font-medium text-[var(--text-secondary)] uppercase tracking-wider">Account</h3>
-                    <SettingRow label="Change password" value="Update" action />
-                    <SettingRow label="Delete Account" value="Delete" action variant="danger" />
+                    <h3 className="text-sm font-medium text-(--text-secondary) uppercase tracking-wider">Account</h3>
+                    <SettingRow label={t("settings.actions.changePassword")} value={t("settings.actions.update")} action />
+                    <SettingRow label="Delete Account" value={t("settings.actions.delete")} action variant="danger" />
                 </div>
             </div>
         </div>
@@ -409,15 +574,16 @@ function DataSettings({ onClearChatHistory, onClearSavedData, onClearArchives, o
 }
 
 function SecuritySettings({ onLogOut }: { onLogOut: () => void }) {
+    const { t } = useI18n();
     return (
         <div className="space-y-8">
-            <h2 className="text-xl font-semibold text-[var(--text-primary)]">Security</h2>
+            <h2 className="text-xl font-semibold text-(--text-primary)">{t("settings.tabs.security")}</h2>
 
             <div className="space-y-6">
                 <div className="space-y-4">
-                    <h3 className="text-sm font-medium text-[var(--text-secondary)] uppercase tracking-wider">Session Management</h3>
-                    <SettingRow label="Log out" value="Log out" action onClick={onLogOut} />
-                    <SettingRow label="Log out from all devices" value="Log out all" action variant="danger" />
+                    <h3 className="text-sm font-medium text-(--text-secondary) uppercase tracking-wider">Session Management</h3>
+                    <SettingRow label={t("settings.actions.logout")} value={t("settings.actions.logout")} action onClick={onLogOut} />
+                    <SettingRow label="Log out from all devices" value={t("settings.actions.logout")} action variant="danger" />
                 </div>
             </div>
         </div>
@@ -425,6 +591,7 @@ function SecuritySettings({ onLogOut }: { onLogOut: () => void }) {
 }
 
 function AccountSettings({ user }: { user: User | null }) {
+    const { t } = useI18n();
     const { accentColor } = useSettings();
     const [isEditingName, setIsEditingName] = useState(false);
     const [newName, setNewName] = useState(user?.displayName || "");
@@ -436,9 +603,6 @@ function AccountSettings({ user }: { user: User | null }) {
         try {
             await updateProfile(user, { displayName: newName });
             setIsEditingName(false);
-            // Force refresh or let Firebase listener handle it (might require page reload or context update if not reactive)
-            // For now, assume user object updates or requires reload. 
-            // To be safe, we might update local state if 'user' prop doesn't auto-update immediately.
         } catch (error) {
             console.error("Error updating profile:", error);
         } finally {
@@ -448,23 +612,22 @@ function AccountSettings({ user }: { user: User | null }) {
 
     return (
         <div className="space-y-8">
-            <h2 className="text-xl font-semibold text-[var(--text-primary)]">Account</h2>
+            <h2 className="text-xl font-semibold text-(--text-primary)">{t("settings.tabs.account")}</h2>
 
             <div className="space-y-6">
                 <div className="space-y-4">
-                    <h3 className="text-sm font-medium text-[var(--text-secondary)] uppercase tracking-wider">Profile</h3>
+                    <h3 className="text-sm font-medium text-(--text-secondary) uppercase tracking-wider">Profile</h3>
 
-                    {/* Editable Name Row */}
                     <div className="space-y-1 border-b border-black/5 pb-6 last:border-0 dark:border-white/5">
                         <div className="flex items-center justify-between">
-                            <span className="text-sm font-medium text-[var(--text-primary)]">Name</span>
+                            <span className="text-sm font-medium text-(--text-primary)">Name</span>
                             {isEditingName ? (
                                 <div className="flex items-center gap-2">
                                     <input
                                         type="text"
                                         value={newName}
                                         onChange={(e) => setNewName(e.target.value)}
-                                        className="h-8 w-40 rounded-md border border-black/10 bg-transparent px-2 text-sm text-[var(--text-primary)] outline-none focus:border-[var(--text-primary)] dark:border-white/10"
+                                        className="h-8 w-40 rounded-md border border-black/10 bg-transparent px-2 text-sm text-(--text-primary) outline-none focus:border-(--text-primary) dark:border-white/10"
                                         autoFocus
                                     />
                                     <button
@@ -513,8 +676,8 @@ function AccountSettings({ user }: { user: User | null }) {
                                 >
                                     {user?.displayName ? user.displayName.substring(0, 2).toUpperCase() : (user?.email?.substring(0, 2).toUpperCase() || "US")}
                                 </div>
-                                <button className="rounded-md bg-black/5 px-3 py-1.5 text-sm text-[var(--text-primary)] transition hover:bg-black/10 dark:bg-white/5 dark:text-white dark:hover:bg-white/10">
-                                    Update
+                                <button className="rounded-md bg-black/5 px-3 py-1.5 text-sm text-(--text-primary) transition hover:bg-black/10 dark:bg-white/5 dark:text-white dark:hover:bg-white/10">
+                                    {t("settings.actions.update")}
                                 </button>
                             </div>
                         </div>
@@ -543,7 +706,7 @@ function SettingRow({
     return (
         <div className="space-y-1 border-b border-black/5 pb-6 last:border-0 dark:border-white/5">
             <div className="flex items-center justify-between">
-                <span className={cn("text-sm font-medium", variant === "danger" ? "text-red-400" : "text-[var(--text-primary)]")}>
+                <span className={cn("text-sm font-medium", variant === "danger" ? "text-red-400" : "text-(--text-primary)")}>
                     {label}
                 </span>
                 <button
@@ -552,10 +715,10 @@ function SettingRow({
                         "flex items-center gap-2 text-sm transition-colors",
                         action
                             ? "rounded-md bg-black/5 px-3 py-1.5 hover:bg-black/10 dark:bg-white/5 dark:hover:bg-white/10"
-                            : "text-[var(--text-secondary)] hover:text-[var(--text-primary)]",
+                            : "text-(--text-secondary) hover:text-(--text-primary)",
                         variant === "danger"
                             ? "text-red-400 hover:bg-red-500/10 hover:text-red-300"
-                            : "text-[var(--text-primary)]"
+                            : "text-(--text-primary)"
                     )}
                 >
                     {value}
@@ -563,7 +726,7 @@ function SettingRow({
                 </button>
             </div>
             {description && (
-                <p className="max-w-md text-xs text-[var(--text-secondary)] leading-relaxed">
+                <p className="max-w-md text-xs text-(--text-secondary) leading-relaxed">
                     {description}
                 </p>
             )}
@@ -571,3 +734,41 @@ function SettingRow({
     );
 }
 
+function Dropdown({ items, selectedId, onSelect, onClose }: {
+    items: { code: string; name: string; nativeName: string }[] | { id: string; name?: string; icon?: any; color?: string }[];
+    selectedId: string;
+    onSelect: (id: string) => void;
+    onClose: () => void;
+}) {
+    return (
+        <>
+            <div className="fixed inset-0 z-40" onClick={onClose} />
+            <div className="absolute right-0 top-full z-50 mt-2 w-48 overflow-hidden rounded-lg border border-black/10 bg-white shadow-xl dark:border-white/10 dark:bg-zinc-900">
+                <div className="max-h-60 overflow-y-auto p-1">
+                    {items.map((item: any) => {
+                        const id = item.code || item.id;
+                        const label = item.nativeName || item.id || id;
+                        return (
+                            <button
+                                key={id}
+                                onClick={() => onSelect(id)}
+                                className={cn(
+                                    "flex w-full items-center justify-between gap-2 rounded-md px-3 py-2 text-xs font-medium transition-colors hover:bg-black/5 dark:hover:bg-white/5",
+                                    selectedId === id
+                                        ? "bg-black/10 text-(--text-primary) dark:bg-white/10"
+                                        : "text-(--text-secondary)"
+                                )}
+                            >
+                                <span className="truncate">{label}</span>
+                                <div className="flex items-center gap-1.5 shrink-0">
+                                    {item.icon && <item.icon className={cn("h-3 w-3", item.color)} />}
+                                    {selectedId === id && <Check className="h-3 w-3" />}
+                                </div>
+                            </button>
+                        );
+                    })}
+                </div>
+            </div>
+        </>
+    );
+}

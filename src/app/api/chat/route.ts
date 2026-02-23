@@ -77,7 +77,8 @@ export async function POST(request: NextRequest) {
     // Find relevant chunks for the user's question
     const searchStart = performance.now();
     // Balanced threshold to 0.3 to likely filter out weak citation matches while keeping relevant content
-    const relevantChunks = await findRelevantChunks(message, chunks, 10, 0.3);
+    const topK = parseInt(process.env.RAG_TOP_K || "3");
+    const relevantChunks = await findRelevantChunks(message, chunks, topK, 0.3);
     timings["vector_search"] = performance.now() - searchStart;
 
     console.log(`[Chat] Query: "${message}"`);
@@ -110,7 +111,9 @@ export async function POST(request: NextRequest) {
     const enableGraphs = graphKeywords.some(keyword => lowerMessage.includes(keyword));
 
     // Generate RAG prompt
-    const systemPrompt = buildRagSystemPrompt(context, responseStyle, summaryLevel, enableGraphs);
+    const { outputLanguage = "en" } = body;
+    console.log(`[ChatRoute] Output Language: ${outputLanguage}`);
+    const systemPrompt = buildRagSystemPrompt(context, responseStyle, summaryLevel, enableGraphs, outputLanguage);
     const userPrompt = buildUserPrompt(message);
 
     // Build references for citations

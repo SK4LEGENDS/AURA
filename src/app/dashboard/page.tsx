@@ -18,10 +18,12 @@ import { useSettings } from "@/lib/settings-context";
 import { useChatSession } from "@/hooks/use-chat-session";
 import { useAuth } from "@/hooks/use-auth";
 import Image from "next/image";
+import { useI18n } from "@/lib/i18n-context";
 
 export default function Dashboard() {
     const { user, loading: authLoading, signOut } = useAuth(true);
     const { accentColor, responseStyle, summaryLevel, aiModel } = useSettings();
+    const { t, outputLanguage, isRTL } = useI18n();
 
     const {
         sessions,
@@ -63,6 +65,7 @@ export default function Dashboard() {
     const [sessionToDelete, setSessionToDelete] = useState<string | null>(null);
 
     const chatInputRef = useRef<HTMLTextAreaElement>(null);
+    const abortControllerRef = useRef<AbortController | null>(null);
 
     // Keyboard Shortcuts
     useEffect(() => {
@@ -280,6 +283,14 @@ export default function Dashboard() {
         setPendingUrl("");
     };
 
+    const handleStop = () => {
+        if (abortControllerRef.current) {
+            abortControllerRef.current.abort();
+            abortControllerRef.current = null;
+        }
+        setGeneratingSessionIds((ids) => ids.filter((id) => id !== activeSession?.id));
+    };
+
     const determineSource = (): KnowledgeSource => {
         if (activeSession?.sourceType) return activeSession.sourceType;
         if (pendingFile) return "file";
@@ -290,6 +301,12 @@ export default function Dashboard() {
     const handleSend = async () => {
         if (!requireSession() || !activeSession) return;
         if (!prompt.trim()) return;
+
+        // Cancel previous request if any
+        if (abortControllerRef.current) {
+            abortControllerRef.current.abort();
+        }
+
         const targetSource = determineSource();
 
         setError(null);
@@ -351,6 +368,9 @@ export default function Dashboard() {
             }
 
             // Step 2: Send chat
+            const abortController = new AbortController();
+            abortControllerRef.current = abortController;
+
             const chatResponse = await fetch("/api/chat", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
@@ -360,7 +380,9 @@ export default function Dashboard() {
                     responseStyle,
                     summaryLevel,
                     model: aiModel,
+                    outputLanguage,
                 }),
+                signal: abortController.signal,
             });
 
             if (!chatResponse.ok) {
@@ -458,7 +480,10 @@ export default function Dashboard() {
     const showGreeting = activeSession.messages.length === 0;
 
     return (
-        <div className="flex h-screen overflow-hidden text-[var(--text-primary)]">
+        <div className={cn(
+            "flex h-screen overflow-hidden text-[var(--text-primary)]",
+            isRTL && "font-arabic"
+        )}>
             {/* Background */}
             <div className="fixed inset-0 -z-10">
                 <DarkVeil accentColor={accentColor} />
@@ -500,7 +525,7 @@ export default function Dashboard() {
                         {showGreeting ? (
                             <div className="mb-8 flex flex-col items-center gap-6">
                                 <h1 className="text-3xl font-semibold text-[var(--text-primary)] dark:text-white">
-                                    What are you working on?
+                                    {t("dashboard.whatWorkingOn")}
                                 </h1>
                             </div>
                         ) : (
@@ -552,6 +577,7 @@ export default function Dashboard() {
                                 prompt={prompt}
                                 onPromptChange={setPrompt}
                                 onSubmit={handleSend}
+                                onStop={handleStop}
                                 disabled={generatingSessionIds.includes(activeSession.id)}
                             />
                         </div>

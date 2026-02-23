@@ -1,0 +1,412 @@
+{
+    "common": {
+        "aura": "AURA",
+        "getStarted": "Loslegen",
+        "signIn": "Anmelden",
+        "dashboard": "Dashboard",
+        "settings": "Einstellungen",
+        "help": "Hilfe",
+        "logout": "Abmelden",
+        "privacy": "Datenschutz",
+        "terms": "Nutzungsbedingungen",
+        "contact": "Kontakt",
+        "allRightsReserved": "Alle Rechte vorbehalten.",
+        "backToHome": "Zurück zur Startseite",
+        "lastUpdated": "Zuletzt aktualisiert",
+        "questions": "Fragen? Kontaktieren Sie uns unter"
+    },
+    "landing": {
+        "heroTitle": "Chatte mit deiner Intelligenz.",
+        "heroSubtitle": "Aura verwandelt deine Dokumente in eine sichere, durchsuchbare Wissensdatenbank. Null Halluzinationen, 100% quellengestützte Antworten.",
+        "startFree": "Kostenlos starten",
+        "viewAnalytics": "Analysen anzeigen",
+        "capabilities": "Möglichkeiten",
+        "engineeredTitle1": "Entwickelt für hochriskante",
+        "engineeredTitle2": "Intelligenz.",
+        "bento": {
+            "visualTitle": "Visuelle Resilienz der Stufe 4",
+            "visualDesc": "Ultra-robuste Diagrammdarstellung, die fehlerhaftes KI-JSON übersteht. Unterstützt 9+ interaktive Diagrammtypen.",
+            "privacyTitle": "Zero-Cloud-Datenschutz",
+            "privacyDesc": "Embeddings und Inferenz bleiben lokal. Ihre privaten Dokumente verlassen niemals Ihre Infrastruktur.",
+            "privacyBadge": "LOKALES OLLAMA SYNCHRONISIERT",
+            "semanticTitle": "Semantische Rückverfolgbarkeit",
+            "semanticDesc": "Null Halluzinationen. Jede Antwort ist mit einem Quellfragment verknüpft.",
+            "structuredTitle": "Beherrschung strukturierter Daten",
+            "structuredDesc": "Spezialisierte Excel- und CSV-Verarbeitung, die den Header-Kontext über Tausende von Zeilen beibehält.",
+            "exportTitle": "Professionelle Exporte",
+            "exportDesc": "Ein-Klick-Export in hochauflösendes PNG, SVG oder Vektor-PDF."
+        },
+        "reality": {
+            "title": "Halluzination vs. Realität",
+            "subtitle": "Ziehen Sie den Schieberegler, um zu sehen, wie die quellengestützte Intelligenz von Aura im Vergleich zu Standard-Black-Box-KI-Modellen abschneidet.",
+            "hallucination": "Halluzination",
+            "reality": "Realität",
+            "genericLlm": "Generisches LLM (Offline)",
+            "auraVerified": "AURA Intelligenz (Verifiziert)",
+            "highConfidence": "Hohes Vertrauen"
+        },
+        "audience": {
+            "title": "Für wen Aura gebaut wurde",
+            "subtitle": "Zugeschnitten auf Profis, die Präzision, Sicherheit und Skalierbarkeit verlangen.",
+            "devTitle": "Entwickler",
+            "devDesc": "Integrieren Sie RAG-Funktionen mit wenigen Zeilen Code. Typsichere SDKs und umfassende Dokumentation.",
+            "researchTitle": "Forschungsteams",
+            "researchDesc": "Verarbeiten Sie tausende Dokumente sofort. Extrahieren Sie Zitate, Zusammenfassungen und Querverweise automatisch.",
+            "legalTitle": "Recht & Compliance",
+            "legalDesc": "Audit-fähige Protokolle und strikte Datenisolation. Sicherstellen, dass sensible Dokumente niemals Ihre sichere Umgebung verlassen.",
+            "enterpriseTitle": "Unternehmen",
+            "enterpriseDesc": "Rollenbasierte Zugriffskontrolle (RBAC), SSO-integration und On-Premise-Bereitstellungsoptionen."
+        },
+        "cta": {
+            "title": "Bereit, Ihre kollektive Intelligenz freizuschalten?",
+            "subtitle": "Schließen Sie sich zukunftsorientierten Teams an, die Aura nutzen, um bessere Entscheidungen schneller zu treffen.",
+            "getStarted": "Jetzt loslegen",
+            "contactSales": "Vertrieb kontaktieren"
+        },
+        "comparison": {
+            "title": "Warum Aura?",
+            "subtitle": "Sehen Sie, wie Aura im Vergleich zu generischen KI-Chat-Tools abschneidet.",
+            "feature": "Funktion",
+            "aura": "Aura",
+            "generic": "Generische KI",
+            "privacy": "Datenschutz",
+            "privacyAura": "Isoliert & Verschlüsselt",
+            "privacyGeneric": "Daten für Training verwendet",
+            "grounding": "Quellenbasierung",
+            "groundingAura": "100% verifizierbare Zitate",
+            "groundingGeneric": "Black-box Halluzinationen",
+            "deployment": "Bereitstellung",
+            "deploymentAura": "Lokal / On-Prem / Cloud",
+            "deploymentGeneric": "Nur Cloud",
+            "support": "Datei-Unterstützung",
+            "supportAura": "PDF, Docx, Excel, URLs",
+            "supportGeneric": "Eingeschränkte Texteingabe"
+        },
+        "engine": {
+            "title": "Im Inneren der Engine",
+            "subtitle": "Hochleistungs-RAG-Pipeline, entwickelt für Genauigkeit.",
+            "step1": "Hochladen",
+            "desc1": "PDFs, Dokumente, Verschlüsselung",
+            "step2": "Vektorisierung",
+            "desc2": "Chunking & Embeddings",
+            "step3": "Abruf",
+            "desc3": "Semantische Suche",
+            "step4": "Visualisieren",
+            "desc4": "Interaktive Diagramme"
+        },
+        "trust": {
+            "engineering": "Ingenieurgeführt",
+            "research": "Forschungsbasiert",
+            "production": "Produktionsreif",
+            "soc2": "SOC 2 Konform"
+        },
+        "security": {
+            "badge": "Sicherheit auf Unternehmensebene",
+            "title": "Sicherheit ist kein Nachgedanke.",
+            "subtitle": "Sie ist in unserer DNA.",
+            "feature1": "End-to-End-Verschlüsselung",
+            "desc1": "Ihre Dokumente sind im Ruhezustand mit AES-256 and während der Übertragung über TLS 1.3 verschlüsselt.",
+            "feature2": "Lokale Bereitstellung",
+            "desc2": "Betreiben Sie Aura vollständig vor Ort. Ihre Daten müssen niemals die öffentliche Cloud berühren.",
+            "feature3": "Triple-Lock Datenintegrität",
+            "desc3": "Die fortschrittliche Recovery-Engine verhindert fehlerhafte KI-Antworten und gewährleistet 100 % Datengenauigkeit.",
+            "feature4": "Sitzungsisolation",
+            "desc4": "Strikte logische Trennung zwischen Benutzersitzungen verhindert die Kreuzkontamination von Kontexten."
+        },
+        "useCases": {
+            "title": "Anwendungen in der Praxis",
+            "case1Title": "F&E-Teams",
+            "case1Desc": "Beschleunigen Sie die Literaturrecherche. Durchsuchen Sie tausende technische Arbeiten, um neue Verbindungen zu finden.",
+            "case2Title": "Rechtsberatung",
+            "case2Desc": "Überprüfen Sie Verträge und Compliance-Dokumente. Lokalisieren Sie sofort Haftungsklauseln und riskante Bedingungen.",
+            "case3Title": "Produktmanagement",
+            "case3Desc": "Synthetisieren Sie Benutzer-Feedback und PRDs. Generieren Sie Feature-Spezifikationen auf Basis historischer Daten.",
+            "case4Title": "Internes Wissen",
+            "case4Desc": "Eine einheitliche Suche für Ihr Unternehmenswiki, HR-Richtlinien und Onboarding-Materialien."
+        },
+        "faq": {
+            "title": "Häufig gestellte Fragen",
+            "q1": "Werden meine Daten zum Trainieren Ihrer Modelle verwendet?",
+            "a1": "Absolut nicht. Aura läuft auf einer isolierten Architektur. Ihre Daten werden nur für Ihre privaten Abrufsitzungen indexiert und niemals für das Modelltraining verwendet oder an Dritte weitergegeben.",
+            "q2": "Kann ich dies offline / air-gapped bereitstellen?",
+            "a2": "Ja. Aura unterstützt die vollständige On-Premise-Bereitstellung über Docker-Container, sodass es in vollständig Offline- oder Air-Gapped-Umgebungen für maximale Sicherheit laufen kann.",
+            "q3": "Welche Dateitypen werden unterstützt?",
+            "a3": "Wir unterstützen derzeit PDF, Microsoft Word (.docx), Excel (.xlsx), Markdown und Klartext. Wir fügen ständig neue Parser hinzu.",
+            "q4": "Wie genau sind die Antworten?",
+            "a4": "Aura verwendet gültige Zitate für jede Behauptung. Wenn die Informationen nicht in Ihren Dokumenten enthalten sind, gibt das System explizit an 'Ich habe keine Antwort', anstatt zu halluzinieren."
+        },
+        "viz": {
+            "badge": "Live-Transformations-Demo",
+            "title": "Eine Antwort.",
+            "subtitle": "Unendliche Perspektiven.",
+            "desc": "Aura gibt nicht nur Text aus. Es versteht die zugrunde liegenden Daten und bietet sofort professionelle Visualisierungen. Klicken Sie unten, um die Engine zu erleben.",
+            "randomize": "Daten-Engine randomisieren",
+            "mode": "{chartType} Visualisierungsmodus",
+            "legendLaptops": "Laptops",
+            "legendPhones": "Telefone",
+            "legendRevenue": "Umsatzdichte",
+            "legendProcess": "Prozesszeit"
+        }
+    },
+    "devTeam": {
+        "title": "AURA Architekten",
+        "subtitle": "Die Köpfe hinter der Intelligenz. Wir arbeiten an der Grenze des Neural Engineering.",
+        "viewProfile": "Intelligenzprofil anzeigen",
+        "dossier": {
+            "status": "Operationsstatus",
+            "clearance": "Freigabestufe",
+            "metrics": "Kernmetriken",
+            "directives": "Vorgaben",
+            "focus": "Kernfokus",
+            "vision": "Systemvision",
+            "technical": "Technische Meisterschaft",
+            "close": "Sitzung beenden",
+            "back": "Zurück zum Team"
+        },
+        "kailash": {
+            "name": "Kailash",
+            "role": "Chief Tactical Officer",
+            "bio": "Orchestrierung von High-Fidelity-Neural-Frameworks mit chirurgischer Präzision. Tätigkeit an der Schnittstelle von Quantenleistung und algorithmischem Strukturalismus, um die Grenzen der Mensch-Maschine-Synergie neu zu definieren. MISSION: Totale systemische Optimierung durch unermüdliche prozedurale Innovation.",
+            "dossier": {
+                "status": "AKTIV / CHIRURGISCH",
+                "clearance": "LEVEL 9 NEURAL FREIGABE",
+                "metrics": [
+                    "99,98 % Effizienz",
+                    "Latenzfreier Strukturalismus",
+                    "Quanten-rekursive Stabilität"
+                ],
+                "directives": [
+                    "Algorithmische Vorherrschaft über High-Fidelity-Frameworks implementieren.",
+                    "Prozedurale Innovation mit unermüdlicher Genauigkeit ausführen.",
+                    "Architektonische Grenzen des AURA-Kerns neu definieren."
+                ]
+            }
+        },
+        "kaliVignesh": {
+            "name": "Kali Vignesh",
+            "role": "Leitender Visionärer Entwickler",
+            "bio": "Fokussiert auf die Gestaltung intuitiver Benutzererlebnisse und robuster Frontend-Architekturen. Leidenschaftlich für sauberen Code, moderne Designsysteme und die Entwicklung von KI-Tools, die einen echten Unterschied in den täglichen Arbeitsabläufen machen.",
+            "dossier": {
+                "focus": "Benutzerzentrierte KI-Architektur",
+                "vision": "Überbrückung der Lücke zwischen komplexen neuronalen Systemen und menschlicher Intuition durch erstklassiges Design.",
+                "technical": [
+                    "Next.js & React-Meisterschaft",
+                    "Design-System-Architektur",
+                    "Fluid-Interaktions-Engineering"
+                ]
+            }
+        }
+    },
+    "dashboard": {
+        "newChat": "Neuer Chat",
+        "whatWorkingOn": "Woran arbeitest du?",
+        "uploadSource": "Dokument oder URL hochladen",
+        "send": "Senden",
+        "stop": "Stopp",
+        "clearHistory": "Verlauf löschen",
+        "archives": "Archive",
+        "insights": "Erkenntnisse"
+    },
+    "settings": {
+        "title": "Einstellungen",
+        "uiLanguage": "Anzeigesprache",
+        "inputLanguage": "Meine Eingabesprache",
+        "outputLanguage": "KI-Antwortsprache",
+        "appearance": "Erscheinungsbild",
+        "accentColor": "Akzentfarbe",
+        "aiModel": "KI-Modell",
+        "responseStyle": "Antwortstil",
+        "summaryLevel": "Zusammenfassungsgrad",
+        "tabs": {
+            "general": "Allgemein",
+            "notifications": "Benachrichtigungen",
+            "data": "Datenkontrolle",
+            "security": "Sicherheit",
+            "account": "Konto"
+        },
+        "actions": {
+            "clear": "Löschen",
+            "view": "Ansehen",
+            "update": "Aktualisieren",
+            "delete": "Entfernen",
+            "logout": "Abmelden",
+            "cancel": "Abbrechen",
+            "proceed": "Fortfahren",
+            "viewArchives": "Archive ansehen",
+            "changePassword": "Passwort ändern",
+            "updateName": "Name aktualisieren"
+        },
+        "placeholders": {
+            "comingSoon": "Einstellungen für {tab} kommen bald",
+            "resetToEnglish": "Sprachen auf Englisch zurückgesetzt",
+            "setName": "Name festlegen",
+            "noEmail": "Keine E-Mail",
+            "readOnly": "Schreibgeschützt",
+            "switchToEnglish": "Auf Englisch wechseln?",
+            "modelWarning": "Dieses Modell funktioniert am besten auf Englisch. Wenn Sie fortfahren, werden Ihre KI-Antwortsprache, Eingabesprache und Anzeigesprache auf Englisch umgestellt."
+        }
+    },
+    "sourcePanel": {
+        "title": "Quellennachweis",
+        "noSources": "Keine zitierten Quellen für diese Antwort.",
+        "match": "Übereinstimmung",
+        "openOriginal": "Original öffnen",
+        "citationNote": "Zitate werden automatisch basierend auf abgerufenen semantischen Fragmenten aus der Wissensdatenbank generiert."
+    },
+    "legal": {
+        "privacy": {
+            "title": "Datenschutzerklärung",
+            "introHeader": "1. Einleitung",
+            "introText": "Bei Aura Intelligence (\"wir\", \"unser\" oder \"uns\") legen wir großen Wert auf den Schutz und die Sicherheit Ihrer Daten. Diese Datenschutzerklärung erläutert, wie wir Ihre Informationen erfassen, nutzen, offenlegen und schützen, wenn Sie auf unsere Plattform zugreifen.",
+            "securityHeader": "2. Datenisolation & Sicherheit",
+            "securityText": "Aura ist als Privacy-First RAG-Plattform (Retrieval-Augmented Generation) konzipiert.",
+            "securityLi1": "Zero-Retention Inferenz: Wir verwenden Ihre Daten nicht, um unsere basismodellen zu trainieren.",
+            "securityLi2": "Isolierte Mandantschaft: Ihre Dokumente und Vektor-Embeddings werden in isolierten Namespaces gespeichert, die nur für Ihren Arbeitsbereich zugänglich sind.",
+            "securityLi3": "Verschlüsselung: Alle Daten werden im Ruhezustand (AES-256) und während der Übertragung (TLS 1.3) verschlüsselt.",
+            "collectHeader": "3. Informationen, die wir sammeln",
+            "collectText": "Wir sammeln nur die minimal erforderlichen Informationen, um den Dienst zu betreiben:",
+            "collectLi1": "Kontoinformationen: E-mail-Adresse und Authentifizierungsdaten.",
+            "collectLi2": "Arbeitsbereichsdaten: Dokumente, die Sie explizit zur Verarbeitung hochladen.",
+            "collectLi3": "Nutzungsmetriken: Anonymisierte Telemetrie zur Verbesserung der Systemleistung (z. B. Latenz, Fehlerraten).",
+            "rightsHeader": "4. Ihre Rechte",
+            "rightsText": "Sie behalten das volle Eigentum an Ihren Daten. Sie können Ihren Arbeitsbereich und alle zugehörigen Vektoren jederzeit über das Einstellungs-Dashboard exportieren oder dauerhaft löschen."
+        },
+        "terms": {
+            "title": "Nutzungsbedingungen",
+            "acceptHeader": "1. Annahme der Bedingungen",
+            "acceptText": "Durch den Zugriff auf oder die Nutzung von Aura Intelligence erklären Sie sich mit diesen Nutzungsbedingungen einverstanden. Wenn Sie nicht einverstanden sind, dürfen Sie unsere Dienste nicht nutzen.",
+            "usageHeader": "2. Nutzungslizenz",
+            "usageText": "Aura gewährt Ihnen eine begrenzte, nicht exklusive, nicht übertragbare Lizenz zur Nutzung der Plattform für Ihre internen geschäftlichen oder persönlichen Zwecke, vorbehaltlich dieser Bedingungen.",
+            "usageLi1": "Sie dürfen die zugrunde liegenden KI-Modelle nicht zurückentwickeln (Reverse Engineering).",
+            "usageLi2": "Sie dürfen die Plattform nicht für illegale oder bösartige Aktivitäten nutzen.",
+            "usageLi3": "Sie sind für alle Inhalte verantwortlich, die in Ihren Arbeitsbereich hochgeladen werden.",
+            "ownerHeader": "3. Dateneigentum & Haftung",
+            "ownerText": "Sie behalten alle Rechte an den von Ihnen hochgeladenen Daten. Aura erhebt keinen Eigentumsanspruch auf Ihre Dokumente oder die daraus generierten Vektoren.",
+            "ownerDisclaimer": "Haftungsausschluss: Die Aura-Plattform verwendet generative KI. Obwohl wir uns um Genauigkeit bemühen (Zero Hallucination mit RAG), garantieren wir nicht, dass alle Antworten vollkommen präzise sind. Sie sollten kritische Informationen verifizieren.",
+            "terminateHeader": "4. Kündigung",
+            "terminateText": "Wir behalten uns das Recht vor, Ihren Zugriff auszusetzen oder zu kündigen, wenn Sie gegen diese Bedingungen verstoßen oder die API-Limits des Dienstes missbrauchen."
+        },
+        "contact": {
+            "title": "Support kontaktieren",
+            "subtitle": "Wir sind hier, um zu helfen.",
+            "generalTitle": "Allgemeine Anfragen",
+            "generalDesc": "Bei allgemeinen Fragen zur Plattform, zu Preisen oder Funktionen.",
+            "techTitle": "Technischer Support",
+            "techDesc": "Bei API-Problemen, Integrationshilfe oder Fehlerberichten.",
+            "enterpriseTitle": "Enterprise Support",
+            "enterpriseDesc": "Benötigen Sie eine dedizierte Bereitstellung oder ein benutzerdefiniertes SLA? Unser Engineering-Team arbeitet direkt mit Enterprise-Partnern zusammen.",
+            "contactSales": "Vertrieb kontaktieren"
+        }
+    },
+    "auth": {
+        "initWorkspace": "Arbeitsbereich initialisieren",
+        "configEnv": "Umgebung konfigurieren",
+        "welcomeBack": "Willkommen zurück",
+        "initSub": "Stellen Sie Ihre private, isolierte Wissensumgebung bereit.",
+        "configSub": "Richten Sie Ihre Arbeitsbereich-Identifikatoren ein.",
+        "authSub": "Authentifizieren Sie sich, um auf Ihren sicheren Tresor auszugreifen.",
+        "emailLabel": "E-Mail-Identität",
+        "passLabel": "Sichere Passphrase",
+        "workspaceNameLabel": "Arbeitsbereichsname",
+        "useCaseLabel": "Primärer Anwendungsfall (Optional)",
+        "processing": "Verarbeitung...",
+        "completeSetup": "Setup abschließen",
+        "authenticate": "Authentifizieren",
+        "alreadyHaveEnv": "Haben Sie bereits eine Umgebung? Authentifizieren",
+        "newToAura": "Neu bei Aura? Arbeitsbereich initialisieren",
+        "e2e": "E2E verschlüsselt",
+        "isolated": "Isolierte Mandantenfähigkeit"
+    },
+    "docs": {
+        "title": "Aura-Architektur",
+        "subtitle": "Technische Dokumentation",
+        "heroDesc": "Umfassende technische Referenz für die Aura-KI-Plattform. Erkunden Sie die Systemarchitektur, Kernkomponenten und Entwicklerhandbücher.",
+        "systemOverview": "Systemübersicht",
+        "systemDesc": "High-Level-Architektur der Aura-Plattform, Datenfluss und Kerninteraktionen.",
+        "createNextApp": "Create Next App",
+        "createNextDesc": "Tiefes Eintauchen in die Next.js App Router Implementierung und Serverkomponenten.",
+        "reactEcosystem": "React Ökosystem",
+        "reactDesc": "Komponentenmuster, benutzerdefinierte Hooks und Strategien für das State-Management.",
+        "devSetup": "Entwicklungsumgebung",
+        "devSetupDesc": "Umgebungskonfiguration, Abhängigkeitsmanagement und Build-Skripte.",
+        "aiIntelligence": "KI-Intelligenz",
+        "aiDesc": "Technische Aufschlüsselung der RAG-Pipeline, LLM-Kontexthandhabung und Prompt Engineering.",
+        "dataEngine": "Data Engine",
+        "dataDesc": "Dateiaufnahmesysteme, Vektordatenbankschemata und Embedding-Generierung.",
+        "realTime": "Echtzeit-Ereignisse",
+        "realTimeDesc": "WebSocket-Verbindungen, Server-Sent Events und Live-Updates.",
+        "visualizations": "Visualisierungen",
+        "vizDesc": "Dynamisches Diagramm-Rendering, Diagramm-Generierung und Canvas-Interaktionen.",
+        "workflows": "Workflows",
+        "workflowsDesc": "Automatisierte Task-Ausführung und Pipeline-Orchestrierung.",
+        "apiRef": "API-Referenz",
+        "apiDesc": "Interne API-Endpunkte, Anforderungssignaturens und Antworttypen.",
+        "security": "Sicherheit",
+        "securityDesc": "Authentifizierungsabläufe, RBAC und Datenverschlüsselungsstandards.",
+        "compliance": "Compliance",
+        "complianceDesc": "Datenverarbeitungsrichtlinien und Funktionen zur Einhaltung gesetzlicher Vorschriften."
+    },
+    "help": {
+        "title": "Hilfe & Support",
+        "shortcuts": {
+            "title": "Tastenkombinationen",
+            "newChat": "Neuer Chat",
+            "quickSearch": "Schnellsuche",
+            "closeDialogs": "Dialoge schließen"
+        },
+        "resources": {
+            "title": "Ressourcen",
+            "docsLabel": "Dokumentation",
+            "docsDesc": "Lesen Sie die umfassende Dokumentation",
+            "supportLabel": "Support kontaktieren",
+            "supportDesc": "Holen Sie sich Hilfe von unserem Support-Team",
+            "privacyLabel": "Datenschutzerklärung",
+            "privacyDesc": "Lesen Sie unsere Datenschutzerklärung"
+        }
+    },
+    "insights": {
+        "title": "Analyse-Dashboard",
+        "noData": "Noch keine Daten",
+        "startAsking": "Stellen Sie Fragen, um Analysen zu sehen!",
+        "trustScore": "Vertrauenswert",
+        "excellent": "Ausgezeichnet",
+        "good": "Gut",
+        "fair": "Passabel",
+        "needsImprovement": "Verbesserungswürdig",
+        "basedOn": "Basierend auf {count} Anfragen",
+        "confidence": "Vertrauensverteilung",
+        "evidence": "Vorhandensein von Beweisen",
+        "similarity": "Durchschnittliche Ähnlichkeit: {score}%",
+        "timeline": "Durchschnittliches Vertrauen über die Zeit",
+        "retrieval": "Abrufwert",
+        "consistency": "Konsistenz",
+        "correlation": "Vertrauens-Korrektheits-Korrelation",
+        "coverage": "Abdeckungshistogramm",
+        "refusal": "Ablehnungsrate",
+        "unanswered": "{count} unbeantwortete Anfragen",
+        "risky": "Riskante Fragen",
+        "noRisky": "Keine riskanten Fragen erkannt",
+        "systemHealth": "Systemgesundheit & Aufnahme",
+        "latency": "Durchschnittliche Latenz",
+        "p95": "P95 Latenz",
+        "chunks": "Segmente/Anfrage",
+        "older": "Älter",
+        "recent": "Neu",
+        "high": "Hoch",
+        "medium": "Mittel",
+        "low": "Niedrig",
+        "guardrail": "Schutzplanke"
+    },
+    "sidebar": {
+        "newChat": "Neuer Chat",
+        "yourInsights": "Ihre Erkenntnisse",
+        "recent": "Neu",
+        "noConversations": "Noch keine Gespräche",
+        "share": "Teilen",
+        "rename": "Umbenennen",
+        "archive": "Archivieren",
+        "delete": "Löschen",
+        "help": "Hilfe",
+        "logout": "Abmelden"
+    }
+}

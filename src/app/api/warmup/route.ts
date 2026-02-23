@@ -14,29 +14,35 @@ export async function GET() {
     try {
         console.log("Starting model warmup...");
 
-        // Parallel warmup
+        // Parallel warmup with extended keep_alive
         const p1 = ollama.chat({
             model: CHAT_MODEL,
             messages: [],
-            keep_alive: "60m",
-        }).catch(e => console.error("Chat warmup failed:", e));
+            keep_alive: "60m", // Keep loaded for 1 hour
+        }).catch(e => {
+            console.error(`Chat warmup failed for ${CHAT_MODEL}:`, e);
+            return null;
+        });
 
         const p2 = ollama.embed({
             model: EMBEDDING_MODEL,
             input: "warmup",
-            keep_alive: "60m",
-        }).catch(e => console.error("Embedding warmup failed:", e));
+            keep_alive: "60m", // Keep loaded for 1 hour
+        }).catch(e => {
+            console.error(`Embedding warmup failed for ${EMBEDDING_MODEL}:`, e);
+            return null;
+        });
 
-        // We don't necessarily await the full completion to respond to the client quickly, 
-        // but Next.js serverless functions might kill background tasks. 
-        // Since this is likely a local server (long running process), we can fire and forget?
-        // No, better to await to ensure it actually triggers.
+        // Wait for both to initiate (or fail)
         await Promise.all([p1, p2]);
 
-        console.log("Model warmup initiated.");
-        return NextResponse.json({ status: "warmed_up" });
+        console.log("Model warmup initiated successfully.");
+        return NextResponse.json({ status: "warmed_up", keep_alive: "60m" });
     } catch (error) {
-        console.error("Warmup error:", error);
-        return NextResponse.json({ error: "Failed to warmup models" }, { status: 500 });
+        console.error("Warmup critical error:", error);
+        return NextResponse.json({
+            error: "Failed to warmup models",
+            details: error instanceof Error ? error.message : String(error)
+        }, { status: 500 });
     }
 }

@@ -181,8 +181,10 @@ export function UploadPanel({
 
               <div className={cn(
                 "relative p-4 rounded-full bg-black/5 dark:bg-white/5 transition-colors group-hover:bg-white/80 dark:group-hover:bg-white/10",
-                hasPendingFile && "bg-blue-500/10 text-blue-500"
-              )}>
+                hasPendingFile && "text-brand-primary"
+              )}
+                style={hasPendingFile ? { backgroundColor: `${accentColor}1A` } : undefined}
+              >
                 {hasPendingFile ? <CheckCircle className="w-8 h-8" /> : <Upload className="w-8 h-8 opacity-60" />}
               </div>
 
@@ -242,9 +244,11 @@ export function UploadPanel({
             >
               <div className={cn(
                 "relative p-4 rounded-full bg-black/5 dark:bg-white/5 transition-colors",
-                !!pendingUrl && !hasPendingFile && !error && ((disabled && !sourceType) ? "bg-blue-500/10 text-blue-500" : "bg-emerald-500/10 text-emerald-500"),
+                !!pendingUrl && !hasPendingFile && !error && "text-brand-primary",
                 !!pendingUrl && !hasPendingFile && error && "bg-red-500/10 text-red-500"
-              )}>
+              )}
+                style={!!pendingUrl && !hasPendingFile && !error ? { backgroundColor: `${accentColor}1A` } : undefined}
+              >
                 {!!pendingUrl && !hasPendingFile ? (error ? <AlertCircle className="w-8 h-8" /> : <CheckCircle className="w-8 h-8" />) : <Link className="w-8 h-8 opacity-60" />}
               </div>
 
@@ -297,14 +301,14 @@ export function UploadPanel({
               animate={{ opacity: 1, scale: 1 }}
               className="mt-6 flex justify-center"
             >
-              <div className="relative overflow-hidden rounded-2xl border border-emerald-500/20 bg-emerald-500/5 dark:bg-emerald-500/10 p-4 max-w-full">
+              <div className="relative overflow-hidden rounded-2xl border border-brand-primary/20 bg-brand-primary/5 dark:bg-brand-primary/10 p-4 max-w-full">
                 <div className="flex items-center gap-4 relative z-10">
                   <div className="flex items-center gap-3 min-w-0">
-                    <div className="p-2 rounded-lg bg-emerald-500/10 text-emerald-500 shrink-0">
+                    <div className="p-2 rounded-lg bg-brand-primary/10 text-brand-primary shrink-0">
                       {sourceType === 'file' ? <FileText size={18} /> : <Link size={18} />}
                     </div>
                     <div className="flex flex-col min-w-0 text-left">
-                      <span className="text-xs font-bold uppercase tracking-wider text-emerald-600 dark:text-emerald-400">
+                      <span className="text-xs font-bold uppercase tracking-wider text-brand-primary/80 dark:text-brand-primary">
                         Active Context
                       </span>
                       <span className="text-sm font-medium truncate max-w-[200px] sm:max-w-[300px]" title={sourceType === "file" ? sourceName : sourceUrl}>

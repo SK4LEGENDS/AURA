@@ -10,8 +10,10 @@ import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
 import { PasswordStrengthMeter } from "@/components/password-strength-meter";
 import { Check, ChevronRight, Lock, Shield, Server } from "lucide-react";
+import { useI18n } from "@/lib/i18n-context";
 
 export default function LoginPage() {
+    const { t, isRTL } = useI18n();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [isSignUp, setIsSignUp] = useState(false);
@@ -65,27 +67,30 @@ export default function LoginPage() {
     };
 
     return (
-        <div className="min-h-screen flex items-center justify-center bg-zinc-950 text-white relative overflow-hidden font-sans selection:bg-purple-500/30">
+        <div className={cn(
+            "min-h-screen flex items-center justify-center bg-zinc-950 text-white relative overflow-hidden font-sans selection:bg-brand-primary/30",
+            isRTL ? "font-arabic" : ""
+        )} dir={isRTL ? "rtl" : "ltr"}>
             {/* Subtle Value Reminder: Data Stream Background */}
             <div className="absolute inset-0 overflow-hidden pointer-events-none">
-                <div className="absolute top-0 left-1/4 w-px h-full bg-gradient-to-b from-transparent via-white/5 to-transparent animate-pulse delay-75" />
-                <div className="absolute top-0 left-2/4 w-px h-full bg-gradient-to-b from-transparent via-white/5 to-transparent animate-pulse delay-150" />
-                <div className="absolute top-0 left-3/4 w-px h-full bg-gradient-to-b from-transparent via-white/5 to-transparent animate-pulse delay-300" />
+                <div className="absolute top-0 left-1/4 w-px h-full bg-linear-to-b from-transparent via-white/5 to-transparent animate-pulse delay-75" />
+                <div className="absolute top-0 left-2/4 w-px h-full bg-linear-to-b from-transparent via-white/5 to-transparent animate-pulse delay-150" />
+                <div className="absolute top-0 left-3/4 w-px h-full bg-linear-to-b from-transparent via-white/5 to-transparent animate-pulse delay-300" />
 
                 {/* Floating "Document" Silhouettes */}
-                <div className="absolute top-20 right-20 w-32 h-40 border border-white/5 rounded-lg bg-white/1 blur-[1px] -rotate-6 animate-float" />
-                <div className="absolute bottom-40 left-20 w-32 h-40 border border-white/5 rounded-lg bg-white/1 blur-[1px] rotate-12 animate-float-delayed" />
+                <div className="absolute top-20 right-20 w-32 h-40 border border-white/5 rounded-lg bg-white/1 blur-sm -rotate-6 animate-float" />
+                <div className="absolute bottom-40 left-20 w-32 h-40 border border-white/5 rounded-lg bg-white/1 blur-sm rotate-12 animate-float-delayed" />
             </div>
 
             <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.5 }}
                 className="w-full max-w-md p-8 bg-zinc-900/40 backdrop-blur-xl border border-white/10 rounded-2xl shadow-2xl z-10 relative"
             >
                 <div className="text-center mb-8">
                     <div className="relative w-14 h-14 mx-auto mb-6">
-                        <div className="absolute inset-0 bg-purple-500/20 blur-xl rounded-full" />
+                        <div className="absolute inset-0 bg-brand-primary/20 blur-xl rounded-full" />
                         <Image
                             src="/logo-v2.png"
                             alt="AURA"
@@ -97,14 +102,14 @@ export default function LoginPage() {
 
                     <h2 className="text-2xl font-semibold tracking-tight text-white mb-2">
                         {isSignUp
-                            ? (step === 1 ? "Initialize Workspace" : "Configure Environment")
-                            : "Welcome Back"
+                            ? (step === 1 ? t("auth.initWorkspace") : t("auth.configEnv"))
+                            : t("auth.welcomeBack")
                         }
                     </h2>
                     <p className="text-sm text-zinc-400">
                         {isSignUp
-                            ? (step === 1 ? "Deploy your private, isolated knowledge environment." : "Set up your workspace identifiers.")
-                            : "Authenticate to access your secure vault."
+                            ? (step === 1 ? t("auth.initSub") : t("auth.configSub"))
+                            : t("auth.authSub")
                         }
                     </p>
                 </div>
@@ -114,29 +119,29 @@ export default function LoginPage() {
                         {step === 1 ? (
                             <motion.div
                                 key="step1"
-                                initial={{ opacity: 0, x: -20 }}
+                                initial={{ opacity: 0, x: isRTL ? 20 : -20 }}
                                 animate={{ opacity: 1, x: 0 }}
-                                exit={{ opacity: 0, x: 20 }}
+                                exit={{ opacity: 0, x: isRTL ? -20 : 20 }}
                                 className="space-y-4"
                             >
                                 <div>
-                                    <label className="block text-xs font-medium text-zinc-500 uppercase tracking-wider mb-2">Email Identity</label>
+                                    <label className="block text-xs font-medium text-zinc-500 uppercase tracking-wider mb-2">{t("auth.emailLabel")}</label>
                                     <input
                                         type="email"
                                         value={email}
                                         onChange={(e) => setEmail(e.target.value)}
-                                        className="w-full px-4 py-3 bg-black/20 border border-white/10 rounded-lg focus:outline-none focus:ring-1 focus:ring-purple-500/50 focus:border-purple-500/50 transition-all placeholder:text-zinc-700 text-sm"
+                                        className="w-full px-4 py-3 bg-black/20 border border-white/10 rounded-lg focus:outline-none focus:ring-1 focus:ring-brand-primary/50 focus:border-brand-primary/50 transition-all placeholder:text-zinc-700 text-sm"
                                         placeholder="operator@aura.system"
                                         required
                                     />
                                 </div>
                                 <div>
-                                    <label className="block text-xs font-medium text-zinc-500 uppercase tracking-wider mb-2">Secure Passphrase</label>
+                                    <label className="block text-xs font-medium text-zinc-500 uppercase tracking-wider mb-2">{t("auth.passLabel")}</label>
                                     <input
                                         type="password"
                                         value={password}
                                         onChange={(e) => setPassword(e.target.value)}
-                                        className="w-full px-4 py-3 bg-black/20 border border-white/10 rounded-lg focus:outline-none focus:ring-1 focus:ring-purple-500/50 focus:border-purple-500/50 transition-all placeholder:text-zinc-700 text-sm"
+                                        className="w-full px-4 py-3 bg-black/20 border border-white/10 rounded-lg focus:outline-none focus:ring-1 focus:ring-brand-primary/50 focus:border-brand-primary/50 transition-all placeholder:text-zinc-700 text-sm"
                                         placeholder="••••••••••••"
                                         required
                                     />
@@ -148,25 +153,25 @@ export default function LoginPage() {
                         ) : (
                             <motion.div
                                 key="step2"
-                                initial={{ opacity: 0, x: 20 }}
+                                initial={{ opacity: 0, x: isRTL ? -20 : 20 }}
                                 animate={{ opacity: 1, x: 0 }}
-                                exit={{ opacity: 0, x: -20 }}
+                                exit={{ opacity: 0, x: isRTL ? 20 : -20 }}
                                 className="space-y-4"
                             >
                                 <div>
-                                    <label className="block text-xs font-medium text-zinc-500 uppercase tracking-wider mb-2">Workspace Name</label>
+                                    <label className="block text-xs font-medium text-zinc-500 uppercase tracking-wider mb-2">{t("auth.workspaceNameLabel")}</label>
                                     <input
                                         type="text"
                                         value={workspaceName}
                                         onChange={(e) => setWorkspaceName(e.target.value)}
-                                        className="w-full px-4 py-3 bg-black/20 border border-white/10 rounded-lg focus:outline-none focus:ring-1 focus:ring-purple-500/50 focus:border-purple-500/50 transition-all placeholder:text-zinc-700 text-sm"
+                                        className="w-full px-4 py-3 bg-black/20 border border-white/10 rounded-lg focus:outline-none focus:ring-1 focus:ring-brand-primary/50 focus:border-brand-primary/50 transition-all placeholder:text-zinc-700 text-sm"
                                         placeholder="e.g. Research Protocol Alpha"
                                         required={step === 2}
                                     />
                                 </div>
 
                                 <div>
-                                    <label className="block text-xs font-medium text-zinc-500 uppercase tracking-wider mb-2">Primary Use Case (Optional)</label>
+                                    <label className="block text-xs font-medium text-zinc-500 uppercase tracking-wider mb-2">{t("auth.useCaseLabel")}</label>
                                     <div className="grid grid-cols-2 gap-2">
                                         {["Research", "Development", "Legal", "Personal"].map((item) => (
                                             <button
@@ -176,7 +181,7 @@ export default function LoginPage() {
                                                 className={cn(
                                                     "px-3 py-2 rounded-md text-xs font-medium border transition-all text-left",
                                                     useCase === item
-                                                        ? "bg-purple-500/10 border-purple-500/50 text-purple-200"
+                                                        ? "bg-brand-primary/10 border-brand-primary/50 text-brand-primary"
                                                         : "bg-black/20 border-white/5 text-zinc-500 hover:bg-white/5"
                                                 )}
                                             >
@@ -204,15 +209,15 @@ export default function LoginPage() {
                         {loading ? (
                             <span className="flex items-center gap-2">
                                 <div className="w-4 h-4 border-2 border-zinc-400 border-t-zinc-950 rounded-full animate-spin" />
-                                Processing...
+                                {t("auth.processing")}
                             </span>
                         ) : (
                             <>
                                 {isSignUp
-                                    ? (step === 1 ? "Initialize Workspace" : "Complete Setup")
-                                    : "Authenticate"
+                                    ? (step === 1 ? t("auth.initWorkspace") : t("auth.completeSetup"))
+                                    : t("auth.authenticate")
                                 }
-                                <ChevronRight className="w-4 h-4 opacity-50" />
+                                <ChevronRight className={cn("w-4 h-4 opacity-50", isRTL ? "rotate-180" : "")} />
                             </>
                         )}
                     </button>
@@ -224,24 +229,24 @@ export default function LoginPage() {
                         className="text-xs text-zinc-400 hover:text-white transition-colors"
                     >
                         {isSignUp
-                            ? "Already have an environment? Authenticate"
-                            : "New to Aura? Initialize Workspace"
+                            ? t("auth.alreadyHaveEnv")
+                            : t("auth.newToAura")
                         }
                     </button>
 
                     {/* Trust Indicators */}
                     <div className="flex items-center gap-4 text-[10px] text-zinc-600 uppercase tracking-widest font-medium">
                         <span className="flex items-center gap-1.5">
-                            <Lock className="w-3 h-3" /> E2E Encrypted
+                            <Lock className="w-3 h-3" /> {t("auth.e2e")}
                         </span>
                         <span className="w-px h-3 bg-zinc-800" />
                         <span className="flex items-center gap-1.5">
-                            <Shield className="w-3 h-3" /> Isolated Tenancy
+                            <Shield className="w-3 h-3" /> {t("auth.isolated")}
                         </span>
                     </div>
 
                     <Link href="/" className="text-xs text-zinc-600 hover:text-zinc-400 transition-colors pt-4">
-                        ← Back to Home
+                        {isRTL ? "→" : "←"} {t("common.backToHome")}
                     </Link>
                 </div>
             </motion.div>

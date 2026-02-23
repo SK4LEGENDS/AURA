@@ -25,6 +25,7 @@ import { SettingsDialog } from "./settings-dialog";
 import { HelpDialog } from "./help-dialog";
 import { useSettings } from "@/lib/settings-context";
 import { ChatSessionSkeleton } from "./skeleton";
+import { useI18n } from "@/lib/i18n-context";
 
 type SidebarProps = {
   sessions: ChatSession[];
@@ -66,6 +67,7 @@ export function Sidebar({
   loading, // Added here
 }: SidebarProps) {
   const { accentColor } = useSettings();
+  const { t } = useI18n();
   const [editingId, setEditingId] = useState<string | null>(null);
   const [editValue, setEditValue] = useState("");
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
@@ -182,7 +184,7 @@ export function Sidebar({
                     animate={{ opacity: 1, width: "auto" }}
                     exit={{ opacity: 0, width: 0 }}
                   >
-                    New Chat
+                    {t("sidebar.newChat")}
                   </motion.span>
                 )}
               </AnimatePresence>
@@ -214,7 +216,7 @@ export function Sidebar({
                     animate={{ opacity: 1, width: "auto" }}
                     exit={{ opacity: 0, width: 0 }}
                   >
-                    Your Insights
+                    {t("sidebar.yourInsights")}
                   </motion.span>
                 )}
               </AnimatePresence>
@@ -231,7 +233,7 @@ export function Sidebar({
                 exit={{ opacity: 0 }}
                 className="mb-3 text-[10px] uppercase tracking-[0.2em] text-[var(--text-secondary)] dark:text-white/40 font-bold pl-3"
               >
-                Recent
+                {t("sidebar.recent")}
               </motion.p>
             )}
           </AnimatePresence>
@@ -243,7 +245,7 @@ export function Sidebar({
               ))
             ) : sessions.length === 0 && !collapsed ? (
               <div className="rounded-xl border border-dashed border-ui-border px-4 py-6 text-center">
-                <p className="text-xs text-ui-text-secondary">No conversations yet</p>
+                <p className="text-xs text-ui-text-secondary">{t("sidebar.noConversations")}</p>
               </div>
             ) : (
               !collapsed && sessions.map((session) => {
@@ -316,23 +318,23 @@ export function Sidebar({
                           >
                             <DropdownItem
                               icon={<Share2 className="h-4 w-4" />}
-                              label="Share"
+                              label={t("sidebar.share")}
                               onClick={() => { }}
                             />
                             <DropdownItem
                               icon={<Edit3 className="h-4 w-4" />}
-                              label="Rename"
+                              label={t("sidebar.rename")}
                               onClick={() => startEditing(session)}
                             />
                             <DropdownSeparator />
                             <DropdownItem
                               icon={<FolderDown className="h-4 w-4" />}
-                              label="Archive"
+                              label={t("sidebar.archive")}
                               onClick={() => onArchive(session.id)}
                             />
                             <DropdownItem
                               icon={<Trash className="h-4 w-4" />}
-                              label="Delete"
+                              label={t("sidebar.delete")}
                               variant="danger"
                               onClick={() => onDelete(session.id)}
                             />
@@ -386,19 +388,19 @@ export function Sidebar({
           <DropdownSeparator />
           <DropdownItem
             icon={<Settings className="h-4 w-4" />}
-            label="Settings"
+            label={t("settings.title")}
             onClick={() => setIsSettingsOpen(true)}
           />
           <DropdownSeparator />
           <DropdownItem
             icon={<HelpCircle className="h-4 w-4" />}
-            label="Help"
+            label={t("sidebar.help")}
             rightSlot={<ChevronRight className="h-4 w-4" />}
             onClick={() => setIsHelpOpen(true)}
           />
           <DropdownItem
             icon={<LogOut className="h-4 w-4" />}
-            label="Log out"
+            label={t("sidebar.logout")}
             onClick={onLogOut}
           />
         </DropdownMenu>
@@ -456,19 +458,19 @@ export function Sidebar({
             <DropdownSeparator />
             <DropdownItem
               icon={<Settings className="h-4 w-4" />}
-              label="Settings"
+              label={t("settings.title")}
               onClick={() => setIsSettingsOpen(true)}
             />
             <DropdownSeparator />
             <DropdownItem
               icon={<HelpCircle className="h-4 w-4" />}
-              label="Help"
+              label={t("sidebar.help")}
               rightSlot={<ChevronRight className="h-4 w-4" />}
               onClick={() => setIsHelpOpen(true)}
             />
             <DropdownItem
               icon={<LogOut className="h-4 w-4" />}
-              label="Log out"
+              label={t("sidebar.logout")}
               onClick={onLogOut}
             />
           </DropdownMenu>

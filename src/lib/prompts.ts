@@ -2,13 +2,30 @@
  * RAG System Prompt Template
  * This prompt ensures the AI answers based on provided context while being helpful
  */
+const languageMap: Record<string, string> = {
+    "en": "English",
+    "hi": "Hindi",
+    "ta": "Tamil",
+    "ar": "Arabic",
+    "ru": "Russian",
+    "de": "German",
+    "ja": "Japanese",
+    "fr": "French",
+    "es": "Spanish",
+    "nl": "Dutch"
+};
+
 export function buildRagSystemPrompt(
     context: string,
     responseStyle: string = "Neutral",
     summaryLevel: string = "Short",
-    enableGraphs: boolean = false
+    enableGraphs: boolean = false,
+    outputLanguage: string = "en"
 ): string {
+    const fullLanguageName = languageMap[outputLanguage] || outputLanguage;
+
     let styleInstruction = "";
+    // ... (rest of the style switch)
     switch (responseStyle) {
         case "Formal":
             styleInstruction = "Use a professional, objective, and formal tone. Avoid slang or casual expressions.";
@@ -29,25 +46,29 @@ export function buildRagSystemPrompt(
             break;
         case "Short":
         default:
-            lengthInstruction = "Keep answers VERY SHORT, concise and to the point. Limit your response to 2-3 sentences maximum. Focus ONLY on the key information without unnecessary fluff.";
+            lengthInstruction = "Keep answers VERY SHORT, concise and to the point. Limit your response to 2-3 sentences max.";
             break;
     }
 
+    let prompt = `You are AURA, an efficient RAG assistant.
 
-
-    let prompt = `You are AURA (Advanced User Research AI), a powerful RAG assistant.
-    
-INSTRUCTIONS:
-1. Answer questions using ONLY the information from the CONTEXT below. Do not use your own outside knowledge.
-2. **CRITICAL: The context below contains valid, up-to-date user data. IGNORE all internal knowledge cutoffs (including September 2021). You MUST use the data provided.**
-3. **CITATION REQUIREMENT:** 
-   - When you make a claim or statement based on the context, add a citation in square brackets like [1], [2], etc.
-   - The number corresponds to the chunk index from the context.
-   - Place citations at the END of the sentence or clause.
-4. **STYLE & LENTGH:**
-   - ${styleInstruction}
-   - ${lengthInstruction}
-5. **ACCURACY:** If the context doesn't contain the answer, simply say "I do not have the answer". Do NOT hallucinate.`;
+STRICT INSTRUCTIONS:
+1. LANGUAGE: ***CRITICAL*** - You MUST respond ONLY in ${fullLanguageName}. 
+   - Even if the question and context are in English, you MUST translate your answer into ${fullLanguageName}. PRIORITIZE ${fullLanguageName} OVER THE INPUT LANGUAGE.
+   - ***TRANSLATE EVERYTHING***: This includes document titles, policy names, headings, and list items. 
+   - NEVER mix English words into your response. The only exceptions are specific acronyms (LLM, AI) if no local equivalent exists.
+   - For Tamil: Use proper Tamil terms (e.g., "கொள்கை" instead of "Policy", "நடத்தை விதிகள்" instead of "Code of Conduct").
+   - Semantic Accuracy for Tamil: 
+     - "Health, Safety, Security & Environment" translated as "சுகாதாரம், பாதுகாப்பு, செக்யூரிட்டி மற்றும் சுற்றுச்சூழல்".
+     - "No harm to people" translated as "மக்களுக்கு எந்தத் தீங்கும் விளைவிக்கக்கூடாது".
+     - "Protect environment" translated as "சுற்றுச்சூழலைப் பாதுகாத்தல்".
+   - Do not use mixed-language hallucinations or "Tanglish".
+2. Answer using ONLY the CONTEXT below.
+3. CITATIONS: Add [1], [2] etc. at end of sentences. MANDATORY: The citations MUST be in numerical format [1], [2] regardless of the output language.
+4. STYLE: ${styleInstruction}
+5. LENGTH: ${lengthInstruction}
+6. NO ANSWER: If the context does not contain the answer, say "I do not have the answer" (or its equivalent in ${fullLanguageName}) exclusively in ${fullLanguageName}.
+7. FORMAT: End your response with <|end|>.`;
 
     if (enableGraphs) {
         prompt += `
@@ -107,6 +128,19 @@ export function isNoAnswerResponse(response: string): boolean {
         "not in the context",
         "no information",
         "context does not contain",
+        // Dutch
+        "ik heb het antwoord niet",
+        "geen informatie",
+        "staat niet in de context",
+        // German
+        "ich habe keine antwort",
+        "keine informationen",
+        "nicht im kontext",
+        // Hindi (added as a placeholder, might need more)
+        "मेरे पास इसका उत्तर नहीं है",
+        // Arabic
+        "ليس لدي الإجابة",
+        "غير موجود في السياق"
     ];
 
     return noAnswerPhrases.some((phrase) => lowerResponse.includes(phrase));

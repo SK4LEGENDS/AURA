@@ -27,7 +27,7 @@ export default function DocContent({ slug }: { slug: string }) {
                 animate={{ opacity: 1, y: 0 }}
             >
                 <div className="flex items-center gap-4 mb-6">
-                    <div className="h-12 w-12 rounded-xl bg-violet-500/10 flex items-center justify-center text-violet-400">
+                    <div className="h-12 w-12 rounded-xl bg-brand-primary/10 flex items-center justify-center text-brand-primary">
                         <Icon className="h-6 w-6" />
                     </div>
                     <div>
