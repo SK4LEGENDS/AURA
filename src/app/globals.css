@@ -12,7 +12,7 @@ html {
   --brand-primary-hsl: 25 95% 55%;
   --brand-primary: hsl(var(--brand-primary-hsl));
 
-  --brand-secondary-hsl: 190 95% 44%;
+  --brand-secondary-hsl: 215 95% 55%;
   --brand-secondary: hsl(var(--brand-secondary-hsl));
 
   /* Trust Signaling */
@@ -44,7 +44,7 @@ html {
   /* --- AURA COLOR SPINE (Dark Mode) --- */
 
   --brand-primary-hsl: 25 90% 60%;
-  --brand-secondary-hsl: 190 95% 50%;
+  --brand-secondary-hsl: 215 95% 60%;
 
   /* UI Infrastructure */
   --ui-background: 222 47% 4%;
@@ -60,6 +60,10 @@ html {
 .dark body {
   @apply text-[var(--text-primary)];
   background: var(--background);
+}
+
+.font-playfair {
+  font-family: var(--font-playfair), serif;
 }
 
 ::-webkit-scrollbar {

@@ -92,7 +92,7 @@ export default function LoginPage() {
                     <div className="relative w-14 h-14 mx-auto mb-6">
                         <div className="absolute inset-0 bg-brand-primary/20 blur-xl rounded-full" />
                         <Image
-                            src="/logo-v2.png"
+                            src="/logo.png"
                             alt="AURA"
                             fill
                             className="object-contain relative z-10"

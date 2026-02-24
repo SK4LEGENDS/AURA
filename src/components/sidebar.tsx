@@ -26,6 +26,7 @@ import { HelpDialog } from "./help-dialog";
 import { useSettings } from "@/lib/settings-context";
 import { ChatSessionSkeleton } from "./skeleton";
 import { useI18n } from "@/lib/i18n-context";
+import Link from "next/link";
 
 type SidebarProps = {
   sessions: ChatSession[];
@@ -130,7 +131,7 @@ export function Sidebar({
           role="button"
         >
           <Image
-            src="/logo-v2.png"
+            src="/logo.png"
             alt="AURA"
             fill
             className="object-contain p-1.5"
@@ -172,7 +173,7 @@ export function Sidebar({
               <div
                 className={cn(
                   "flex items-center justify-center transition-transform group-hover:scale-110",
-                  collapsed && "h-10 w-10 rounded-xl bg-black/5 dark:bg-white/10 shadow-sm text-[var(--text-primary)] dark:text-white"
+                  collapsed && "h-10 w-10 rounded-xl bg-black/5 dark:bg-white/10 shadow-sm text-(--text-primary) dark:text-white"
                 )}
               >
                 <MessageSquarePlus className="h-5 w-5" />
@@ -204,7 +205,7 @@ export function Sidebar({
               <div
                 className={cn(
                   "flex items-center justify-center transition-transform group-hover:scale-110",
-                  collapsed && "h-10 w-10 rounded-xl bg-black/5 dark:bg-white/10 shadow-sm text-[var(--text-primary)] dark:text-white"
+                  collapsed && "h-10 w-10 rounded-xl bg-black/5 dark:bg-white/10 shadow-sm text-(--text-primary) dark:text-white"
                 )}
               >
                 <BarChart3 className="h-5 w-5" />
@@ -221,6 +222,36 @@ export function Sidebar({
                 )}
               </AnimatePresence>
             </button>
+
+            {/* Documentation Link */}
+            <Link
+              href="/docs"
+              className={cn(
+                "group flex w-full items-center gap-3 rounded-2xl px-3 py-3 text-sm font-semibold transition-all duration-300 shadow-sm border border-transparent active:scale-[0.98]",
+                "text-ui-text-primary hover:bg-ui-surface",
+                collapsed && "justify-center px-0 bg-transparent shadow-none"
+              )}
+            >
+              <div
+                className={cn(
+                  "flex items-center justify-center transition-transform group-hover:scale-110",
+                  collapsed && "h-10 w-10 rounded-xl bg-black/5 dark:bg-white/10 shadow-sm text-(--text-primary) dark:text-white"
+                )}
+              >
+                <HelpCircle className="h-5 w-5" />
+              </div>
+              <AnimatePresence>
+                {!collapsed && (
+                  <motion.span
+                    initial={{ opacity: 0, width: 0 }}
+                    animate={{ opacity: 1, width: "auto" }}
+                    exit={{ opacity: 0, width: 0 }}
+                  >
+                    Aura Docs
+                  </motion.span>
+                )}
+              </AnimatePresence>
+            </Link>
           </div>
         </section>
 
@@ -231,7 +262,7 @@ export function Sidebar({
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
-                className="mb-3 text-[10px] uppercase tracking-[0.2em] text-[var(--text-secondary)] dark:text-white/40 font-bold pl-3"
+                className="mb-3 text-[10px] uppercase tracking-[0.2em] text-(--text-secondary) dark:text-white/40 font-bold pl-3"
               >
                 {t("sidebar.recent")}
               </motion.p>
@@ -265,7 +296,7 @@ export function Sidebar({
                           onChange={(e) => setEditValue(e.target.value)}
                           onKeyDown={(e) => handleKeyDown(e, session.id)}
                           onBlur={() => saveEditing(session.id)}
-                          className="w-full bg-transparent text-sm font-medium text-[var(--text-primary)] dark:text-white outline-none placeholder:text-[var(--text-secondary)] dark:placeholder:text-white/30"
+                          className="w-full bg-transparent text-sm font-medium text-(--text-primary) dark:text-white outline-none placeholder:text-(--text-secondary) dark:placeholder:text-white/30"
                           placeholder="Chat name"
                           aria-label="Rename chat"
                         />
@@ -292,11 +323,11 @@ export function Sidebar({
                         <div className="flex flex-1 flex-col overflow-hidden">
                           <span className={cn(
                             "truncate font-medium transition-colors",
-                            session.id === activeSessionId ? "text-[var(--text-primary)] dark:text-white" : "group-hover:text-[var(--text-primary)] dark:group-hover:text-white"
+                            session.id === activeSessionId ? "text-(--text-primary) dark:text-white" : "group-hover:text-(--text-primary) dark:group-hover:text-white"
                           )}>
                             {session.title}
                           </span>
-                          <span className="text-[10px] text-[var(--text-secondary)] dark:text-white/30 truncate">
+                          <span className="text-[10px] text-(--text-secondary) dark:text-white/30 truncate">
                             {new Date(session.updatedAt).toLocaleDateString()}
                           </span>
                         </div>
@@ -381,8 +412,8 @@ export function Sidebar({
               {user?.displayName ? user.displayName.substring(0, 2).toUpperCase() : (user?.email?.substring(0, 2).toUpperCase() || "US")}
             </div>
             <div className="flex flex-col overflow-hidden">
-              <span className="text-sm font-medium text-[var(--text-primary)] truncate">{user?.displayName || "User"}</span>
-              <span className="text-xs text-[var(--text-secondary)] truncate">{user?.email || "No email"}</span>
+              <span className="text-sm font-medium text-(--text-primary) truncate">{user?.displayName || "User"}</span>
+              <span className="text-xs text-(--text-secondary) truncate">{user?.email || "No email"}</span>
             </div>
           </div>
           <DropdownSeparator />
@@ -413,10 +444,10 @@ export function Sidebar({
               exit={{ opacity: 0, width: 0 }}
               className="flex flex-1 flex-col overflow-hidden"
             >
-              <span className="text-sm font-semibold text-[var(--text-primary)] dark:text-white truncate">
+              <span className="text-sm font-semibold text-(--text-primary) dark:text-white truncate">
                 {user?.displayName || "User"}
               </span>
-              <span className="text-[10px] text-[var(--text-secondary)] dark:text-white/50 truncate">
+              <span className="text-[10px] text-(--text-secondary) dark:text-white/50 truncate">
                 {user?.email || "No email"}
               </span>
             </motion.div>
@@ -447,10 +478,10 @@ export function Sidebar({
                 {user?.displayName ? user.displayName.substring(0, 2).toUpperCase() : (user?.email?.substring(0, 2).toUpperCase() || "US")}
               </div>
               <div className="flex flex-col text-left">
-                <span className="text-sm font-medium text-[var(--text-primary)]">
+                <span className="text-sm font-medium text-(--text-primary)">
                   {user?.displayName || "User Account"}
                 </span>
-                <span className="truncate text-xs text-[var(--text-secondary)]">
+                <span className="truncate text-xs text-(--text-secondary)">
                   {user?.email || "Not logged in"}
                 </span>
               </div>

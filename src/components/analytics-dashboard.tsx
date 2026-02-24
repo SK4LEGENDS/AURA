@@ -71,19 +71,9 @@ export function AnalyticsDashboard({ userId }: AnalyticsDashboardProps) {
 
     return (
         <div className="space-y-6">
-            {/* Header */}
-            <div className="flex items-center justify-between">
-                <h2 className="text-lg font-semibold text-ui-text-primary">Query Analytics</h2>
-                <button
-                    onClick={fetchAnalytics}
-                    className="p-2 rounded-lg hover:bg-ui-surface transition-colors"
-                >
-                    <RefreshCw className="w-4 h-4 text-ui-text-secondary" />
-                </button>
-            </div>
 
             {/* Key Metrics Grid */}
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            <div className="grid grid-cols-2 gap-3 md:gap-4">
                 <MetricCard
                     icon={BarChart3}
                     label="Total Queries"
@@ -190,13 +180,15 @@ function MetricCard({
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             className={cn(
-                "p-4 rounded-lg border",
+                "p-4 rounded-xl border flex flex-col justify-between h-full min-w-0 overflow-hidden",
                 colorClasses[color] || colorClasses.blue
             )}
         >
-            <Icon className="w-5 h-5 mb-2" />
-            <div className="text-2xl font-bold">{value}</div>
-            <div className="text-xs opacity-70">{label}</div>
+            <Icon className="w-5 h-5 mb-2 shrink-0" />
+            <div className="text-lg md:text-xl font-bold truncate tracking-tight mb-1" title={String(value)}>
+                {value}
+            </div>
+            <div className="text-[10px] md:text-xs opacity-70 uppercase tracking-wider font-medium truncate">{label}</div>
         </motion.div>
     );
 }

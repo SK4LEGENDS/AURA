@@ -24,7 +24,7 @@ export function SettingsProvider({ children }: { children: React.ReactNode }) {
     const [accentColor, setAccentColor] = useState("#fb923c");
     const [responseStyle, setResponseStyle] = useState<ResponseStyle>("Neutral");
     const [summaryLevel, setSummaryLevel] = useState<SummaryLevel>("Short");
-    const [aiModel, setAiModel] = useState<string>("llama3.2");
+    const [aiModel, setAiModel] = useState<string>("translategemma:4b");
     const [mounted, setMounted] = useState(false);
 
     useEffect(() => {

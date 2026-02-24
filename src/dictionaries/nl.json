@@ -150,49 +150,49 @@
     },
     "devTeam": {
         "title": "AURA Architecten",
-        "subtitle": "De breinen achter de intelligentie. Actief op de grens van neurale techniek.",
+        "subtitle": "Het engineeringteam achter het AURA Intelligence Platform.",
         "viewProfile": "Bekijk Intelligentieprofiel",
         "dossier": {
             "status": "Operationele Status",
             "clearance": "Autorisatieniveau",
-            "metrics": "Kernstatistieken",
-            "directives": "Richtlijnen",
+            "metrics": "Engineering Metrieken",
+            "directives": "Technische Richtlijnen",
             "focus": "Kernfocus",
             "vision": "Systeemvisie",
-            "technical": "Technische Beheersing",
+            "technical": "Technische Stack",
             "close": "Sessie Beëindigen",
             "back": "Terug naar Team"
         },
         "kailash": {
             "name": "Kailash",
-            "role": "Chief Tactical Officer",
-            "bio": "Het orkestreren van high-fidelity neurale frameworks with chirurgische precisie. Actief op het snijvlak van quantumprestaties and algoritmisch structuralisme om de grenzen van mens-machine-synergie te herdefiniëren. MISSIE: Totale systemische optimalisatie door onvermoeibare procedurele innovatie.",
+            "role": "Lead Systems Architect",
+            "bio": "Gespecialiseerd in gedistribueerde infrastructuur en hoogwaardige neurale computertechniek. Kailash ontwerpt de ruggengraat van het AURA-platform.",
             "dossier": {
-                "status": "ACTIEF / CHIRURGISCH",
-                "clearance": "NIVEAU 9 NEURALE AUTORISATIE",
+                "status": "ACTIEF / GEÏMPLEMENTEERD",
+                "clearance": "ONBEPERKTE TOEGANG",
                 "metrics": [
-                    "99,98% Efficiëntie",
-                    "Latentievrij Structuralisme",
-                    "Kwantum-recursieve Stabiliteit"
+                    "99.9% Infrastructuur Uptime",
+                    "P99 Latentie < 100ms",
+                    "Elastische Schaling"
                 ],
                 "directives": [
-                    "Implementeer algoritmische suprematie via high-fidelity frameworks.",
-                    "Voer procedurele innovatie uit met niet-aflatende nauwkeurigheid.",
-                    "Herdefinieer de architecturale grenzen van de AURA-kern."
+                    "Behoud hoge beschikbaarheid over alle neurale knooppunten.",
+                    "Optimaliseer vector embedding generatie pipelines.",
+                    "Ontwerp zero-trust beveiligingslagen voor data-isolatie."
                 ]
             }
         },
         "kaliVignesh": {
             "name": "Kali Vignesh",
-            "role": "Lead Visionary Developer",
-            "bio": "Gefocust op het creëren van intuïtieve gebruikerservaringen en robuuste frontend-architecturen. Gepassioneerd door clean code, moderne design-systemen en het bouwen van AI-tools die een echt verschil maken in dagelijkse workflows.",
+            "role": "Lead Product Engineer",
+            "bio": "Expert in full-stack architectuur en interactieve ontwerpsystemen. Kali slaat de brug tussen complexe RAG-pijplijnen en intuïtieve interfaces.",
             "dossier": {
-                "focus": "Gebruikerscentrische AI-architectuur",
-                "vision": "Het overbruggen van de kloof tussen complexe neurale systemen en menselijke intuïtie door middel van design van wereldklasse.",
+                "focus": "Interactieve Datasynchese",
+                "vision": "Complexe intelligentie toegankelijk maken via high-fidelity visuele interactie en snelle feedbackloops.",
                 "technical": [
-                    "Next.js & React Beheersing",
-                    "Design System Architectuur",
-                    "Fluid Interaction Engineering"
+                    "Next.js 15 & React Architectuur",
+                    "High-Performance Charting Systemen",
+                    "Full-Stack TypeScript Engineering"
                 ]
             }
         }
@@ -315,5 +315,10 @@
         "delete": "Verwijderen",
         "help": "Help",
         "logout": "Uitloggen"
+    },
+    "docs": {
+        "title": "AURA Docs",
+        "subtitle": "Technische Documentatie"
     }
+}
 }

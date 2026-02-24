@@ -150,49 +150,49 @@
     },
     "devTeam": {
         "title": "Arquitectos de AURA",
-        "subtitle": "Las mentes detrás de la inteligencia. Operando en la frontera de la ingeniería neuronal.",
+        "subtitle": "El equipo de ingeniería detrás de la plataforma de inteligencia AURA.",
         "viewProfile": "Ver Perfil de Inteligencia",
         "dossier": {
             "status": "Estado Operativo",
             "clearance": "Nivel de Acceso",
-            "metrics": "Métricas Clave",
-            "directives": "Directivas",
+            "metrics": "Métricas de Ingeniería",
+            "directives": "Directivas Técnicas",
             "focus": "Enfoque Principal",
             "vision": "Visión del Sistema",
-            "technical": "Maestría Técnica",
-            "close": "Terminar Sesión",
+            "technical": "Stack Técnico",
+            "close": "Cerrar Sesión",
             "back": "Volver al Equipo"
         },
         "kailash": {
             "name": "Kailash",
-            "role": "Jefe de Operaciones Tácticas",
-            "bio": "Orquestación de marcos neuronales de alta fidelidad con precisión quirúrgica. Operando en la intersección del rendimiento cuántico y el estructuralismo algorítmico para redefinir los límites de la sinergia hombre-máquina. MISIÓN: Optimización sistémica total mediante la innovación procedimental implacable.",
+            "role": "Arquitecto Jefe de Sistemas",
+            "bio": "Especialista en infraestructura distribuida y computación neural de alto rendimiento. Kailash diseña la columna vertebral de AURA, garantizando baja latencia y escalabilidad masiva.",
             "dossier": {
-                "status": "ACTIVO / QUIRÚRGICO",
-                "clearance": "NIVEL 9 ACCESO NEURAL",
+                "status": "ACTIVO / DESPLEGADO",
+                "clearance": "ACCESO SIN RESTRICCIONES",
                 "metrics": [
-                    "99.98% Eficiencia",
-                    "Estructuralismo sin latencia",
-                    "Estabilidad recursiva cuántica"
+                    "99.9% Disponibilidad",
+                    "Latencia P99 < 100ms",
+                    "Escalamiento Elástico"
                 ],
                 "directives": [
-                    "Implementar supremacía algorítmica mediante marcos de alta fidelidad.",
-                    "Ejecutar innovación procedimental con precisión implacable.",
-                    "Redefinir los límites arquitectónicos del núcleo de AURA."
+                    "Mantener alta disponibilidad en todos los nodos neurais.",
+                    "Optimizar pipelines de generación de embeddings.",
+                    "Diseñar capas de seguridad zero-trust para aislamiento de datos."
                 ]
             }
         },
         "kaliVignesh": {
             "name": "Kali Vignesh",
-            "role": "Desarrollador Líder Visionario",
-            "bio": "Centrado en la creación de experiencias de usuario intuitivas y arquitecturas frontend robustas. Apasionado por el código limpio, los sistemas de diseño modernos y la creación de herramientas de IA que marquen una diferencia real en los flujos de trabajo diarios.",
+            "role": "Ingeniero Jefe de Producto",
+            "bio": "Experto en arquitectura full-stack y sistemas de diseño interactivo. Kali cierra la brecha entre pipelines RAG complejos e interfaces intuitivas, liderando las herramientas de análisis visual.",
             "dossier": {
-                "focus": "Arquitectura de IA centrada en el usuario",
-                "vision": "Cerrar la brecha entre los sistemas neurales complejos y la intuición humana mediante un diseño de clase mundial.",
+                "focus": "Síntesis de Datos Interactiva",
+                "vision": "Hacer accesible la inteligencia compleja mediante interacción visual de alta fidelidad y ciclos de feedback rápidos.",
                 "technical": [
-                    "Maestría en Next.js y React",
-                    "Arquitectura de Sistemas de Diseño",
-                    "Ingeniería de Interacción Fluida"
+                    "Arquitectura Next.js 15 & React",
+                    "Sistemas de Gráficos de Alto Rendimiento",
+                    "Ingeniería TypeScript Full-Stack"
                 ]
             }
         }
@@ -311,7 +311,7 @@
         "isolated": "Inquilinato aislado"
     },
     "docs": {
-        "title": "Arquitectura de Aura",
+        "title": "AURA Docs",
         "subtitle": "Documentación técnica",
         "heroDesc": "Referencia técnica completa para la plataforma Aura AI.",
         "systemOverview": "Resumen del sistema",

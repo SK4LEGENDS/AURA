@@ -9,6 +9,7 @@ export async function GET() {
         ollamaConnected: false,
         models: {
             llama32: false,
+            translategemma4b: false,
             nomic: false,
         },
         error: null as string | null,
@@ -29,6 +30,7 @@ export async function GET() {
 
         // 2. Check for required models
         results.models.llama32 = models.some((m: any) => m.name.includes("llama3.2"));
+        results.models.translategemma4b = models.some((m: any) => m.name.includes("translategemma:4b"));
         results.models.nomic = models.some((m: any) => m.name.includes("nomic-embed-text"));
 
     } catch (err: any) {

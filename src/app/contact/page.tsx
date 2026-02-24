@@ -14,7 +14,7 @@ export default function ContactPage() {
                     <Link href="/" className="inline-flex items-center text-zinc-400 hover:text-white transition-colors mb-6 text-sm">
                         <ArrowLeft className="w-4 h-4 mr-2" /> {t("common.backToHome")}
                     </Link>
-                    <h1 className="text-4xl md:text-5xl font-bold tracking-tight bg-clip-text text-transparent bg-linear-to-b from-white to-zinc-400">
+                    <h1 className="text-4xl md:text-5xl font-bold tracking-tight bg-clip-text text-transparent bg-linear-to-b from-white to-zinc-400 pb-4">
                         {t("legal.contact.title")}
                     </h1>
                     <p className="text-zinc-500 mt-4">{t("legal.contact.subtitle")}</p>

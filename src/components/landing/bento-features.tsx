@@ -35,8 +35,12 @@ const BentoCard = ({
     <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.5, delay: index * 0.1 }}
+        viewport={{ once: true, margin: "-50px" }}
+        transition={{
+            duration: 0.4,
+            delay: index * 0.05,
+            ease: [0.21, 0.47, 0.32, 0.98]
+        }}
         className={cn(
             "group relative overflow-hidden rounded-3xl border border-white/10 bg-zinc-900/50 p-8 backdrop-blur-xl transition-all hover:border-white/20 hover:bg-zinc-900",
             className
@@ -55,7 +59,7 @@ const BentoCard = ({
                 </p>
             </div>
 
-            <div className="mt-6 flex-grow">
+            <div className="mt-6 grow">
                 {children}
             </div>
         </div>
@@ -77,7 +81,7 @@ export function BentoFeatures() {
                     </h2>
                     <h3 className="text-4xl md:text-5xl font-bold text-white tracking-tighter">
                         {t("landing.engineeredTitle1")} <br />
-                        <span className="bg-clip-text text-transparent bg-gradient-to-r from-orange-400 to-amber-500">{t("landing.engineeredTitle2")}</span>
+                        <span className="bg-clip-text text-transparent bg-linear-to-r from-orange-400 to-amber-500">{t("landing.engineeredTitle2")}</span>
                     </h3>
                 </div>
 
@@ -98,7 +102,7 @@ export function BentoFeatures() {
                                     <div className="flex items-end gap-1 h-24">
                                         <div className="w-1/4 h-[40%] bg-brand-primary/40 rounded-t" />
                                         <div className="w-1/4 h-[70%] bg-orange-500/40 rounded-t" />
-                                        <div className="w-1/4 h-[100%] bg-brand-primary/60 rounded-t" />
+                                        <div className="w-1/4 h-full bg-brand-primary/60 rounded-t" />
                                         <div className="w-1/4 h-[60%] bg-orange-500/60 rounded-t" />
                                     </div>
                                     <div className="flex gap-2">
@@ -158,7 +162,7 @@ export function BentoFeatures() {
                     {/* 4. Large (XLSX/Structured) */}
                     <BentoCard
                         index={3}
-                        className="md:col-span-2 md:row-span-2 bg-gradient-to-br from-zinc-900 to-indigo-900/20"
+                        className="md:col-span-2 md:row-span-2 bg-linear-to-br from-zinc-900 to-indigo-900/20"
                         icon={<Table className="w-6 h-6 text-cyan-400" />}
                         title={t("landing.bento.structuredTitle")}
                         description={t("landing.bento.structuredDesc")}
@@ -184,7 +188,7 @@ export function BentoFeatures() {
                             {/* Step 2: Transformation Engine */}
                             <div className="relative py-4">
                                 <div className="absolute inset-0 flex items-center justify-center">
-                                    <div className="w-full h-px bg-gradient-to-r from-transparent via-cyan-500/50 to-transparent" />
+                                    <div className="w-full h-px bg-linear-to-r from-transparent via-cyan-500/50 to-transparent" />
                                 </div>
                                 <div className="relative z-10 flex justify-center">
                                     <div className="bg-zinc-900 border border-cyan-500/30 px-4 py-1.5 rounded-full flex items-center gap-3 shadow-[0_0_20px_rgba(6,182,212,0.1)]">

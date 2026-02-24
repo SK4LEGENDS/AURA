@@ -65,11 +65,7 @@ export default function DevTeamPage() {
                         <span className="text-sm font-medium tracking-wide uppercase">{t("common.backToHome")}</span>
                     </Link>
 
-                    <Link href="/" className="flex items-center gap-3">
-                        <div className="w-8 h-8 relative">
-                            <Image src="/logo-v2.png" alt="AURA Logo" fill className="object-contain" />
-                        </div>
-                    </Link>
+                    <div />
 
                     <div className="w-24" />
                 </div>
@@ -110,12 +106,18 @@ export default function DevTeamPage() {
                                 <div className="absolute -inset-px bg-linear-to-b from-white/10 to-transparent rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
                                 <div className="relative bg-zinc-900/50 backdrop-blur-sm border border-white/5 rounded-3xl p-8 md:p-12 overflow-hidden h-full flex flex-col">
-                                    <div className="absolute top-0 right-0 p-6 opacity-20 group-hover:opacity-100 transition-opacity duration-500 text-brand-primary">
+                                    <div className={cn(
+                                        "absolute top-0 right-0 p-6 opacity-20 group-hover:opacity-100 transition-opacity duration-500",
+                                        dev.isTactical ? "text-brand-primary" : "text-brand-secondary"
+                                    )}>
                                         {dev.icon}
                                     </div>
 
                                     <div className="flex flex-col md:flex-row gap-8 items-start mb-auto">
-                                        <div className="w-32 h-32 rounded-2xl bg-white/5 border border-white/10 relative overflow-hidden shrink-0 group-hover:border-brand-primary/50 transition-colors duration-500">
+                                        <div className={cn(
+                                            "w-32 h-32 rounded-2xl bg-white/5 border border-white/10 relative overflow-hidden shrink-0 transition-colors duration-500",
+                                            dev.isTactical ? "group-hover:border-brand-primary/50" : "group-hover:border-brand-secondary/50"
+                                        )}>
                                             <div className="absolute inset-0 flex items-center justify-center text-zinc-700 font-bold text-4xl italic">
                                                 {dev.name[0]}
                                             </div>
@@ -123,21 +125,33 @@ export default function DevTeamPage() {
 
                                         <div className="space-y-4">
                                             <div>
-                                                <h3 className="text-3xl font-bold tracking-tight text-white group-hover:text-brand-primary transition-colors">
+                                                <h3 className={cn(
+                                                    "text-3xl font-bold tracking-tight text-white transition-colors",
+                                                    dev.isTactical ? "group-hover:text-brand-primary" : "group-hover:text-brand-secondary"
+                                                )}>
                                                     {dev.name}
                                                 </h3>
                                                 <p className={cn(
                                                     "text-sm font-bold uppercase tracking-widest mt-1",
-                                                    dev.id === "kailash" ? "text-brand-primary" : "text-brand-secondary"
+                                                    dev.isTactical ? "text-brand-primary" : "text-brand-secondary"
                                                 )}>
                                                     {dev.role}
                                                 </p>
                                             </div>
 
                                             <div className="flex gap-4">
-                                                <SocialLink icon={<Github className="w-4 h-4" />} />
-                                                <SocialLink icon={<Twitter className="w-4 h-4" />} />
-                                                <SocialLink icon={<Linkedin className="w-4 h-4" />} />
+                                                <SocialLink
+                                                    icon={<Github className="w-4 h-4" />}
+                                                    brandColor={dev.isTactical ? "primary" : "secondary"}
+                                                />
+                                                <SocialLink
+                                                    icon={<Twitter className="w-4 h-4" />}
+                                                    brandColor={dev.isTactical ? "primary" : "secondary"}
+                                                />
+                                                <SocialLink
+                                                    icon={<Linkedin className="w-4 h-4" />}
+                                                    brandColor={dev.isTactical ? "primary" : "secondary"}
+                                                />
                                             </div>
                                         </div>
                                     </div>
@@ -145,15 +159,12 @@ export default function DevTeamPage() {
                                     <div className="mt-12 space-y-6">
                                         <div className="space-y-2">
                                             <p className="text-xs font-bold text-zinc-500 uppercase tracking-widest">{t("common.specialty")}</p>
-                                            <p className="text-lg text-white font-medium">{dev.specialty}</p>
+                                            <p className="text-lg text-white font-semibold">{dev.specialty}</p>
                                         </div>
 
                                         <div className="space-y-2">
                                             <p className="text-xs font-bold text-zinc-500 uppercase tracking-widest">{t("common.brief")}</p>
-                                            <p className={cn(
-                                                "text-zinc-400 leading-relaxed line-clamp-3",
-                                                dev.isTactical ? "font-mono text-sm leading-loose" : "font-light"
-                                            )}>
+                                            <p className="text-zinc-400 leading-relaxed font-sans text-sm">
                                                 {dev.bio}
                                             </p>
                                         </div>
@@ -162,7 +173,10 @@ export default function DevTeamPage() {
                                     <div className="mt-12 pt-8 border-t border-white/5 flex justify-end">
                                         <button
                                             onClick={() => setSelectedId(dev.id)}
-                                            className="flex items-center gap-2 text-zinc-500 hover:text-white transition-colors text-sm font-medium group/btn cursor-pointer"
+                                            className={cn(
+                                                "flex items-center gap-2 transition-colors text-sm font-medium group/btn cursor-pointer",
+                                                dev.isTactical ? "text-zinc-500 hover:text-brand-primary" : "text-zinc-500 hover:text-brand-secondary"
+                                            )}
                                         >
                                             {t("devTeam.viewProfile")}
                                             <ExternalLink className="w-3 h-3 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-transform" />
@@ -259,8 +273,14 @@ export default function DevTeamPage() {
                             {/* Right Side: Detailed Intelligence */}
                             <div className="flex-1 p-8 md:p-12 overflow-y-auto custom-scrollbar">
                                 <div className="max-w-xl">
-                                    <h2 className="text-xs font-bold text-brand-primary uppercase tracking-[0.3em] mb-12 flex items-center gap-3">
-                                        <div className="w-8 h-px bg-brand-primary/30" />
+                                    <h2 className={cn(
+                                        "text-xs font-bold uppercase tracking-[0.3em] mb-12 flex items-center gap-3",
+                                        activeDev.isTactical ? "text-brand-primary" : "text-brand-secondary"
+                                    )}>
+                                        <div className={cn(
+                                            "w-8 h-px",
+                                            activeDev.isTactical ? "bg-brand-primary/30" : "bg-brand-secondary/30"
+                                        )} />
                                         Intelligence Dossier
                                     </h2>
 
@@ -354,9 +374,12 @@ export default function DevTeamPage() {
     );
 }
 
-function SocialLink({ icon }: { icon: React.ReactNode }) {
+function SocialLink({ icon, brandColor }: { icon: React.ReactNode, brandColor: "primary" | "secondary" }) {
     return (
-        <button className="w-8 h-8 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center text-zinc-500 hover:bg-brand-primary hover:text-white hover:border-brand-primary transition-all duration-300 cursor-pointer">
+        <button className={cn(
+            "w-8 h-8 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center text-zinc-500 transition-all duration-300 cursor-pointer",
+            brandColor === "primary" ? "hover:bg-brand-primary hover:text-white hover:border-brand-primary" : "hover:bg-brand-secondary hover:text-white hover:border-brand-secondary"
+        )}>
             {icon}
         </button>
     );

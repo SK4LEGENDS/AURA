@@ -20,7 +20,7 @@ export function CTA() {
             <div className="container mx-auto px-6 relative z-10 text-center">
                 <h2 className="text-4xl md:text-6xl font-bold mb-8 tracking-tight">
                     {titleParts[0]} {titleParts.length > 1 && <br />}
-                    <span className="text-transparent bg-clip-text bg-linear-to-r from-brand-primary to-amber-500">
+                    <span className="text-transparent bg-clip-text bg-linear-to-r from-brand-primary to-amber-500 pb-2">
                         {titleParts[1] || ""}
                     </span>
                 </h2>

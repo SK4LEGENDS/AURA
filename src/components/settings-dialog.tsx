@@ -19,6 +19,7 @@ import {
     Sparkles,
     Zap,
     Globe,
+    Search,
 } from "lucide-react";
 import { User, updateProfile } from "firebase/auth";
 import { useI18n, LanguageCode } from "@/lib/i18n-context";
@@ -26,14 +27,62 @@ import { useToast } from "@/lib/toast-context";
 
 const languages: { code: LanguageCode; name: string; nativeName: string }[] = [
     { code: "en", name: "English", nativeName: "English" },
-    { code: "hi", name: "Hindi", nativeName: "हिन्दी" },
-    { code: "ta", name: "Tamil", nativeName: "தமிழ்" },
-    { code: "ar", name: "Arabic", nativeName: "العربية" },
-    { code: "ru", name: "Russian", nativeName: "Русский" },
-    { code: "de", name: "German", nativeName: "Deutsch" },
-    { code: "ja", name: "Japanese", nativeName: "日本語" },
-    { code: "fr", name: "French", nativeName: "Français" },
-    { code: "es", name: "Spanish", nativeName: "Español" },
+    { code: "hi", name: "Hindi", nativeName: "हिन्दी (Hindi)" },
+    { code: "bn", name: "Bengali", nativeName: "বাংলা (Bengali)" },
+    { code: "ta", name: "Tamil", nativeName: "தமிழ் (Tamil)" },
+    { code: "te", name: "Telugu", nativeName: "తెలుగు (Telugu)" },
+    { code: "mr", name: "Marathi", nativeName: "मराठी (Marathi)" },
+    { code: "gu", name: "Gujarati", nativeName: "ગુજરાતી (Gujarati)" },
+    { code: "kn", name: "Kannada", nativeName: "ಕನ್ನಡ (Kannada)" },
+    { code: "ml", name: "Malayalam", nativeName: "മലയാളം (Malayalam)" },
+    { code: "or", name: "Odia", nativeName: "ଓଡ଼ିଆ (Odia)" },
+    { code: "pa", name: "Punjabi", nativeName: "ਪੰਜਾਬੀ (Punjabi)" },
+    { code: "as", name: "Assamese", nativeName: "অসমীয়া (Assamese)" },
+    { code: "mai", name: "Maithili", nativeName: "मैथिली (Maithili)" },
+    { code: "kok", name: "Konkani", nativeName: "कोंकणी (Konkani)" },
+    { code: "mni", name: "Manipuri", nativeName: "মৈতৈইলোন (Manipuri)" },
+    { code: "doi", name: "Dogri", nativeName: "डोगरी (Dogri)" },
+    { code: "ks", name: "Kashmiri", nativeName: "کٲशُر (Kashmiri)" },
+    { code: "sd", name: "Sindhi", nativeName: "سنڌي (Sindhi)" },
+    { code: "ur", name: "Urdu", nativeName: "اردو (Urdu)" },
+    { code: "sa", name: "Sanskrit", nativeName: "संस्कृतम् (Sanskrit)" },
+    { code: "ne", name: "Nepali", nativeName: "नेपाली (Nepali)" },
+    { code: "brx", name: "Bodo", nativeName: "बर' (Bodo)" },
+    { code: "sat", name: "Santali", nativeName: "ᱥᱟᱱᱛᱟᱲᱤ (Santali)" },
+    { code: "ja", name: "Japanese", nativeName: "日本語 (Japanese)" },
+    { code: "zh-cn", name: "Chinese (S)", nativeName: "简体中文 (Chinese Simplified)" },
+    { code: "zh-tw", name: "Chinese (T)", nativeName: "繁體中文 (Chinese Traditional)" },
+    { code: "ko", name: "Korean", nativeName: "한국어 (Korean)" },
+    { code: "id", name: "Indonesian", nativeName: "Bahasa Indonesia (Indonesian)" },
+    { code: "ms", name: "Malay", nativeName: "Bahasa Melayu (Malay)" },
+    { code: "vi", name: "Vietnamese", nativeName: "Tiếng Việt (Vietnamese)" },
+    { code: "fil", name: "Filipino", nativeName: "Filipino (Filipino)" },
+    { code: "fr", name: "French", nativeName: "Français (French)" },
+    { code: "de", name: "German", nativeName: "Deutsch (German)" },
+    { code: "es", name: "Spanish", nativeName: "Español (Spanish)" },
+    { code: "it", name: "Italian", nativeName: "Italiano (Italian)" },
+    { code: "pt", name: "Portuguese", nativeName: "Português (Portuguese)" },
+    { code: "ru", name: "Russian", nativeName: "Русский (Russian)" },
+    { code: "sv", name: "Swedish", nativeName: "Svenska (Swedish)" },
+    { code: "no", name: "Norwegian", nativeName: "Norsk (Norwegian)" },
+    { code: "da", name: "Danish", nativeName: "Dansk (Danish)" },
+    { code: "fi", name: "Finnish", nativeName: "Suomi (Finnish)" },
+    { code: "pl", name: "Polish", nativeName: "Polski (Polish)" },
+    { code: "uk", name: "Ukrainian", nativeName: "Українська (Ukrainian)" },
+    { code: "tr", name: "Turkish", nativeName: "Türkçe (Turkish)" },
+    { code: "th", name: "Thai", nativeName: "ไทย (Thai)" },
+    { code: "el", name: "Greek", nativeName: "Ελληνικά (Greek)" },
+    { code: "hu", name: "Hungarian", nativeName: "Magyar (Hungarian)" },
+    { code: "cs", name: "Czech", nativeName: "Čeština (Czech)" },
+    { code: "ro", name: "Romanian", nativeName: "Română (Romanian)" },
+    { code: "bg", name: "Bulgarian", nativeName: "Български (Bulgarian)" },
+    { code: "sr", name: "Serbian", nativeName: "Српски (Serbian)" },
+    { code: "hr", name: "Croatian", nativeName: "Hrvatski (Croatian)" },
+    { code: "sk", name: "Slovak", nativeName: "Slovenčina (Slovak)" },
+    { code: "he", name: "Hebrew", nativeName: "עברית (Hebrew)" },
+    { code: "fa", name: "Persian", nativeName: "فارسی (Persian)" },
+    { code: "ar", name: "Arabic", nativeName: "العربية (Arabic)" },
+    { code: "nl", name: "Dutch", nativeName: "Nederlands (Dutch)" },
 ];
 
 type SettingsDialogProps = {
@@ -81,7 +130,7 @@ export function SettingsDialog({ isOpen, onClose, onClearChatHistory, onClearSav
         <div className="fixed inset-0 z-9999 flex items-center justify-center bg-black/50">
             <div className="flex h-[600px] w-[800px] overflow-hidden rounded-2xl border border-black/10 bg-white shadow-2xl dark:border-white/10 dark:bg-zinc-900">
                 {/* Sidebar */}
-                <div className="w-64 flex-shrink-0 border-r border-black/10 bg-slate-50 p-4 dark:border-white/10 dark:bg-zinc-900/50">
+                <div className="w-64 shrink-0 border-r border-black/10 bg-slate-50 p-4 dark:border-white/10 dark:bg-zinc-900/50">
                     <button
                         onClick={onClose}
                         className="mb-6 rounded-lg p-2 text-(--text-secondary) transition hover:bg-black/5 hover:text-(--text-primary) dark:hover:bg-white/10"
@@ -221,12 +270,17 @@ function GeneralSettings() {
         "#f43f5e", // rose
     ];
 
-    // Enforce llama3.2 for non-English languages
+    // Enforce model based on language settings
     useEffect(() => {
-        if (outputLanguage !== "en" && aiModel !== "llama3.2") {
+        if (outputLanguage !== "en") {
+            if (aiModel !== "translategemma:4b") {
+                setAiModel("translategemma:4b");
+            }
+        } else if (inputLanguage === "en" && aiModel === "translategemma:4b") {
+            // Switch back to general purpose model for all-English context
             setAiModel("llama3.2");
         }
-    }, [outputLanguage, aiModel, setAiModel]);
+    }, [outputLanguage, inputLanguage, aiModel, setAiModel]);
 
     return (
         <div className="space-y-8">
@@ -295,11 +349,11 @@ function GeneralSettings() {
 
                 <div className="space-y-3 border-b border-black/5 pb-6 dark:border-white/5">
                     <div className="flex items-center justify-between">
-                        <span className="text-sm font-medium text-[var(--text-primary)]">{t("settings.uiLanguage")}</span>
+                        <span className="text-sm font-medium text-(--text-primary)">{t("settings.uiLanguage")}</span>
                         <div className="relative">
                             <button
                                 onClick={() => setShowUiLang(!showUiLang)}
-                                className="flex items-center gap-2 text-sm text-[var(--text-secondary)] hover:text-[var(--text-primary)]"
+                                className="flex items-center gap-2 text-sm text-(--text-secondary) hover:text-(--text-primary)"
                             >
                                 <Globe className="h-4 w-4" />
                                 {languages.find(l => l.code === uiLanguage)?.nativeName}
@@ -314,6 +368,7 @@ function GeneralSettings() {
                                         setShowUiLang(false);
                                     }}
                                     onClose={() => setShowUiLang(false)}
+                                    searchable
                                 />
                             )}
                         </div>
@@ -322,11 +377,11 @@ function GeneralSettings() {
 
                 <div className="space-y-3 border-b border-black/5 pb-6 dark:border-white/5">
                     <div className="flex items-center justify-between">
-                        <span className="text-sm font-medium text-[var(--text-primary)]">{t("settings.inputLanguage")}</span>
+                        <span className="text-sm font-medium text-(--text-primary)">{t("settings.inputLanguage")}</span>
                         <div className="relative">
                             <button
                                 onClick={() => setShowInputLang(!showInputLang)}
-                                className="flex items-center gap-2 text-sm text-[var(--text-secondary)] hover:text-[var(--text-primary)]"
+                                className="flex items-center gap-2 text-sm text-(--text-secondary) hover:text-(--text-primary)"
                             >
                                 <Edit3 className="h-4 w-4" />
                                 {languages.find(l => l.code === inputLanguage)?.nativeName}
@@ -341,6 +396,7 @@ function GeneralSettings() {
                                         setShowInputLang(false);
                                     }}
                                     onClose={() => setShowInputLang(false)}
+                                    searchable
                                 />
                             )}
                         </div>
@@ -349,11 +405,11 @@ function GeneralSettings() {
 
                 <div className="space-y-3 border-b border-black/5 pb-6 dark:border-white/5">
                     <div className="flex items-center justify-between">
-                        <span className="text-sm font-medium text-[var(--text-primary)]">{t("settings.outputLanguage")}</span>
+                        <span className="text-sm font-medium text-(--text-primary)">{t("settings.outputLanguage")}</span>
                         <div className="relative">
                             <button
                                 onClick={() => setShowOutputLang(!showOutputLang)}
-                                className="flex items-center gap-2 text-sm text-[var(--text-secondary)] hover:text-[var(--text-primary)]"
+                                className="flex items-center gap-2 text-sm text-(--text-secondary) hover:text-(--text-primary)"
                             >
                                 <Bot className="h-4 w-4" />
                                 {languages.find(l => l.code === outputLanguage)?.nativeName}
@@ -365,13 +421,16 @@ function GeneralSettings() {
                                     selectedId={outputLanguage}
                                     onSelect={(id) => {
                                         setOutputLanguage(id as LanguageCode);
-                                        // Auto-switch to llama3.2 for non-English languages
+                                        // Auto-enforce translation model for non-English responses
                                         if (id !== "en") {
+                                            setAiModel("translategemma:4b");
+                                        } else if (inputLanguage === "en") {
                                             setAiModel("llama3.2");
                                         }
                                         setShowOutputLang(false);
                                     }}
                                     onClose={() => setShowOutputLang(false)}
+                                    searchable
                                 />
                             )}
                         </div>
@@ -380,12 +439,13 @@ function GeneralSettings() {
 
                 <div className="space-y-1 border-b border-black/5 pb-6 dark:border-white/5">
                     <div className="flex items-center justify-between">
-                        <span className="text-sm font-medium text-[var(--text-primary)]">AI Model</span>
+                        <span className="text-sm font-medium text-(--text-primary)">AI Model</span>
                         <div className="relative">
                             <button
                                 onClick={() => setShowAiModel(!showAiModel)}
-                                className="flex items-center gap-2 text-sm text-[var(--text-secondary)] hover:text-[var(--text-primary)]"
+                                className="flex items-center gap-2 text-sm text-(--text-secondary) hover:text-(--text-primary)"
                             >
+                                {aiModel === "translategemma:4b" && <Sparkles className="h-4 w-4 text-emerald-500" />}
                                 {aiModel === "phi3:mini" && <Bot className="h-4 w-4 text-green-500" />}
                                 {aiModel === "llama3.2-vision" && <Sparkles className="h-4 w-4 text-blue-500" />}
                                 {aiModel === "qwen2.5-math" && <Bot className="h-4 w-4 text-brand-primary" />}
@@ -393,7 +453,8 @@ function GeneralSettings() {
                                 {aiModel === "deepseek-r1:7b" && <Bot className="h-4 w-4 text-red-500" />}
                                 {aiModel === "qwen2.5-coder:7b" && <Bot className="h-4 w-4 text-cyan-500" />}
                                 {aiModel === "qwen2.5:7b" && <Bot className="h-4 w-4 text-brand-primary" />}
-                                {!["phi3:mini", "llama3.2-vision", "qwen2.5:7b", "llama3.1", "deepseek-r1:7b", "qwen2.5-coder:7b"].includes(aiModel) && <Bot className="h-4 w-4 text-[var(--text-secondary)]" />}
+                                {aiModel === "llama3.2" && <Bot className="h-4 w-4 text-blue-400" />}
+                                {!["phi3:mini", "llama3.2-vision", "qwen2.5:7b", "llama3.1", "deepseek-r1:7b", "qwen2.5-coder:7b", "translategemma:4b", "llama3.2"].includes(aiModel) && <Bot className="h-4 w-4 text-(--text-secondary)" />}
                                 {aiModel}
                                 <ChevronDown className={cn("h-4 w-4 transition-transform", showAiModel && "rotate-180")} />
                             </button>
@@ -407,6 +468,8 @@ function GeneralSettings() {
                                     <div className="absolute right-0 top-full z-50 mt-2 w-48 overflow-hidden rounded-lg border border-black/10 bg-white shadow-xl dark:border-white/10 dark:bg-zinc-900">
                                         <div className="max-h-60 overflow-y-auto p-1">
                                             {[
+                                                { id: "translategemma:4b", icon: Sparkles, color: "text-emerald-500" },
+                                                { id: "llama3.2", icon: Bot, color: "text-blue-400" },
                                                 { id: "phi3:mini", icon: Bot, color: "text-green-500" },
                                                 { id: "llama3.2-vision", icon: Sparkles, color: "text-blue-500" },
                                                 { id: "qwen2.5:7b", icon: Bot, color: "text-brand-primary" },
@@ -428,8 +491,8 @@ function GeneralSettings() {
                                                     className={cn(
                                                         "flex w-full items-center justify-between gap-2 rounded-md px-3 py-2 text-xs font-medium transition-colors hover:bg-black/5 dark:hover:bg-white/5",
                                                         aiModel === model.id
-                                                            ? "bg-black/10 text-[var(--text-primary)] dark:bg-white/10"
-                                                            : "text-[var(--text-secondary)]"
+                                                            ? "bg-black/10 text-(--text-primary) dark:bg-white/10"
+                                                            : "text-(--text-secondary)"
                                                     )}
                                                 >
                                                     <span>{model.id}</span>
@@ -445,11 +508,11 @@ function GeneralSettings() {
                 </div>
 
                 <div className="space-y-4 pt-2">
-                    <h3 className="text-sm font-medium text-[var(--text-secondary)] uppercase tracking-wider">AI Preference</h3>
+                    <h3 className="text-sm font-medium text-(--text-secondary) uppercase tracking-wider">AI Preference</h3>
 
                     <div className="space-y-4">
                         <div className="flex items-center justify-between">
-                            <span className="text-sm font-medium text-[var(--text-primary)]">Response Style</span>
+                            <span className="text-sm font-medium text-(--text-primary)">Response Style</span>
                             <div className="flex rounded-lg bg-black/5 p-1 dark:bg-white/5">
                                 {["Neutral", "Formal", "Friendly"].map((style) => (
                                     <button
@@ -459,7 +522,7 @@ function GeneralSettings() {
                                             "rounded-md px-3 py-1 text-xs font-medium transition-colors",
                                             responseStyle === style
                                                 ? "bg-white shadow-sm text-black dark:bg-white/10 dark:text-white"
-                                                : "text-[var(--text-secondary)] hover:text-[var(--text-primary)]"
+                                                : "text-(--text-secondary) hover:text-(--text-primary)"
                                         )}
                                     >
                                         {style}
@@ -469,7 +532,7 @@ function GeneralSettings() {
                         </div>
 
                         <div className="flex items-center justify-between">
-                            <span className="text-sm font-medium text-[var(--text-primary)]">Summary Level</span>
+                            <span className="text-sm font-medium text-(--text-primary)">Summary Level</span>
                             <div className="flex rounded-lg bg-black/5 p-1 dark:bg-white/5">
                                 {["Short", "Detailed"].map((level) => (
                                     <button
@@ -479,7 +542,7 @@ function GeneralSettings() {
                                             "rounded-md px-3 py-1 text-xs font-medium transition-colors",
                                             summaryLevel === level
                                                 ? "bg-white shadow-sm text-black dark:bg-white/10 dark:text-white"
-                                                : "text-[var(--text-secondary)] hover:text-[var(--text-primary)]"
+                                                : "text-(--text-secondary) hover:text-(--text-primary)"
                                         )}
                                     >
                                         {level}
@@ -653,7 +716,7 @@ function AccountSettings({ user }: { user: User | null }) {
                                         setNewName(user?.displayName || "");
                                         setIsEditingName(true);
                                     }}
-                                    className="flex items-center gap-2 text-sm text-[var(--text-secondary)] transition-colors hover:text-[var(--text-primary)]"
+                                    className="flex items-center gap-2 text-sm text-(--text-secondary) transition-colors hover:text-(--text-primary)"
                                 >
                                     {user?.displayName || "Set Name"}
                                     <Edit3 className="h-3 w-3" />
@@ -665,7 +728,7 @@ function AccountSettings({ user }: { user: User | null }) {
                     <SettingRow label="Email" value={user?.email || "No email"} description="Read-only" />
                     <div className="space-y-1 border-b border-black/5 pb-6 last:border-0 dark:border-white/5">
                         <div className="flex items-center justify-between">
-                            <span className="text-sm font-medium text-[var(--text-primary)]">Profile Photo</span>
+                            <span className="text-sm font-medium text-(--text-primary)">Profile Photo</span>
                             <div className="flex items-center gap-3">
                                 <div
                                     className="flex h-8 w-8 items-center justify-center rounded-full text-xs font-medium text-white shadow-lg"
@@ -734,39 +797,71 @@ function SettingRow({
     );
 }
 
-function Dropdown({ items, selectedId, onSelect, onClose }: {
+function Dropdown({ items, selectedId, onSelect, onClose, searchable = false }: {
     items: { code: string; name: string; nativeName: string }[] | { id: string; name?: string; icon?: any; color?: string }[];
     selectedId: string;
     onSelect: (id: string) => void;
     onClose: () => void;
+    searchable?: boolean;
 }) {
+    const [searchQuery, setSearchQuery] = useState("");
+
+    const filteredItems = items.filter((item: any) => {
+        if (!searchQuery) return true;
+        const query = searchQuery.toLowerCase();
+        const label = (item.nativeName || item.id || item.code || "").toLowerCase();
+        const englishName = (item.name || "").toLowerCase();
+        return label.includes(query) || englishName.includes(query);
+    });
+
     return (
         <>
             <div className="fixed inset-0 z-40" onClick={onClose} />
-            <div className="absolute right-0 top-full z-50 mt-2 w-48 overflow-hidden rounded-lg border border-black/10 bg-white shadow-xl dark:border-white/10 dark:bg-zinc-900">
+            <div className="absolute right-0 top-full z-50 mt-2 w-64 overflow-hidden rounded-lg border border-black/10 bg-white shadow-xl dark:border-white/10 dark:bg-zinc-900">
+                {searchable && (
+                    <div className="sticky top-0 border-b border-black/5 bg-white p-2 dark:border-white/5 dark:bg-zinc-900">
+                        <div className="relative">
+                            <Search className="absolute left-2 top-1/2 h-3.5 w-3.5 -translate-y-1/2 text-(--text-secondary)" />
+                            <input
+                                type="text"
+                                value={searchQuery}
+                                onChange={(e) => setSearchQuery(e.target.value)}
+                                placeholder="Search languages..."
+                                className="w-full rounded-md border border-black/10 bg-black/5 py-1.5 pl-8 pr-3 text-xs outline-none focus:border-(--text-primary) dark:border-white/10 dark:bg-white/5"
+                                autoFocus
+                            />
+                        </div>
+                    </div>
+                )}
                 <div className="max-h-60 overflow-y-auto p-1">
-                    {items.map((item: any) => {
-                        const id = item.code || item.id;
-                        const label = item.nativeName || item.id || id;
-                        return (
-                            <button
-                                key={id}
-                                onClick={() => onSelect(id)}
-                                className={cn(
-                                    "flex w-full items-center justify-between gap-2 rounded-md px-3 py-2 text-xs font-medium transition-colors hover:bg-black/5 dark:hover:bg-white/5",
-                                    selectedId === id
-                                        ? "bg-black/10 text-(--text-primary) dark:bg-white/10"
-                                        : "text-(--text-secondary)"
-                                )}
-                            >
-                                <span className="truncate">{label}</span>
-                                <div className="flex items-center gap-1.5 shrink-0">
-                                    {item.icon && <item.icon className={cn("h-3 w-3", item.color)} />}
-                                    {selectedId === id && <Check className="h-3 w-3" />}
-                                </div>
-                            </button>
-                        );
-                    })}
+                    {filteredItems.length > 0 ? (
+                        filteredItems.map((item: any) => {
+                            const id = item.code || item.id;
+                            const label = item.nativeName || item.id || id;
+                            return (
+                                <button
+                                    key={id}
+                                    onClick={() => onSelect(id)}
+                                    className={cn(
+                                        "flex w-full items-center justify-between gap-2 rounded-md px-3 py-2 text-xs font-medium transition-colors hover:bg-black/5 dark:hover:bg-white/5",
+                                        selectedId === id
+                                            ? "bg-black/10 text-(--text-primary) dark:bg-white/10"
+                                            : "text-(--text-secondary)"
+                                    )}
+                                >
+                                    <span className="truncate">{label}</span>
+                                    <div className="flex items-center gap-1.5 shrink-0">
+                                        {item.icon && <item.icon className={cn("h-3 w-3", item.color)} />}
+                                        {selectedId === id && <Check className="h-3 w-3" />}
+                                    </div>
+                                </button>
+                            );
+                        })
+                    ) : (
+                        <div className="px-3 py-4 text-center text-xs text-(--text-secondary)">
+                            No results found
+                        </div>
+                    )}
                 </div>
             </div>
         </>

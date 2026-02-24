@@ -32,11 +32,14 @@ export default function LandingPage() {
   const router = useRouter();
   const { t, isRTL } = useI18n();
 
+  // Removed auto-redirection to dashboard to ensure entry point is always landing page
+  /*
   useEffect(() => {
     if (!loading && user) {
       router.push("/dashboard");
     }
   }, [user, loading, router]);
+  */
 
   return (
     <div className={cn(
@@ -49,7 +52,7 @@ export default function LandingPage() {
           <div className="flex items-center gap-2">
             <div className="w-8 h-8 relative">
               <Image
-                src="/logo-v2.png"
+                src="/logo.png"
                 alt="AURA Logo"
                 fill
                 className="object-contain"
@@ -81,7 +84,7 @@ export default function LandingPage() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.1 }}
-            className="text-6xl md:text-8xl font-bold tracking-tight mb-8 bg-clip-text text-transparent bg-linear-to-b from-white via-white to-zinc-400"
+            className="text-6xl md:text-8xl font-bold tracking-tight mb-8 bg-clip-text text-transparent bg-linear-to-b from-white via-white to-zinc-400 pb-4"
           >
             {t("landing.heroTitle")}
           </motion.h1>
@@ -109,8 +112,8 @@ export default function LandingPage() {
               <ArrowRight className={cn("w-4 h-4 transition-transform", isRTL ? "rotate-180 group-hover:-translate-x-1" : "group-hover:translate-x-1")} />
             </Link>
             <Link
-              href="#playground"
-              className="px-8 py-4 bg-zinc-900 border border-zinc-700 text-white rounded-full font-medium hover:bg-zinc-800 transition-all"
+              href="/analytics"
+              className="px-8 py-4 bg-zinc-900 border border-zinc-700 text-white rounded-full font-medium hover:bg-zinc-800 transition-all hover:border-brand-secondary/50 group"
             >
               {t("landing.viewAnalytics")}
             </Link>

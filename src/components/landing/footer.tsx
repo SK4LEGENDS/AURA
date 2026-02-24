@@ -12,7 +12,10 @@ import {
     Terminal,
     BookOpen,
     Shield,
-    Users
+    Users,
+    Globe,
+    Zap,
+    BarChart3
 } from "lucide-react";
 import { useI18n } from "@/lib/i18n-context";
 import { cn } from "@/lib/utils";
@@ -44,10 +47,21 @@ export function Footer() {
             ]
         },
         {
+            title: t("landing.footer.news"),
+            links: [
+                { label: t("landing.footer.news1"), href: "/news/v1-2-4-release", icon: <Globe className="w-3.5 h-3.5" /> },
+                { label: t("landing.footer.news2"), href: "/news/llama-3-2-integration", icon: <Zap className="w-3.5 h-3.5" /> },
+                { label: t("landing.footer.news3"), href: "/news/global-language-expansion", icon: <Globe className="w-3.5 h-3.5" /> },
+            ]
+        },
+        {
             title: t("landing.footer.resources"),
             links: [
                 { label: t("docs.title"), href: "/docs", icon: <BookOpen className="w-3.5 h-3.5" /> },
                 { label: t("docs.apiRef"), href: "/docs/api-reference", icon: <Terminal className="w-3.5 h-3.5" /> },
+                { label: t("docs.i18nTitle"), href: "/docs/internationalization", icon: <Globe className="w-3.5 h-3.5" /> },
+                { label: t("docs.aiIntelligence"), href: "/docs/ai-intelligence", icon: <Zap className="w-3.5 h-3.5" /> },
+                { label: t("docs.visualizations"), href: "/docs/visualizations", icon: <BarChart3 className="w-3.5 h-3.5" /> },
                 { label: t("landing.footer.community"), href: "https://github.com", icon: <Github className="w-3.5 h-3.5" /> },
             ]
         },
@@ -55,6 +69,7 @@ export function Footer() {
             title: t("landing.footer.company"),
             links: [
                 { label: t("landing.footer.devTeam"), href: "/dev-team", icon: <Users className="w-3.5 h-3.5" /> },
+                { label: t("common.contact"), href: "/contact", icon: <Send className="w-3.5 h-3.5" /> },
             ]
         }
     ];
@@ -73,7 +88,7 @@ export function Footer() {
                         <Link href="/" className="flex items-center gap-3 group">
                             <div className="w-10 h-10 relative">
                                 <Image
-                                    src="/logo-v2.png"
+                                    src="/logo.png"
                                     alt="AURA Logo"
                                     fill
                                     className="object-contain transition-transform group-hover:scale-110"
@@ -92,11 +107,10 @@ export function Footer() {
                             <SocialLink href="#" icon={<Github className="w-5 h-5" />} />
                             <SocialLink href="#" icon={<Linkedin className="w-5 h-5" />} />
                         </div>
+
                     </div>
 
                     {/* Links Columns */}
-                    <div className="lg:col-span-1" /> {/* Spacer */}
-
                     {footerSections.map((section, idx) => (
                         <div key={idx} className="lg:col-span-2 space-y-6">
                             <h4 className="text-white font-bold tracking-wider text-sm uppercase">
@@ -110,7 +124,7 @@ export function Footer() {
                                             className="text-zinc-500 hover:text-brand-primary transition-colors flex items-center gap-2 group"
                                         >
                                             {link.icon && <span className="text-zinc-600 group-hover:text-brand-primary transition-colors">{link.icon}</span>}
-                                            {link.label}
+                                            <span className="text-sm">{link.label}</span>
                                         </Link>
                                     </li>
                                 ))}
@@ -118,6 +132,7 @@ export function Footer() {
                         </div>
                     ))}
                 </div>
+
 
                 {/* Bottom Bar */}
                 <div className="pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6 text-zinc-500 text-sm">

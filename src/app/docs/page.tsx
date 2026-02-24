@@ -27,6 +27,7 @@ import {
 } from "lucide-react";
 import { useI18n } from "@/lib/i18n-context";
 import { cn } from "@/lib/utils";
+import { Footer } from "@/components/landing/footer";
 
 export default function DocsPage() {
     const { t, isRTL } = useI18n();
@@ -159,7 +160,7 @@ export default function DocsPage() {
             "min-h-screen",
             isRTL ? "font-arabic" : ""
         )} dir={isRTL ? "rtl" : "ltr"}>
-            <main className="container mx-auto px-6 py-24">
+            <main className="container mx-auto px-6 pt-24 pb-12">
                 {/* Hero Section */}
                 <div className="max-w-4xl mx-auto text-center mb-24">
                     <motion.div
@@ -167,7 +168,7 @@ export default function DocsPage() {
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.6 }}
                     >
-                        <h1 className="text-6xl font-bold tracking-tight mb-4 bg-linear-to-b from-white to-white/40 bg-clip-text text-transparent">
+                        <h1 className="text-6xl font-bold tracking-tight mb-4 bg-linear-to-b from-white to-white/40 bg-clip-text text-transparent pb-4">
                             {t("docs.title")}
                         </h1>
                         <p className="text-2xl font-light text-brand-primary/80 tracking-wide mb-8">
@@ -244,13 +245,7 @@ export default function DocsPage() {
             </main>
 
             {/* Footer */}
-            <footer className="border-t border-white/5 py-12 bg-zinc-900/20">
-                <div className="container mx-auto px-6 text-center">
-                    <p className="text-zinc-500 text-sm">
-                        &copy; {new Date().getFullYear()} AURA Intelligence. {t("common.allRightsReserved")}
-                    </p>
-                </div>
-            </footer>
+            <Footer />
         </div>
     );
 }

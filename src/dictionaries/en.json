@@ -161,54 +161,89 @@
             "subscribe": "Subscribe",
             "emailPlaceholder": "Enter your email",
             "devTeam": "Developed by Aura AI Dev Team",
-            "slogan": "Chat with your Collective Intelligence."
+            "slogan": "Chat with your Collective Intelligence.",
+            "news": "News",
+            "latestIntelligence": "Latest Intelligence",
+            "news1": "AURA v1.2.4 released with native RTL support.",
+            "news2": "Llama 3.2 integrated for local reasoning.",
+            "news3": "50+ new localized languages added.",
+            "version": "Version",
+            "build": "Build",
+            "operational": "Operational",
+            "systemStatus": "System Status",
+            "localInference": "Local Inference"
+        }
+    },
+    "news": {
+        "title": "AURA Newsroom",
+        "subtitle": "Latest technical updates and product announcements.",
+        "v124": {
+            "title": "AURA v1.2.4 Released: Native RTL Support and Local Llama 3.2 Integration",
+            "date": "February 24, 2026",
+            "category": "Technical Release",
+            "summary": "Platform upgrade focused on accessibility and local reasoning performance, introducing Level 4 RTL resilience and Llama 3.2 edge intelligence.",
+            "content": "The AURA v1.2.4 release introduces two significant platform upgrades focused on accessibility and reasoning performance: native Right-to-Left (RTL) language support and the integration of Llama 3.2 for fully local reasoning. These enhancements further strengthen AURA’s position as a privacy-centric, trust-native Retrieval-Augmented Generation (RAG) system.\n\nAURA now provides native support for RTL languages, including Arabic, Hebrew, and Persian. This update extends beyond interface-level alignment and ensures that document ingestion, semantic chunking, retrieval, and response rendering correctly preserve RTL structure. Document elements such as paragraphs, lists, tables, and inline citations are processed and displayed without structural distortion.\n\nVersion 1.2.4 integrates Llama 3.2 into AURA’s local inference pipeline. All reasoning, synthesis, and response generation continue to execute entirely on the user’s machine, preserving data sovereignty. Llama 3.2 improves local analytical reasoning for complex queries, response consistency, and time-to-first-token performance on consumer-grade hardware. This integration operates in conjunction with AURA’s CA-RAG framework, ensuring that all outputs remain grounded strictly in retrieved source documents.\n\nAURA v1.2.4 retains the system’s deterministic verification mechanisms. Each response is accompanied by a confidence indicator derived from retrieval strength and contextual consistency. Inline citations remain fully traceable, allowing users to verify each claim against its originating document section, reducing hallucination risk in high-stakes environments."
+        },
+        "llama": {
+            "title": "Next-Generation Local Reasoning with Llama 3.2 (3B / 1B)",
+            "date": "February 20, 2026",
+            "category": "Model Update",
+            "summary": "AURA enables next-generation edge intelligence through fully local reasoning using Llama 3.2 1B and 3B variants.",
+            "content": "AURA has integrated Llama 3.2 (3B and 1B variants) to enable next-generation edge intelligence through fully local reasoning. This integration strengthens AURA’s ability to deliver fast, privacy-preserving, and document-grounded inference on consumer-grade hardware, without reliance on cloud-based AI services.\n\nThe Llama 3.2 1B and 3B models are specifically optimized for low-latency execution in constrained environments. Their compact parameter size allows AURA to perform reasoning, synthesis, and verification entirely on-device, making the system suitable for personal workstations, offline research environments, and regulated enterprise systems.\n\nDespite their smaller size, Llama 3.2 models demonstrate strong performance in analytical and multi-step reasoning tasks when combined with AURA’s RAG pipeline. The 3B variant is used for deeper analytical queries, while the 1B variant enables ultra-fast responses for factual and exploratory queries.\n\nLlama 3.2 operates within AURA’s existing Confidence-Aware RAG (CA-RAG) framework. Every response generated is evaluated against deterministic confidence metrics. This integration ensures that improved reasoning capability does not come at the cost of reliability or transparency, advancing AURA’s vision of practical edge intelligence."
+        },
+        "global": {
+            "title": "Global Language Expansion: 50+ New Localized Tongues",
+            "date": "February 15, 2026",
+            "category": "Feature Update",
+            "summary": "AURA now supports over 50 localized languages with intelligent context switching and native script rendering.",
+            "content": "We are excited to announce a massive expansion of AURA's linguistic capabilities. This update introduces support for 50+ new localized tongues, ranging from major global languages to regional dialects. Our intelligent context switching engine automatically detects the language of your primary documents and adapts the retrieval pipeline to maintain semantic accuracy. This expansion covers native script rendering, localized date formats, and culturally aware response synthesis, ensuring that AURA is truly accessible to everyone, everywhere."
         }
     },
     "devTeam": {
         "title": "AURA Architects",
-        "subtitle": "The minds behind the intelligence. Operating at the frontier of neural engineering.",
+        "subtitle": "The engineering team behind the AURA Intelligence Platform.",
         "viewProfile": "View Intelligence Profile",
         "dossier": {
             "status": "Operational Status",
             "clearance": "Clearance Level",
-            "metrics": "Core Metrics",
-            "directives": "Directives",
+            "metrics": "Engineering Metrics",
+            "directives": "Technical Directives",
             "focus": "Core Focus",
             "vision": "System Vision",
-            "technical": "Technical Mastery",
-            "close": "Terminate Session",
+            "technical": "Technical Stack",
+            "close": "Close Session",
             "back": "Back to Team"
         },
         "kailash": {
             "name": "Kailash",
-            "role": "Chief Tactical Officer",
-            "bio": "Orchestrating high-fidelity neural frameworks with surgical precision. Operating at the intersection of quantum performance and algorithmic structuralism to redefine the boundaries of human-machine synergy. MISSION: Total systemic optimization through relentless procedural innovation.",
+            "role": "Lead Systems Architect",
+            "bio": "Specializing in distributed infrastructure and high-performance neural compute. Kailash engineers the backbone of the AURA platform, ensuring sub-millisecond latency and massive scalability across heterogeneous data environments.",
             "dossier": {
-                "status": "ACTIVE / SURGICAL",
-                "clearance": "LEVEL 9 NEURAL CLEARANCE",
+                "status": "ACTIVE / DEPLOYED",
+                "clearance": "UNRESTRICTED ACCESS",
                 "metrics": [
-                    "99.98% Efficiency",
-                    "Zero Latency Structuralism",
-                    "Quantum Recursive Stability"
+                    "99.9% Infrastructure Uptime",
+                    "P99 Latency < 100ms",
+                    "Elastic Resource Scaling"
                 ],
                 "directives": [
-                    "Implement algorithmic supremacy via high-fidelity frameworks.",
-                    "Execute procedural innovation with relentless accuracy.",
-                    "Redefine architectural boundaries of the AURA core."
+                    "Maintain high-availability across all neural nodes.",
+                    "Optimize vector embedding generation pipelines.",
+                    "Architect zero-trust security layers for data isolation."
                 ]
             }
         },
         "kaliVignesh": {
             "name": "Kali Vignesh",
-            "role": "Lead Visionary Developer",
-            "bio": "Focused on crafting intuitive user experiences and robust frontend architectures. Passionate about clean code, modern design systems, and building AI tools that make a real difference in daily workflows.",
+            "role": "Lead Product Engineer",
+            "bio": "Expert in full-stack architecture and interactive design systems. Kali bridges the gap between complex RAG pipelines and intuitive user interfaces, driving the development of AURA's visual reasoning and data-analysis tools.",
             "dossier": {
-                "focus": "User-Centric AI Architecture",
-                "vision": "Bridging the gap between complex neural systems and human intuition through world-class design.",
+                "focus": "Interactive Data Synthesis",
+                "vision": "Making complex intelligence accessible through high-fidelity visual interaction and sub-second feedback loops.",
                 "technical": [
-                    "Next.js & React Mastery",
-                    "Design System Architecture",
-                    "Fluid Interaction Engineering"
+                    "Next.js 15 & React Architecture",
+                    "High-Performance Charting Systems",
+                    "Full-Stack TypeScript Engineering"
                 ]
             }
         }
@@ -334,7 +369,7 @@
         "isolated": "Isolated Tenancy"
     },
     "docs": {
-        "title": "Aura Architecture",
+        "title": "AURA Docs",
         "subtitle": "Technical Documentation",
         "heroDesc": "Comprehensive technical reference for the Aura AI Platform. Explore the system architecture, core components, and developer guides.",
         "advancedTitle": "Enterprise & Ops",
@@ -369,7 +404,9 @@
         "troubleshootTitle": "Troubleshooting",
         "troubleshootDesc": "Common diagnostic procedures and system health monitoring.",
         "deployTitle": "Deployment Guide",
-        "deployDesc": "Production-ready deployment strategies for cloud and on-premise."
+        "deployDesc": "Production-ready deployment strategies for cloud and on-premise.",
+        "aiModels": "AI Models",
+        "aiModelsDesc": "Technical details of the Ollama model zoo used by AURA."
     },
     "help": {
         "title": "Help & Support",

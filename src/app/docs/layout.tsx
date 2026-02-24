@@ -54,7 +54,7 @@ export default function DocsLayout({
             </header>
 
             {/* Main Content */}
-            <main className="relative z-10 pt-24 pb-20">
+            <main className="relative z-10 pt-24">
                 {children}
             </main>
         </div>
